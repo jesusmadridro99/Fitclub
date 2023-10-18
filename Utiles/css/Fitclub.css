@@ -1,0 +1,120 @@
+
+/*------Fitclub.php----------*/
+
+.div_princ_ini{background-color:#fff0f0;
+     display:flex;
+     border-top:solid rgb(255, 212, 212) 5px
+}
+
+.div_sec_ini{width:1000px;
+    padding:10px;
+}
+
+.div_ini_img1{
+    float:right;
+    width:505px;
+    display:flex
+}
+
+.div_ini_img2{
+    width:400px;
+    display:flex
+}
+
+.div_form_datos{border:solid 1px rgb(253, 142, 142);
+    border-radius: 4px;
+    display:inline-block;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    padding:20px
+}
+
+
+
+/*------ListarProducto.php----------*/
+
+
+.producto{
+    width: 300px;
+    height:200px;
+    background-color: black;
+}
+
+.div_pro_1{
+    display:flex;
+    float:left;
+    padding-left: 10%;
+    padding-right:3%;
+    height:100%;
+}
+
+
+.div_pro_2{
+    max-width: 20rem; 
+    float:left; 
+    margin:1%
+}
+
+
+
+
+
+
+/*------ Header - Dropdown ----------*/
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1f1f1f;
+    min-width: 160px;
+    border-radius:5px;
+    border: solid rgb(202, 202, 202) 1px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: rgb(187, 187, 187);
+    padding: 12px 16px;
+    text-decoration: none;
+    font-size:17px;
+    font-weight:lighter;
+    font-family: 'Roboto Condensed';
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #4e4e4e; border-radius:5px }
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+
+
+
+
+
+/*------ Header - Buscador ----------*/
+
+.d-flex{
+
+    width: 40%;
+    
+    margin-left: 5%;
+    padding-top:1%;
+    margin-right: auto;
+
+}
+
+
+.navbar-brand{
+    font-size: 30px;
+}
+
+.navbar{
+    border-bottom: rgb(252, 165, 165) solid 5px;
+}
