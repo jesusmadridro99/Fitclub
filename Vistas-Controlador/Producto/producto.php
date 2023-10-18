@@ -16,11 +16,15 @@
                         </h6>
 
                         <?php if (isset($_SESSION['rol'])) { ?>
-                            <button class="btn btn-lg btn-primary" style="font-size:15px; width:90px" type="button"
-                                onclick="carrito()">Comprar</button>
+                            <button class="btn btn-lg btn-primary" style="font-size:15px; width:90px" type="button" onclick="carrito()">Comprar</button>
                             <br>
-                            <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Añadir a la
-                                lista</button>
-                        <?php } ?>
+                            <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Añadir a la lista</button>
+
+                            <?php if($_SESSION['rol'] == 'admin'){ ?>
+                            <button class="btn btn-lg btn-primary" style="font-size:15px; width:90px" type="button" onclick="carrito()">Modificar</button>
+                            <br>
+                            <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Borrar</button>
+                            
+                        <?php } }?>
                     </div>
                 </div>

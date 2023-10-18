@@ -5,32 +5,22 @@ include("../../Repositorio/CategoriaRepository.php");
 include("../../Utiles/Includes/Header.php");
 
 
-
-
-
 $categoriaSistemas = findAllCategoria();
 
 if (isset($_GET["orden"])) {
     if ($_GET['orden'] == "alfaAZ") {
         $orden = "nombre ASC";
-    }
-    else if ($_GET['orden'] == "alfaZA") {
+    } else if ($_GET['orden'] == "alfaZA") {
         $orden = "nombre DESC";
-    }
-
-    else if ($_GET['orden'] == "precio<>") {
+    } else if ($_GET['orden'] == "precio<>") {
         $orden = "precio ASC";
-    }
-
-    else if ($_GET['orden'] == "precio><") {
+    } else if ($_GET['orden'] == "precio><") {
         $orden = "precio DESC";
-    }
-
-    else {
+    } else {
         $orden = "nombre ASC";
     }
-    
-}else{
+
+} else {
     $_SESSION['productos'] = [];
 }
 
@@ -61,8 +51,15 @@ if (isset($_GET["orden"])) {
 
 <body>
 
-
     <legend class="mt-2" style="padding-left:15%; font-size:40px">Productos</legend>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+    <?php 
+    if ($_SESSION['rol'] == 'admin'){ ?>
+        <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Crear</button>
+        <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Borrar</button>
+    <?php } ?>
     <hr style="width:95%;">
     <br>
 
@@ -89,7 +86,7 @@ if (isset($_GET["orden"])) {
 
     <div style="float:right">
         <div class="dropdown">
-            <button class="btn btn-dark" style="margin-right: 100px">Ordenar por:</button>
+            <button class="btn btn-dark" style="margin-right: 100px; font-size:15px;">Ordenar por:</button>
             <div class="dropdown-content">
                 <a href="ListarProducto.php?orden=alfaAZ">Nombre, A a Z</a>
                 <a href="ListarProducto.php?orden=alfaZA">Nombre, Z a A</a>
@@ -102,115 +99,65 @@ if (isset($_GET["orden"])) {
 
     <br>
     <br>
-
-
-    <div>
-        <?php
+    
+       
         
-        if ($_SERVER["REQUEST_METHOD"] != "POST") {
-            $_POST['check'] = [];
-            foreach ($categoriaSistemas as $cat) {
-                array_push($_POST['check'], $cat['cod_cat']);
-            }
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+        
+    <?php
+
+    if ($_SERVER["REQUEST_METHOD"] != "POST") {
+        $_POST['check'] = [];
+        foreach ($categoriaSistemas as $cat) {
+            array_push($_POST['check'], $cat['cod_cat']);
         }
-        
+    }
 
-        if (isset($_GET["orden"])) {
+    if (isset($_GET["orden"])) {
+        $productoSistemas = findProductoByIDOrdered($_SESSION['productos'], $orden);
+        foreach ($productoSistemas as $producto) {
+            include('producto.php');
+        }
 
-            $productoSistemas = findProductoByIDOrdered($_SESSION['productos'], $orden);
-            
+    } else {
+        $i = 0;
+        foreach ($_POST['check'] as $seleccion) {
+            $productoSistemas = findProductoByCategoria($seleccion);
             foreach ($productoSistemas as $producto) {
-                
-                ?>
-
-                <div class="card border-primary mb-3 div_pro_2" style="width:250px;">
-                    <div class="card-header">
-                        <?php echo $producto['nombre']; ?>
-                    </div>
-                    <div class="card-body" style="background-color:rgb(253, 237, 237)">
-                        <div style="height:200px;
-                                    width:200px;
-                                        background-image:url(<?php echo $producto['imagen'] ?>);
-                                        background-size: cover;
-                                        background-repeat: no-repeat;
-                                        margin:5px;">
-                        </div>
-                        <hr>
-                        <h6 class="card-title">
-                            <?php echo $producto['precio'] ?> €
-                        </h6>
-
-                        <?php if (isset($_SESSION['rol'])) { ?>
-                            <button class="btn btn-lg btn-primary" style="font-size:15px; width:90px" type="button"
-                                onclick="carrito()">Comprar</button>
-                            <br>
-                            <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Añadir a la
-                                lista</button>
-                        <?php } ?>
-                    </div>
-                </div>
-            </div>
-        <?php }
-
-        } else {
-            
-
-            /*-------------------------------------------------------------------------------------*/
-
-            $i = 0;
-            foreach ($_POST['check'] as $seleccion) {
-
-                $productoSistemas = findProductoByCategoria($seleccion);
-            
-                foreach ($productoSistemas as $producto) {
-                    $_SESSION['productos'][$i] = $producto["cod_producto"];
-                    $i += 1;
-
-            /* ------------------------------------------------------------------------------------*/
-                    
-                    ?>
-
-                   
-                <div class="card border-primary mb-3 div_pro_2" style="width:250px;">
-                    <div class="card-header">
-                        <?php echo $producto['nombre']; ?>
-                    </div>
-                    <div class="card-body" style="background-color:rgb(253, 237, 237)">
-                        <div style="height:200px;
-                                    width:200px;
-                                        background-image:url(<?php echo $producto['imagen'] ?>);
-                                        background-size: cover;
-                                        background-repeat: no-repeat;
-                                        margin:5px;">
-                        </div>
-                        <hr>
-                        <h6 class="card-title">
-                            <?php echo $producto['precio'] ?> €
-                        </h6>
-
-                        <?php if (isset($_SESSION['rol'])) { ?>
-                            <button class="btn btn-lg btn-primary" style="font-size:15px; width:90px" type="button"
-                                onclick="carrito()">Comprar</button>
-                            <br>
-                            <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Añadir a la
-                                lista</button>
-                        <?php } ?>
-                    </div>
-                </div>
-                </div>
-            <?php }
-            
+                $_SESSION['productos'][$i] = $producto["cod_producto"];
+                $i += 1;
+                include('producto.php');
             }
         }
+    }
 
-        ?>
+    ?>
 
     <script>
         function carrito() {
             alert('Producto añadido al carrito');
         }
-    </script>
 
+    </script>
+    <script src="../../Utiles/Includes/javascript.js" crossorigin="anonymous"></script>
 
 </body>
 
