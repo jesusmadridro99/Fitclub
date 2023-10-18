@@ -57,6 +57,7 @@ ob_end_flush();
 <body>
     <br>
     <br>
+    <br>
     <h4 style="text-align:center">Iniciar Sesión</h4>
     <br>
     <br>
