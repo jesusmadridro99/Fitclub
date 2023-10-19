@@ -1,11 +1,18 @@
 <?php
 
+$modificar = false;
+
+
+
 include("../../Repositorio/ProductoRepository.php");
 include("../../Repositorio/CategoriaRepository.php");
 include("../../Utiles/Includes/Header.php");
 
 
+
 $categoriaSistemas = findAllCategoria();
+
+
 
 if (isset($_GET["orden"])) {
     if ($_GET['orden'] == "alfaAZ") {
@@ -101,8 +108,6 @@ if (isset($_GET["orden"])) {
     <br>
 
 
-
-
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -112,7 +117,7 @@ if (isset($_GET["orden"])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    
+
                     <form action="CrearActualizarProducto.php?cod_producto=" method="POST">
 
                         <label for="nombre">Nombre: </label>
@@ -126,11 +131,10 @@ if (isset($_GET["orden"])) {
                         <label for="precio">Precio: </label>
                         <input id="precio" class="form-control" required type="number" name="precio" value="<?php if (isset($precio))
                             echo $precio; ?>" /><br>
-
+                        
                         <label for="imagen">Imagen URL: </label>
-                        <input id="imagen" class="form-control" required type="text" name="imagen"
-                            value="<?php if (isset($imagen))
-                                echo $imagen; ?>" /><br>
+                        <input id="imagen" class="form-control" required type="text" name="imagen" value="<?php if (isset($imagen))
+                            echo $imagen; ?>" /><br>
 
                         <label for="cod_cat">Categoria: </label>
                         <select name="cod_cat">
@@ -140,14 +144,20 @@ if (isset($_GET["orden"])) {
                                 </option>
                             <?php } ?>
                         </select>
+                            
+                        <?php if (isset($_GET["mod"])){ ?>
+                            <input id="cod_producto" class="form-control" required type="text" name="cod_producto" value="<?php $producto['cod_producto']?>" /><br>
+                        
+                        <?php }?>
+                        
 
-                        </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </div>
-                    </form>
-                
+                </form>
+
             </div>
         </div>
     </div>
@@ -184,6 +194,7 @@ if (isset($_GET["orden"])) {
     <script>
         function carrito() {
             alert('Producto añadido al carrito');
+            
         }
 
     </script>

@@ -22,10 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $precio = $_POST["precio"];
     $imagen = $_POST["imagen"];
     $cod_cat = $_POST["cod_cat"];
+    
 
 
     // Comprobamos si se pasa un id mediante URL para crear o actualizar el producto.
-    if (!isset($_GET["id"])) {
+    if (!isset($_POST["cod_producto"])) {
         $result = findNombreProducto($nombre);
         if ($result->rowCount() == 0) {
             crearProducto($nombre, $descripcion, $precio, $imagen, $cod_cat);
@@ -34,14 +35,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errorNombreExistente = true;
         }
     } else {
-        $cod_producto = $_GET["id"];
-        $result = findNombreIDProducto($nombre, $cod_producto);
-        if ($result->rowCount() == 0) {
+        
+        /*$result = findNombreIDProducto($nombre, $cod_producto);*/
+        /*if ($result->rowCount() == 0) {*/
+            
             updateProducto($cod_producto, $descripcion, $precio, $nombre, $imagen, $cod_cat);
-            header("Location: ListarProducto.php");
-        } else {
+        /*} else {
             $errorNombreExistente = true;
-        }        
+        }    */    
     }
 }
 

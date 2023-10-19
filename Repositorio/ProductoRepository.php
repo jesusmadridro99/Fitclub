@@ -361,3 +361,11 @@ function updateUsuario($username, $correo, $contrasena, $cp, $direccion, $pais)
     }
 }
 ?>*/
+
+
+
+function mod($modificar){
+    $modificar = true;
+
+    return $modificar;
+}
