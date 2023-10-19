@@ -19,7 +19,7 @@ if(isset($_SESSION["correo"])){
         if ($resultConsultaEncontrarUser[0]) {
             $_SESSION['correo'] = $correo;
             
-            if ($resultConsultaEncontrarUser[1]) {
+            if ($resultConsultaEncontrarUser[1] == false) {
                 $_SESSION['rol'] = "admin";
                 header("Location:Fitclub.php");
             } 

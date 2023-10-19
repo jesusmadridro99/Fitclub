@@ -68,7 +68,7 @@ function findAllCategoria() {
         $result = $result->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Spytufo/Vistas-Controlador/Error.html");
+        header("Location: /Fitclub/Vistas-Controlador/Error.html");
     }
 
     return $result;

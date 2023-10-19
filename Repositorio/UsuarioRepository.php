@@ -91,10 +91,7 @@ function findCorreoPassActivoUsuario($correo, $pass) {
 
         if ($result->rowCount() == 0) {
             $encuentraUser = true;
-        } 
-
-        else{
-
+        
             $esAdmin = $result->fetch(PDO::FETCH_ASSOC)["esAdmin"];
 
             if($esAdmin == 1){

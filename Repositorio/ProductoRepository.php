@@ -1,22 +1,49 @@
 <?php
 include __DIR__ . '../../Utiles/ConectarBD.php';
 
-function crearUsuario($correo, $contrasena, $username, $nombre, $apellidos)
-{
-    $sqlCrear = "INSERT INTO usuario(correo, password, username, nombre, apellidos, activo, esAdmin)
-    VALUES (?, ?, ?, ?, ?, '1',  '0')";
-
+function crearProducto($nombre, $descripcion, $precio, $imagen, $cod_cat) {
+    $sqlCrear = "INSERT INTO producto(nombre, descripcion, precio, imagen, cod_cat) 
+        VALUES (?, ?, ?, ?, ?)";
+    
     try {
         $result = $GLOBALS["bd"]->prepare($sqlCrear);
-        $result->execute(array($correo, $contrasena, $direccion, $cp, $pais, $username));
-    } catch (PDOException $e) {
+        $result->execute(array($nombre, $descripcion, $precio, $imagen, $cod_cat));
+    } catch(PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Spytufo/Vistas-Controlador/Error.html");
+        header("Location: /Fitclub/Vistas-Controlador/Error.html");
     }
 }
 
+function updateProducto($codProducto, $descripcion, $precio, $nombre,  $imagen, $codCat) {
+    $sqlUpdateProducto = "UPDATE grupo set nombre = ?, descripcion = ?, precio = ?, imagen = ?, cod_cat = ? where cod_producto = ?";
 
-function findProductoByCategoria($categoria){
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlUpdateProducto);
+        $result->execute(array($nombre, $descripcion, $precio, $imagen, $codCat, $codProducto));
+        $result = $result->fetchAll(PDO::FETCH_ASSOC);
+    } catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: /Fitclub/Vistas-Controlador/Error.html");
+    }
+}
+
+function findNombreIDProducto($cod_producto, $nombre) {
+    $sqlFindIDNombre = "SELECT * FROM producto where nombre = ? and cod_producto != ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlFindIDNombre);
+        $result->execute(array($nombre, $cod_producto));
+    } catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: /Fitclub/Vistas-Controlador/Error.html");
+    }
+
+    return $result;
+}
+
+
+function findProductoByCategoria($categoria)
+{
 
     $sqlFindProducto = "SELECT * from producto where cod_cat = ?";
 
@@ -32,7 +59,8 @@ function findProductoByCategoria($categoria){
 
 }
 
-function findProductoByCategoriaOrdenado($categoria, $orden){
+function findProductoByCategoriaOrdenado($categoria, $orden)
+{
 
     $sqlFindProducto = "SELECT * from producto where cod_cat = ? ORDER BY nombre";
 
@@ -49,14 +77,15 @@ function findProductoByCategoriaOrdenado($categoria, $orden){
 }
 
 
-function findProductoByIDOrdered($cod, $orden){
-    $codigos = '"'.rtrim(implode('","',$cod), ',').'"';
+function findProductoByIDOrdered($cod, $orden)
+{
+    $codigos = '"' . rtrim(implode('","', $cod), ',') . '"';
     $sqlFindAll = "SELECT * FROM producto WHERE cod_producto IN ($codigos) ORDER BY $orden";
 
     try {
         $result = $GLOBALS["bd"]->query($sqlFindAll);
-        
-        
+
+
     } catch (PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
         header("Location: /Fitclub/Vistas-Controlador/Error.html");
@@ -65,22 +94,27 @@ function findProductoByIDOrdered($cod, $orden){
     return $result;
 }
 
+function findIdProducto($id)
+{
 
+    $sqlFindProducto = "SELECT * from producto where cod_producto = ?";
 
-/*$sqlFindProducto = "SELECT * from producto where cod_cat = ?";
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlFindProducto);
+        $result->execute(array($id));
 
-try {
-    $result = $GLOBALS["bd"]->prepare($sqlFindProducto);
-    $result->execute(array($categoria));
+    } catch (PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: /Fitclub/Vistas-Controlador/Error.html");
+    }
+    return $result;
 
-} catch (PDOException $e) {
-    echo "Error en la conexión " . $e->getMessage();
-    header("Location: /Fitclub/Vistas-Controlador/Error.html");
 }
-return $result;
 
-}*/
 
+
+
+/*
 
 /*function findUsuarioUsername($username)
 {
@@ -174,6 +208,22 @@ function findCorreoPassActivoUsuario($correo, $pass)
     return array($encuentraUser, $esAdminSistema);
 }
 */
+
+function findNombreProducto($nombre) {
+    $sqlFindNombre = "SELECT * FROM producto where nombre = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlFindNombre);
+        $result->execute(array($nombre));
+    } catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: /Fitclub/Vistas-Controlador/Error.html");
+    }
+
+    return $result;
+}
+
+
 function findEachCategoria()
 {
     $sqlFindEach = "SELECT DISTINCT categoria FROM producto";
