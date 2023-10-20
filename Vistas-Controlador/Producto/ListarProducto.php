@@ -3,15 +3,12 @@
 $modificar = false;
 
 
-
 include("../../Repositorio/ProductoRepository.php");
 include("../../Repositorio/CategoriaRepository.php");
 include("../../Utiles/Includes/Header.php");
 
 
-
 $categoriaSistemas = findAllCategoria();
-
 
 
 if (isset($_GET["orden"])) {
@@ -135,6 +132,8 @@ if (isset($_GET["orden"])) {
                         <label for="imagen">Imagen URL: </label>
                         <input id="imagen" class="form-control" required type="text" name="imagen" value="<?php if (isset($imagen))
                             echo $imagen; ?>" /><br>
+                        <label for="imagen2">Imagen URLaaa: </label>
+                        <input id="imagen2" class="form-control" required type="text" name="imagen" /><br>
 
                         <label for="cod_cat">Categoria: </label>
                         <select name="cod_cat">
@@ -196,7 +195,6 @@ if (isset($_GET["orden"])) {
 
                     <?php if (isset($_SESSION['rol'])) {
 
-                            
                         ?>
 
                         <button class="btn btn-lg btn-primary" style="font-size:15px; width:90px" type="button"
@@ -205,18 +203,17 @@ if (isset($_GET["orden"])) {
                         <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Añadir a la
                             lista</button>
 
-                        <?php if ($_SESSION['rol'] == 'admin') { 
+                        <?php if ($_SESSION['rol'] == 'admin') {
                             ?>
-
                             <p>
-
                             </p>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarModal">
-                                    Launch demo modal
-                                </button>
+                                Launch demo modal
+                            </button>
 
-                            <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Borrar</button>
 
+                            <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
+                                href="javascript: comprobarEliminar(<?php echo $producto['cod_producto'] ?>)">Borrar</a>
                         <?php }
                     }
                     ?>
@@ -270,8 +267,12 @@ if (isset($_GET["orden"])) {
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarModal">
                                     Launch demo modal
                                 </button>
-                                <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Borrar</button>
+                                <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
+                                    href="javascript: comprobarEliminar(<?php echo $producto['cod_producto'] ?>)">Borrar</a>
 
+                                </button>
+                                <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
+                                    href="javascript: modificar(<?php echo $producto['cod_producto'] ?>)">Mod</a>
                             <?php }
                         }
                         ?>
@@ -293,6 +294,45 @@ if (isset($_GET["orden"])) {
 
     </script>
     <script src="../../Utiles/Includes/javascript.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+        function comprobarEliminar($cod_producto) {
+            if (confirm("¿Seguro que quiere eliminar el producto?")) {
+                window.location.href = "BorrarProducto.php?id=" + $cod_producto;
+            }
+        }
+    </script>
+
+    <script>
+        var modal = document.getElementById("exampleModal");
+        function modificar($cod_producto) {
+            var exampleModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
+                keyboard: false
+                
+            });
+
+            exampleModal._element.setAttribute('data-cod-producto', $cod_producto);
+
+
+            exampleModal.show();
+        }
+
+        var exampleModal = document.getElementById('exampleModal');
+        var imagen2 = exampleModal.querySelector('#imagen2');
+
+        exampleModal.addEventListener('show.bs.modal', function () {
+        var cod_producto = exampleModal.getAttribute('data-cod-producto');
+        imagen2.textContent = cod_producto;
+});
+
+
+
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 
 </body>
 
