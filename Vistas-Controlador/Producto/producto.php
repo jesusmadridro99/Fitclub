@@ -1,4 +1,3 @@
-<?php $modificar = true ?>
 
 
 <div class="card border-primary mb-3 div_pro_2" style="width:250px;">
@@ -18,6 +17,7 @@
             <?php echo $producto["precio"] ?> €
         </h6>
 
+        
          
 
         <?php if (isset($_SESSION['rol'])) { 
@@ -33,9 +33,10 @@
 
             <?php if ($_SESSION['rol'] == 'admin') { ?>
                 
-                <button name="mod" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >
-                    Modificar
-                </button>
+                <p>
+        
+    </p>
+    
             
                 <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Borrar</button>
 

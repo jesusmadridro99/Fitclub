@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imagen = $_POST["imagen"];
     $cod_cat = $_POST["cod_cat"];
     
+    
 
 
     // Comprobamos si se pasa un id mediante URL para crear o actualizar el producto.

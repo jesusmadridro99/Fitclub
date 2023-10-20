@@ -15,7 +15,7 @@ function crearProducto($nombre, $descripcion, $precio, $imagen, $cod_cat) {
 }
 
 function updateProducto($codProducto, $descripcion, $precio, $nombre,  $imagen, $codCat) {
-    $sqlUpdateProducto = "UPDATE grupo set nombre = ?, descripcion = ?, precio = ?, imagen = ?, cod_cat = ? where cod_producto = ?";
+    $sqlUpdateProducto = "UPDATE producto set nombre = ?, descripcion = ?, precio = ?, imagen = ?, cod_cat = ? where cod_producto = ?";
 
     try {
         $result = $GLOBALS["bd"]->prepare($sqlUpdateProducto);
@@ -363,9 +363,17 @@ function updateUsuario($username, $correo, $contrasena, $cp, $direccion, $pais)
 ?>*/
 
 
+function deleteProducto($codProducto) {
+    $sqlDeleteProducto = "DELETE FROM producto where cod_producto = ?";
 
-function mod($modificar){
-    $modificar = true;
-
-    return $modificar;
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlDeleteProducto);
+        $result->execute(array($codProducto));
+    } catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: /Fitclub/Vistas-Controlador/Error.html");
+    }
 }
+
+
+?>

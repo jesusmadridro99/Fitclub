@@ -118,7 +118,7 @@ if (isset($_GET["orden"])) {
                 </div>
                 <div class="modal-body">
 
-                    <form action="CrearActualizarProducto.php?cod_producto=" method="POST">
+                    <form action="CrearActualizarProducto.php" method="POST">
 
                         <label for="nombre">Nombre: </label>
                         <input id="nombre" class="form-control" required type="text" name="nombre" value="<?php if (isset($nombre))
@@ -131,7 +131,7 @@ if (isset($_GET["orden"])) {
                         <label for="precio">Precio: </label>
                         <input id="precio" class="form-control" required type="number" name="precio" value="<?php if (isset($precio))
                             echo $precio; ?>" /><br>
-                        
+
                         <label for="imagen">Imagen URL: </label>
                         <input id="imagen" class="form-control" required type="text" name="imagen" value="<?php if (isset($imagen))
                             echo $imagen; ?>" /><br>
@@ -144,12 +144,13 @@ if (isset($_GET["orden"])) {
                                 </option>
                             <?php } ?>
                         </select>
-                            
-                        <?php if (isset($_GET["mod"])){ ?>
-                            <input id="cod_producto" class="form-control" required type="text" name="cod_producto" value="<?php $producto['cod_producto']?>" /><br>
-                        
-                        <?php }?>
-                        
+
+                        <?php if (isset($_GET["mod"])) { ?>
+                            <input id="cod_producto" class="form-control" required type="text" name="cod_producto"
+                                value="<?php $producto['cod_producto'] ?>" /><br>
+
+                        <?php } ?>
+
 
                 </div>
                 <div class="modal-footer">
@@ -162,6 +163,8 @@ if (isset($_GET["orden"])) {
         </div>
     </div>
 
+
+
     <?php
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -173,9 +176,55 @@ if (isset($_GET["orden"])) {
 
     if (isset($_GET["orden"])) {
         $productoSistemas = findProductoByIDOrdered($_SESSION['productos'], $orden);
-        foreach ($productoSistemas as $producto) {
-            include('producto.php');
-        }
+        foreach ($productoSistemas as $producto) { ?>
+            <div class="card border-primary mb-3 div_pro_2" style="width:250px;">
+                <div class="card-header">
+                    <?php echo $producto['nombre']; ?>
+                </div>
+                <div class="card-body" style="background-color:rgb(253, 237, 237)">
+                    <div style="height:200px;
+                    width:200px;
+                    background-image:url(<?php echo $producto['imagen'] ?>);
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    margin:5px;">
+                    </div>
+                    <hr>
+                    <h6 class="card-title">
+                        <?php echo $producto["precio"] ?> €
+                    </h6>
+
+                    <?php if (isset($_SESSION['rol'])) {
+
+                            
+                        ?>
+
+                        <button class="btn btn-lg btn-primary" style="font-size:15px; width:90px" type="button"
+                            onclick="carrito()">Comprar</button>
+                        <br>
+                        <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Añadir a la
+                            lista</button>
+
+                        <?php if ($_SESSION['rol'] == 'admin') { 
+                            ?>
+
+                            <p>
+
+                            </p>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarModal">
+                                    Launch demo modal
+                                </button>
+
+                            <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Borrar</button>
+
+                        <?php }
+                    }
+                    ?>
+
+                </div>
+            </div>
+
+        <?php }
 
     } else {
         $i = 0;
@@ -183,8 +232,53 @@ if (isset($_GET["orden"])) {
             $productoSistemas = findProductoByCategoria($seleccion);
             foreach ($productoSistemas as $producto) {
                 $_SESSION['productos'][$i] = $producto["cod_producto"];
-                $i += 1;
-                include('producto.php');
+                $i += 1; ?>
+                <div class="card border-primary mb-3 div_pro_2" style="width:250px;">
+                    <div class="card-header">
+                        <?php echo $producto['nombre']; ?>
+                    </div>
+                    <div class="card-body" style="background-color:rgb(253, 237, 237)">
+                        <div style="height:200px;
+                    width:200px;
+                    background-image:url(<?php echo $producto['imagen'] ?>);
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    margin:5px;">
+                        </div>
+                        <hr>
+                        <h6 class="card-title">
+                            <?php echo $producto["precio"] ?> €
+                        </h6>
+
+
+                        <?php if (isset($_SESSION['rol'])) {
+
+                            ?>
+
+                            <button class="btn btn-lg btn-primary" style="font-size:15px; width:90px" type="button"
+                                onclick="carrito()">Comprar</button>
+                            <br>
+                            <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Añadir a la
+                                lista</button>
+
+                            <?php if ($_SESSION['rol'] == 'admin') { ?>
+
+                                <p>
+
+                                </p>
+
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarModal">
+                                    Launch demo modal
+                                </button>
+                                <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Borrar</button>
+
+                            <?php }
+                        }
+                        ?>
+
+                    </div>
+                </div>
+                <?php
             }
         }
     }
@@ -194,7 +288,7 @@ if (isset($_GET["orden"])) {
     <script>
         function carrito() {
             alert('Producto añadido al carrito');
-            
+
         }
 
     </script>
