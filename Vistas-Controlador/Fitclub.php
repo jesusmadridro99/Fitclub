@@ -5,31 +5,28 @@ include("../Utiles/Includes/Header.php");
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  
-</head>
-
 <body>
-    
+
     <div class="div_princ_ini">
         <div class="div_sec_ini">
             <h3>El plan de entrenamiento y dieta que mejor se adapta a ti</h3>
             <br>
-            <p >Fit club te ofrece un plan de ejercicios y una dieta personalizada para que consigas tu objetivo.
+            <p>Fit club te ofrece un plan de ejercicios y una dieta personalizada para que consigas tu objetivo.
                 <br>
                 <br>
-                Para ello, llevarás a cabo una encuesta inicial que servirá a nuestro sistema para poder crearte una rutina de entrenamiento y una dieta adaptada, para conseguir tu objetivo.
+                Para ello, llevarás a cabo una encuesta inicial que servirá a nuestro sistema para poder crearte una
+                rutina de entrenamiento y una dieta adaptada, para conseguir tu objetivo.
                 <br>
             </p>
         </div>
 
-        <div class="div_ini_img1"> 
-            <img style="width:100%" src="/Fitclub/Img/ejercicio1.jpg" />        
+        <div class="div_ini_img1">
+            <img style="width:100%" src="/Fitclub/Img/ejercicio1.jpg" />
         </div>
-        <div class="div_ini_img2"> 
+        <div class="div_ini_img2">
             <img style="max-width:100%" src="/Fitclub/Img/dieta1.jpg" />
         </div>
-        
+
     </div>
     <br>
     <br>
@@ -48,10 +45,10 @@ include("../Utiles/Includes/Header.php");
             </form>
         </div>
     </div>
-    
-    
+
+
     <?php
-        include("../Utiles/Includes/Footer.html");
+    include("../Utiles/Includes/Footer.html");
     ?>
 
 </body>

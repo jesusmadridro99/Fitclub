@@ -55,14 +55,11 @@ if (isset($_GET["orden"])) {
 
 <body>
 
-    <legend class="mt-2" style="padding-left:15%; font-size:40px">Productos</legend>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button>
-    <?php
+    <legend class="mt-2" style="margin-left:15%; font-size:40px">Productos</legend>
+   
+    <?php 
     if ($_SESSION['rol'] == 'admin') { ?>
-        <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Crear</button>
-        <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Borrar</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-left:15%">Crear</button>
     <?php } ?>
     <hr style="width:95%;">
     <br>
@@ -132,8 +129,6 @@ if (isset($_GET["orden"])) {
                         <label for="imagen">Imagen URL: </label>
                         <input id="imagen" class="form-control" required type="text" name="imagen" value="<?php if (isset($imagen))
                             echo $imagen; ?>" /><br>
-                        <label for="imagen2">Imagen URLaaa: </label>
-                        <input id="imagen2" class="form-control" required type="text" name="imagen" /><br>
 
                         <label for="cod_cat">Categoria: </label>
                         <select name="cod_cat">
@@ -150,18 +145,15 @@ if (isset($_GET["orden"])) {
 
                         <?php } ?>
 
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </div>
                 </form>
-
             </div>
         </div>
     </div>
-
 
 
     <?php
@@ -203,17 +195,16 @@ if (isset($_GET["orden"])) {
                         <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Añadir a la
                             lista</button>
 
-                        <?php if ($_SESSION['rol'] == 'admin') {
-                            ?>
-                            <p>
-                            </p>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarModal">
-                                Launch demo modal
-                            </button>
+                        <?php if ($_SESSION['rol'] == 'admin') { ?>
 
+                            <hr>
+                            
+                            <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
+                                href="javascript: comprobarEliminar(<?php echo $producto['cod_producto'] ?>)">Borrar</a><br>
 
                             <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
-                                href="javascript: comprobarEliminar(<?php echo $producto['cod_producto'] ?>)">Borrar</a>
+                                href="javascript: modificar(<?php echo $producto['cod_producto'] ?>)">Modificar</a>
+
                         <?php }
                     }
                     ?>
@@ -260,19 +251,13 @@ if (isset($_GET["orden"])) {
 
                             <?php if ($_SESSION['rol'] == 'admin') { ?>
 
-                                <p>
+                                <hr>
 
-                                </p>
-
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarModal">
-                                    Launch demo modal
-                                </button>
                                 <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
                                     href="javascript: comprobarEliminar(<?php echo $producto['cod_producto'] ?>)">Borrar</a>
 
-                                </button>
                                 <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
-                                    href="javascript: modificar(<?php echo $producto['cod_producto'] ?>)">Mod</a>
+                                    href="javascript: modificar(<?php echo $producto['cod_producto'] ?>)">Modificar</a>
                             <?php }
                         }
                         ?>
@@ -303,17 +288,18 @@ if (isset($_GET["orden"])) {
         }
     </script>
 
+
+
+
     <script>
         var modal = document.getElementById("exampleModal");
         function modificar($cod_producto) {
             var exampleModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
                 keyboard: false
-                
+
             });
 
             exampleModal._element.setAttribute('data-cod-producto', $cod_producto);
-
-
             exampleModal.show();
         }
 
@@ -321,11 +307,9 @@ if (isset($_GET["orden"])) {
         var imagen2 = exampleModal.querySelector('#imagen2');
 
         exampleModal.addEventListener('show.bs.modal', function () {
-        var cod_producto = exampleModal.getAttribute('data-cod-producto');
-        imagen2.textContent = cod_producto;
-});
-
-
+            var cod_producto = exampleModal.getAttribute('data-cod-producto');
+            imagen2.value = cod_producto;
+        });
 
         window.onclick = function (event) {
             if (event.target === modal) {

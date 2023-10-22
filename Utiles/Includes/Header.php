@@ -10,8 +10,6 @@ if (isset($_SESSION['correo'])) {
   $usuarioActual = findByCorreoUsuario($correo);
 }
 
-
-
 ?>
 
 
@@ -21,17 +19,14 @@ if (isset($_SESSION['correo'])) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../Utiles/css/bootstrap.min.css"></link>
-  <link rel="stylesheet" href="../Utiles/css/Fitclub.css"></link>
+  <link rel="stylesheet" href="../Utiles/css/bootstrap.min.css">
+  </link>
+  <link rel="stylesheet" href="../Utiles/css/Fitclub.css">
+  </link>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
-  
-  <style>
-      header {
-          font-family: 'Roboto Condensed';
-      }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;1,700&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
@@ -75,7 +70,7 @@ if (isset($_SESSION['correo'])) {
             <a href="/Fitclub/Vistas-Controlador/LogoutUsuario.php">Cerrar sesion</a>
           </div>
         </div>
-        
+
         <?php
         echo $_SESSION["rol"];
       } else {

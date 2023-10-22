@@ -1,4 +1,10 @@
 
+body{
+    font-family: 'Roboto Condensed';
+    background-color: rgba(245, 245, 245, 0.856);
+}
+
+
 /*------Fitclub.php----------*/
 
 .div_princ_ini{background-color:#fff0f0;
