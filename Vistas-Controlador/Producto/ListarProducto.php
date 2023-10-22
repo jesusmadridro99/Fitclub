@@ -127,7 +127,7 @@ if (isset($_GET["orden"])) {
                             echo $precio; ?>" /><br>
 
                         <label for="imagen">Imagen URL: </label>
-                        <input id="imagen" class="form-control" required type="text" name="imagen" value="<?php if (isset($imagen))
+                        <input id="imagen2" class="form-control" required type="text" name="imagen" value="<?php if (isset($imagen))
                             echo $imagen; ?>" /><br>
 
                         <label for="cod_cat">Categoria: </label>
@@ -286,12 +286,9 @@ if (isset($_GET["orden"])) {
                 window.location.href = "BorrarProducto.php?id=" + $cod_producto;
             }
         }
-    </script>
 
 
 
-
-    <script>
         var modal = document.getElementById("exampleModal");
         function modificar($cod_producto) {
             var exampleModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
@@ -316,7 +313,10 @@ if (isset($_GET["orden"])) {
                 modal.style.display = "none";
             }
         }
+
+
     </script>
+
 
 </body>
 
