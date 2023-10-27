@@ -37,8 +37,7 @@ include("../Utiles/Includes/Header.php");
     <div style="text-align:center;">
 
         <div class="div_form_datos">
-            <form action="Plantilla.php" method="POST">
-                <input type="number" name="edad" placeholder="Edad*" /> <br><br>
+            <form action="plantilla.php" method="POST">
                 <input type="text" name="altura" placeholder="Altura*" /> <br><br>
                 <input type="text" name="peso" placeholder="Peso*" /> <br><br>
                 <input class="btn btn-primary" type="submit" value="Enviar" />

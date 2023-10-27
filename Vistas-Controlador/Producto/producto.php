@@ -1,3 +1,4 @@
+
 <div class="card border-primary mb-3 div_pro_2" style="width:250px;">
     <div class="card-header">
         <?php echo $producto['nombre']; ?>
@@ -15,7 +16,9 @@
             <?php echo $producto["precio"] ?> €
         </h6>
 
-        <?php if (isset($_SESSION['rol'])) { ?>
+        <?php if (isset($_SESSION['rol'])) {
+
+            ?>
 
             <button class="btn btn-lg btn-primary" style="font-size:15px; width:90px" type="button"
                 onclick="carrito()">Comprar</button>
@@ -24,8 +27,14 @@
                 lista</button>
 
             <?php if ($_SESSION['rol'] == 'admin') { ?>
-                
-                <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Borrar</button>
+
+                <hr>
+
+                <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
+                    href="javascript: comprobarEliminar(<?php echo $producto['cod_producto'] ?>)">Borrar</a>
+
+                <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
+                    href="javascript: modificar(<?php echo $producto['cod_producto'] ?>)">Modificar</a>
 
             <?php }
         }

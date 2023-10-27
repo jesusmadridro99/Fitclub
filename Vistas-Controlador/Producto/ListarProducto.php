@@ -1,6 +1,5 @@
 <?php
 
-$modificar = false;
 
 
 include("../../Repositorio/ProductoRepository.php");
@@ -56,10 +55,11 @@ if (isset($_GET["orden"])) {
 <body>
 
     <legend class="mt-2" style="margin-left:15%; font-size:40px">Productos</legend>
-   
-    <?php 
+
+    <?php
     if ($_SESSION['rol'] == 'admin') { ?>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-left:15%">Crear</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            style="margin-left:15%">Crear</button>
     <?php } ?>
     <hr style="width:95%;">
     <br>
@@ -102,61 +102,9 @@ if (isset($_GET["orden"])) {
     <br>
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Crear Producto</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+<?php
 
-                    <form action="CrearActualizarProducto.php" method="POST">
-
-                        <label for="nombre">Nombre: </label>
-                        <input id="nombre" class="form-control" required type="text" name="nombre" value="<?php if (isset($nombre))
-                            echo $nombre; ?>" /><br>
-
-                        <label for="descripcion">Descripción: </label>
-                        <input id="descripcion" class="form-control" required type="text" name="descripcion" value="<?php if (isset($descripcion))
-                            echo $descripcion; ?>" /><br>
-
-                        <label for="precio">Precio: </label>
-                        <input id="precio" class="form-control" required type="number" name="precio" value="<?php if (isset($precio))
-                            echo $precio; ?>" /><br>
-
-                        <label for="imagen">Imagen URL: </label>
-                        <input id="imagen2" class="form-control" required type="text" name="imagen" value="<?php if (isset($imagen))
-                            echo $imagen; ?>" /><br>
-
-                        <label for="cod_cat">Categoria: </label>
-                        <select name="cod_cat">
-                            <?php foreach ($categoriaSistemas as $categoria) { ?>
-                                <option value="<?php echo $categoria["cod_cat"] ?>">
-                                    <?php echo $categoria["nombre"] ?>
-                                </option>
-                            <?php } ?>
-                        </select>
-
-                        <?php if (isset($_GET["mod"])) { ?>
-                            <input id="cod_producto" class="form-control" required type="text" name="cod_producto"
-                                value="<?php $producto['cod_producto'] ?>" /><br>
-
-                        <?php } ?>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-    <?php
+    include("modalProducto.php");
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         $_POST['check'] = [];
@@ -167,52 +115,9 @@ if (isset($_GET["orden"])) {
 
     if (isset($_GET["orden"])) {
         $productoSistemas = findProductoByIDOrdered($_SESSION['productos'], $orden);
-        foreach ($productoSistemas as $producto) { ?>
-            <div class="card border-primary mb-3 div_pro_2" style="width:250px;">
-                <div class="card-header">
-                    <?php echo $producto['nombre']; ?>
-                </div>
-                <div class="card-body" style="background-color:rgb(253, 237, 237)">
-                    <div style="height:200px;
-                    width:200px;
-                    background-image:url(<?php echo $producto['imagen'] ?>);
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    margin:5px;">
-                    </div>
-                    <hr>
-                    <h6 class="card-title">
-                        <?php echo $producto["precio"] ?> €
-                    </h6>
-
-                    <?php if (isset($_SESSION['rol'])) {
-
-                        ?>
-
-                        <button class="btn btn-lg btn-primary" style="font-size:15px; width:90px" type="button"
-                            onclick="carrito()">Comprar</button>
-                        <br>
-                        <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Añadir a la
-                            lista</button>
-
-                        <?php if ($_SESSION['rol'] == 'admin') { ?>
-
-                            <hr>
-                            
-                            <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
-                                href="javascript: comprobarEliminar(<?php echo $producto['cod_producto'] ?>)">Borrar</a><br>
-
-                            <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
-                                href="javascript: modificar(<?php echo $producto['cod_producto'] ?>)">Modificar</a>
-
-                        <?php }
-                    }
-                    ?>
-
-                </div>
-            </div>
-
-        <?php }
+        foreach ($productoSistemas as $producto) {
+            include("producto.php");
+        }
 
     } else {
         $i = 0;
@@ -220,54 +125,13 @@ if (isset($_GET["orden"])) {
             $productoSistemas = findProductoByCategoria($seleccion);
             foreach ($productoSistemas as $producto) {
                 $_SESSION['productos'][$i] = $producto["cod_producto"];
-                $i += 1; ?>
-                <div class="card border-primary mb-3 div_pro_2" style="width:250px;">
-                    <div class="card-header">
-                        <?php echo $producto['nombre']; ?>
-                    </div>
-                    <div class="card-body" style="background-color:rgb(253, 237, 237)">
-                        <div style="height:200px;
-                    width:200px;
-                    background-image:url(<?php echo $producto['imagen'] ?>);
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    margin:5px;">
-                        </div>
-                        <hr>
-                        <h6 class="card-title">
-                            <?php echo $producto["precio"] ?> €
-                        </h6>
-
-
-                        <?php if (isset($_SESSION['rol'])) {
-
-                            ?>
-
-                            <button class="btn btn-lg btn-primary" style="font-size:15px; width:90px" type="button"
-                                onclick="carrito()">Comprar</button>
-                            <br>
-                            <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Añadir a la
-                                lista</button>
-
-                            <?php if ($_SESSION['rol'] == 'admin') { ?>
-
-                                <hr>
-
-                                <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
-                                    href="javascript: comprobarEliminar(<?php echo $producto['cod_producto'] ?>)">Borrar</a>
-
-                                <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
-                                    href="javascript: modificar(<?php echo $producto['cod_producto'] ?>)">Modificar</a>
-                            <?php }
-                        }
-                        ?>
-
-                    </div>
-                </div>
-                <?php
+                $i += 1;
+                include("producto.php");
             }
         }
     }
+
+
 
     ?>
 
@@ -280,37 +144,34 @@ if (isset($_GET["orden"])) {
     </script>
     <script src="../../Utiles/Includes/javascript.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+
         function comprobarEliminar($cod_producto) {
             if (confirm("¿Seguro que quiere eliminar el producto?")) {
                 window.location.href = "BorrarProducto.php?id=" + $cod_producto;
             }
         }
 
+        var modal = document.getElementById("modalModificar");
+        var modalModificar = document.getElementById('modalModificar');
 
+        function modificar(cod_producto) {
 
-        var modal = document.getElementById("exampleModal");
-        function modificar($cod_producto) {
-            var exampleModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
-                keyboard: false
-
+            $.ajax({
+                type: "POST",
+                url: "guardarProducto.php",
+                data: { codProducto: cod_producto }
             });
 
-            exampleModal._element.setAttribute('data-cod-producto', $cod_producto);
-            exampleModal.show();
+            var modalModificar = new bootstrap.Modal(document.getElementById('modalModificar'), { keyboard: false });
+            modalModificar.show();
         }
-
-        var exampleModal = document.getElementById('exampleModal');
-        var imagen2 = exampleModal.querySelector('#imagen2');
-
-        exampleModal.addEventListener('show.bs.modal', function () {
-            var cod_producto = exampleModal.getAttribute('data-cod-producto');
-            imagen2.value = cod_producto;
-        });
 
         window.onclick = function (event) {
             if (event.target === modal) {
                 modal.style.display = "none";
+
             }
         }
 

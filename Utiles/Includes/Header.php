@@ -3,12 +3,15 @@
 session_start();
 
 include __DIR__ . '\..\..\Repositorio\UsuarioRepository.php';
+include __DIR__ . '\..\..\Repositorio\EjercicioRepository.php';
 include __DIR__ . '\..\ConectarBD.php';
 
 if (isset($_SESSION['correo'])) {
   $correo = $_SESSION["correo"];
   $usuarioActual = findByCorreoUsuario($correo);
-}
+  $_SESSION["imc"] = "o";
+
+} 
 
 ?>
 
@@ -64,6 +67,7 @@ if (isset($_SESSION['correo'])) {
           </button>
           <div class="dropdown-content">
             <a href="/Fitclub/Vistas-Controlador/Micuenta.php">Mi cuenta</a>
+            <a href="/Fitclub/Vistas-Controlador/Ejercicio/ListarEjercicio.php">Mis ejercicios</a>
             <a href="/Fitclub/Vistas-Controlador/Pedido/ListarPedido.php">Pedidos</a>
             <a href="/Fitclub/Vistas-Controlador/Deseo/Listardeseo.php">Lista de deseos</a>
             <hr style="color:grey">

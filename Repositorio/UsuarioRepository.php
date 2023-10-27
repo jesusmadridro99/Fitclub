@@ -122,6 +122,22 @@ function findAllUser() {
     return $res;
 }
 
+function findIMCbyCorreo($correo) {
+
+    $sqlFindIMC = "SELECT imc FROM usuario WHERE correo = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlFindIMC);
+        $result->execute(array($correo));
+        $result = $result->fetch(PDO::FETCH_ASSOC);
+    } catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: /Fitclub/Vistas-Controlador/Error.html");
+    }
+
+    return $result;
+
+}
 function findAllUserSinUserLogin($codUsu) {
     $sqlFindAll = "SELECT * FROM usuario where codUsu != ?";
     
