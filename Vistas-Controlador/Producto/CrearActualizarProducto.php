@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
         
+        
         /*$result = findNombreIDProducto($nombre, $cod_producto);*/
         /*if ($result->rowCount() == 0) {*/
             
