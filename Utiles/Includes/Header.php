@@ -76,7 +76,6 @@ if (isset($_SESSION['correo'])) {
         </div>
 
         <?php
-        echo $_SESSION["rol"];
       } else {
         echo "<a href='/Fitclub/Vistas-Controlador/LoginUsuario.php'><h4 style='color:white; float:right'>Iniciar Sesion<h4></a>";
       }

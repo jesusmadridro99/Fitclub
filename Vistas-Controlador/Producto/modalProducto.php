@@ -1,5 +1,5 @@
 
-<!-- Modal -->
+<!-- Modal Crear-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -46,7 +46,7 @@
 
 
 
-
+<!-- Modal Update -->
 <div class="modal fade" id="modalModificar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -89,7 +89,6 @@
                     <input id="cod_producto" class="form-control" required type="text" name="cod_producto" value="<?php echo $_SESSION['cod']?>"/><br>
                     
                     
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
