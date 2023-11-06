@@ -4,7 +4,20 @@ include("../Utiles/Includes/Header.php");
 
 <!DOCTYPE html>
 <html lang="en">
-
+<head><style>.img-hover-zoom {
+    height: 300px; /* [1.1] Set it as per your need */
+    overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+  }
+  
+  /* [2] Transition property for smooth transformation of images */
+  .img-hover-zoom img {
+    transition: transform .5s ease;
+  }
+  
+  /* [3] Finally, transforming the image when container gets hovered */
+  .img-hover-zoom:hover img {
+    transform: scale(1.5);
+  }</style></head>
 <body>
 
     <div class="div_princ_ini">
@@ -29,6 +42,25 @@ include("../Utiles/Includes/Header.php");
 
     </div>
     <br>
+    <br>
+    <br>
+
+
+
+    <div style="display: flex;">
+        <div class="img-hover-zoom" style="float:left; width:50%;">
+            <img style="width:100%" src="/Fitclub/Img/standard.jpg"/>
+        </div>
+        <div class="img-hover-zoom" style="float:left; width:50%;">
+            <img style="width:100%; max-height:84%" src="/Fitclub/Img/pro.jpg"/>
+        </div>
+
+    </div>
+
+
+
+
+
     <br>
     <br>
     <h3 style="text-align:center">Empieza tu cambio</h3>
