@@ -4,20 +4,44 @@ include("../Utiles/Includes/Header.php");
 
 <!DOCTYPE html>
 <html lang="en">
-<head><style>.img-hover-zoom {
-    height: 300px; /* [1.1] Set it as per your need */
-    overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+<head>
+    <style>
+    .img-hover-zoom {
+    float:left;
+    width:50%; 
+    position:relative; 
+    display:inline-block;
+    text-align:center;
+    overflow: hidden;
   }
   
-  /* [2] Transition property for smooth transformation of images */
+  
   .img-hover-zoom img {
-    transition: transform .5s ease;
+    transition: transform 2s, filter 1s ease-in-out;
+    filter: blur(5px);
+    transform: scale(1.2);
   }
   
-  /* [3] Finally, transforming the image when container gets hovered */
+ 
   .img-hover-zoom:hover img {
-    transform: scale(1.5);
-  }</style></head>
+    filter: blur(0);
+  transform: scale(1);
+  }
+  
+  .div-plan-text {
+    color:rgb(220,220,220);
+    padding: 15px;
+    border-radius:10px;
+    background: rgba(15,15,15, .9);
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    font-size:17px;
+    
+  }
+  </style>
+  </head>
 <body>
 
     <div class="div_princ_ini">
@@ -41,20 +65,30 @@ include("../Utiles/Includes/Header.php");
         </div>
 
     </div>
-    <br>
-    <br>
-    <br>
+   <br>
+   <br>
+   <hr>
+   <br>
+   <br>
 
-
-
-    <div style="display: flex;">
-        <div class="img-hover-zoom" style="float:left; width:50%;">
+    <span style="text-align:center"><h2>Elige tu plan</h2></span>
+    <br>
+    <div style="display:flex;">
+        <div class="img-hover-zoom">
             <img style="width:100%" src="/Fitclub/Img/standard.jpg"/>
+            <div class="div-plan-text"><h2>Plan Basic</h2><br>
+            - Ejercicios y dieta automaticos.<br>
+            - Sin asistencia de profesinales.<br>
+            - No se le tomara en cuenta la edad.</div>
         </div>
-        <div class="img-hover-zoom" style="float:left; width:50%;">
-            <img style="width:100%; max-height:84%" src="/Fitclub/Img/pro.jpg"/>
+        <div class="img-hover-zoom">
+            <img style="width:100%" src="/Fitclub/Img/pro.jpg"/>
+            <div class="div-plan-text"><h2>Plan Pro</h2><br>
+            - Ejercicios y dieta asignados por un profesional.<br>
+            - Asistencia 24 horas. <br>
+            </div>
         </div>
-
+        </div>
     </div>
 
 
