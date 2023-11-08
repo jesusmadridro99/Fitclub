@@ -16,3 +16,15 @@ function findEjercicioByIMC($imc) {
 }
 
 
+function updateImc($imc, $correo) {
+    $sqlUpdateImc = "UPDATE usuario set imc = ?,  where correo = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlUpdateImc);
+        $result->execute(array($imc, $correo));
+        $result = $result->fetchAll(PDO::FETCH_ASSOC);
+    } catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: /Fitclub/Vistas-Controlador/Fitclub.php");
+    }
+}

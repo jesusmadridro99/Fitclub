@@ -4,45 +4,36 @@ include("../Utiles/Includes/Header.php");
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <style>
-    .img-hover-zoom {
-    float:left;
-    width:50%; 
-    position:relative; 
-    display:inline-block;
-    text-align:center;
-    overflow: hidden;
-  }
-  
-  
-  .img-hover-zoom img {
-    transition: transform 2s, filter 1s ease-in-out;
-    filter: blur(5px);
-    transform: scale(1.2);
-  }
-  
- 
-  .img-hover-zoom:hover img {
-    filter: blur(0);
-  transform: scale(1);
-  }
-  
-  .div-plan-text {
-    color:rgb(220,220,220);
-    padding: 15px;
-    border-radius:10px;
-    background: rgba(15,15,15, .9);
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%);
-    font-size:17px;
-    
-  }
-  </style>
-  </head>
+
 <body>
+
+
+    <div class="modal fade" id="modalPlan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Introduce los datos</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form action="Ejercicio/CrearRutina.php" method="POST">
+
+                        <label for="peso">Peso: </label>
+                        <input id="peso" class="form-control" required type="text" name="peso" /><br>
+
+                        <label for="altura">Altura: </label>
+                        <input id="altura" class="form-control" required type="text" name="altura" /><br>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <div class="div_princ_ini">
         <div class="div_sec_ini">
@@ -65,35 +56,46 @@ include("../Utiles/Includes/Header.php");
         </div>
 
     </div>
-   <br>
-   <br>
-   <hr>
-   <br>
-   <br>
+    <br>
+    <br>
+    <hr>
+    <br>
 
-    <span style="text-align:center"><h2>Elige tu plan</h2></span>
+    <span style="text-align:center">
+        <h1>Elige tu plan</h1><br>
+    </span>
     <br>
     <div style="display:flex;">
+
         <div class="img-hover-zoom">
-            <img style="width:100%" src="/Fitclub/Img/standard.jpg"/>
-            <div class="div-plan-text"><h2>Plan Basic</h2><br>
-            - Ejercicios y dieta automaticos.<br>
-            - Sin asistencia de profesinales.<br>
-            - No se le tomara en cuenta la edad.</div>
+            <img style="width:100%" src="/Fitclub/Img/basic.jpg" />
+            <div class="div-plan-text">
+                <h2>Plan Basic</h2>
+                <hr>
+                - Ejercicios y dieta automaticos.<br>
+                - Sin asistencia de profesinales.<br>
+                - No se le tomara en cuenta la edad.<br><br>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#modalPlan">Elegir</button>
+
+            </div>
+            </a>
         </div>
+
         <div class="img-hover-zoom">
-            <img style="width:100%" src="/Fitclub/Img/pro.jpg"/>
-            <div class="div-plan-text"><h2>Plan Pro</h2><br>
-            - Ejercicios y dieta asignados por un profesional.<br>
-            - Asistencia 24 horas. <br>
+            <img style="width:100%" src="/Fitclub/Img/pro.jpg" />
+            <div class="div-plan-text">
+                <h2>Plan Pro</h2>
+                <hr>
+                - Ejercicios y dieta asignados por un profesional.<br>
+                - Asistencia 24 horas. <br><br>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">Elegir</button>
+
             </div>
         </div>
-        </div>
     </div>
-
-
-
-
+    </div>
 
     <br>
     <br>
@@ -115,6 +117,24 @@ include("../Utiles/Includes/Header.php");
     <?php
     include("../Utiles/Includes/Footer.html");
     ?>
+
+
+
+
+
+    <script src="../Utiles/Includes/javascript.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+
+
+
+
+
+
 
 </body>
 

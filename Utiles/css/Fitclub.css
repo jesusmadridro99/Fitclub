@@ -7,9 +7,10 @@ body{
 
 /*------Fitclub.php----------*/
 
-.div_princ_ini{background-color:#fff0f0;
+.div_princ_ini{background-color:#fce8e8;
      display:flex;
-     border-top:solid rgb(255, 212, 212) 5px
+     border-top:solid rgb(252, 208, 208) 5px;
+
 }
 
 .div_sec_ini{width:1000px;
@@ -28,27 +29,38 @@ body{
 }
 
 .img-hover-zoom {
-    height: 300px; /* [1.1] Set it as per your need */
-    overflow: hidden; /* [1.2] Hide the overflowing of child elements */
-  }
   
-  /* [2] Transition property for smooth transformation of images */
-  .img-hover-zoom img {
-    transition: transform .5s ease;
-  }
-  
-  /* [3] Finally, transforming the image when container gets hovered */
-  .img-hover-zoom:hover img {
-    transform: scale(1.5);
-  }
+  width:50%; 
+  position:relative; 
+  display:inline-block;
+  text-align:center;
+  overflow: hidden;
+}
 
-.div_form_datos{border:solid 1px rgb(253, 142, 142);
-    border-radius: 4px;
-    display:inline-block;
-    margin-left:auto;
-    margin-right:auto;
-    text-align:center;
-    padding:20px
+
+.img-hover-zoom img {
+  transition: transform 2s, filter 1s ease-in-out;
+  filter: blur(5px);
+  transform: scale(1.2);
+}
+
+
+.img-hover-zoom:hover img {
+  filter: blur(0);
+  transform: scale(1);
+}
+
+.div-plan-text {
+  
+  color:rgb(220,220,220);
+  padding: 15px;
+  border-radius:10px;
+  background: rgba(15,15,15, .9);
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  font-size:17px;
 }
 
 

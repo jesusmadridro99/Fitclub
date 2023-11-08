@@ -9,8 +9,6 @@ include __DIR__ . '\..\ConectarBD.php';
 if (isset($_SESSION['correo'])) {
   $correo = $_SESSION["correo"];
   $usuarioActual = findByCorreoUsuario($correo);
-  $_SESSION["imc"] = "o";
-
 } 
 
 ?>
@@ -33,7 +31,7 @@ if (isset($_SESSION['correo'])) {
 </head>
 
 <body>
-  <header>
+  <header style="z-index:9;width:100%;left:0;top:0;position:sticky">
     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="/Fitclub/Vistas-Controlador/Fitclub.php">Fit Club</a>
@@ -43,14 +41,13 @@ if (isset($_SESSION['correo'])) {
         </button>
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="/Fitclub/Vistas-Controlador/Producto/ListarProducto.php">Productos
-              </a>
-            </li>
 
+              <a style="margin-left:50%;border-left:solid rgb(190,190,190) 1px;" class="nav-link active" href="/Fitclub/Vistas-Controlador/Producto/ListarProducto.php">Productos
+              </a>
+              
           </ul>
           <form class="d-flex">
-            <input class="form-control me-sm-2" type="search" placeholder="Search">
+            <input class="form-control me-sm-2" type="search" placeholder="Buscar productos ...">
           </form>
         </div>
       </div>
