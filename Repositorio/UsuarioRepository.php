@@ -1,18 +1,18 @@
 <?php
 include __DIR__ . '../../Utiles/ConectarBD.php';
 
-/*function crearUsuario($correo,$contrasena,$username,$nombre,$apellidos) {
+function crearUsuario($correo,$contrasena,$username,$nombre,$apellidos) {
     $sqlCrear = "INSERT INTO usuario(correo, password, username, nombre, apellidos, activo, esAdmin)
     VALUES (?, ?, ?, ?, ?, '1',  '0')";
 
     try {
         $result = $GLOBALS["bd"]->prepare($sqlCrear);
-        $result->execute(array($correo, $contrasena, $username));
+        $result->execute(array($correo, $contrasena, $username, $nombre, $apellidos));
     } catch(PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
         header("Location: /Spytufo/Vistas-Controlador/Error.html");
     }
-}*/
+}
 
 
 function findUsuarioUsername($username) {

@@ -23,22 +23,23 @@ function findByCorreoUsuario2($correo)
 }
 
 
-/*if(isset($_SESSION["correo"]) && $_GET["caja"]){
-    $idUserLogin = findOneByCorreoUser($_SESSION["correo"])["cod_usu"];
-    if($_GET["caja"] == "Recibido") {
+
+$idUserLogin = findOneByCorreoUser($_SESSION["correo"]);
+if (isset($_SESSION["caja"])) {
+    if ($_GET["caja"] == "Recibido") {
         $mensajesSistemas = findRecibidosMensajeByUser($idUserLogin);
     }
-    if($_GET["caja"] == "Enviado") {
+    if ($_GET["caja"] == "Enviado") {
         $mensajesSistemas = findEnviadoMensajeByUser($idUserLogin);
-    }
-    if ($_GET["caja"] == "Todos") {
-        $mensajesSistemas = findAllMensajeByUser($idUserLogin);
     }
 
 } else {
-    header("Location:../Vistas-Controlador/Fitclub.php");
+    $mensajesSistemas = findAllMensajeByUser($idUserLogin);
+    
 }
-*/
+
+
+
 
 ?>
 
@@ -144,6 +145,10 @@ function findByCorreoUsuario2($correo)
         </div>
 
     </div>
+
+
+
+
 
     <script>
         function comprobarEliminar($idMensaje) {

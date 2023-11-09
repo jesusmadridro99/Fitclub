@@ -6,7 +6,7 @@ include("../Utiles/Includes/Header.php");
 <html lang="en">
 
 <body>
-
+    <?php echo $_SESSION["popo"]; ?>
     <div class="div_princ_ini">
         <div class="div_sec_ini">
             <h3>El plan de entrenamiento y dieta que mejor se adapta a ti</h3>

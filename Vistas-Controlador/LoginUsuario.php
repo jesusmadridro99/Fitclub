@@ -13,7 +13,7 @@ if(isset($_SESSION["correo"])){
 
         $correo = $_POST["correo"];
         $pass = hash('sha256', $_POST["pass"]);
-
+        $_SESSION["popo"] = $pass;
         $resultConsultaEncontrarUser = findCorreoPassActivoUsuario($correo, $pass);
 
         if ($resultConsultaEncontrarUser[0]) {
@@ -89,7 +89,7 @@ ob_end_flush();
     <br>
     <p style="text-align:center;">¿Eres nuevo?</p>
     
-    <p style="text-align:center;"><a style="text-align:center;" href="/Vistas-Controlador/Usuario/CrearUsuario.php">Registrate</a></p>
+    <p style="text-align:center;"><a style="text-align:center;" href="../Vistas-Controlador/Usuario/CrearUsuario.php">Registrate</a></p>
     
     <?php
         include("../Utiles/Includes/Footer.html");

@@ -32,26 +32,6 @@ if (isset($_GET["orden"])) {
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitClub - Productos</title>
-
-    <link rel="stylesheet" href="../../Utiles/css/bootstrap.min.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;1,700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="../../Utiles/css/Fitclub.css">
-
-    <style>
-        body {
-            font-family: 'Roboto Condensed';
-        }
-    </style>
-</head>
-
 <body>
 
     <legend class="mt-2" style="margin-left:15%; font-size:40px">Productos</legend>

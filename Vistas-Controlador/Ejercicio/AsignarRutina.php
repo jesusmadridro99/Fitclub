@@ -59,7 +59,7 @@ $usuariosSistemas = findAllUser();
         <select style="margin-left:20px; width:20%" id="select" class="form-select form-select-sm" aria-label="Small select example">
             <option selected>Selecciona un usuario</option>
             <?php foreach ($usuariosSistemas as $usuario) { ?>
-                <option name="usuario" value="<?php echo $usuario['cod_usu'] ?>"> <?php echo $usuario['username'] ?> </option>
+                <option name="usuario" value="1"> <?php echo $usuario['username'] ?> </option>
            <?php } ?>
         </select>
         <br>
@@ -80,7 +80,6 @@ $usuariosSistemas = findAllUser();
                     </div>
 
                     <input type="hidden" value="<?php echo $ejercicio['cod_ejercicio'] ?>" name="ejercicio">
-
                     <?php { ?>
 
                         <hr>
