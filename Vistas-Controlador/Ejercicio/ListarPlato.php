@@ -1,7 +1,7 @@
 <?php
     include("../../Utiles/Includes/Header.php");
 
-    $ejerciciosSistemas = findEjercicioByIMC($_SESSION["correo"]);
+    $platosSistemas = findPlatoByIMC($_SESSION["correo"]);
 
 ?>
 
@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitClub - Mis Ejercicios</title>
+    <title>FitClub - Mis Platos</title>
 
     <link rel="stylesheet" href="../../Utiles/css/bootstrap.min.css">
 
@@ -29,7 +29,7 @@
 <body>
     
     <br>
-    <legend class="mt-2" style="padding-left:15%; font-size:40px">Tus ejercicios</legend>
+    <legend class="mt-2" style="padding-left:15%; font-size:40px">Tus Platos</legend>
     <hr style="width:95%;">
     <br>
 
@@ -37,17 +37,17 @@
 
     <p style="margin-left:10%">Aqui tienes una lista de ejercicios que pueden ayudarte a lograr tu objetivo. Escoge los que mas se adecuen a tu manera de trabajar y organizate.<p>
 
-    <?php foreach ($ejerciciosSistemas as $ejercicio){ ?>
+    <?php foreach ($platosSistemas as $plato){ ?>
 
     <div class="card border-primary mb-3 div_pro_2" style="width:250px;">
     <div class="card-header">
-        <?php echo $ejercicio['nombre']; ?>
+        <?php echo $plato['nombre']; ?>
     </div>
     
     <div class="card-body" style="background-color:rgb(253, 237, 237)">
         <div style="height:200px;
                     width:200px;
-                    background-image:url(<?php echo $ejercicio['imagen'] ?>);
+                    background-image:url(<?php echo $plato['imagen'] ?>);
                     background-size: cover;
                     background-repeat: no-repeat;
                     margin:5px;">
@@ -58,10 +58,10 @@
                 <hr>
 
                 <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
-                    href="javascript: comprobarEliminar(<?php echo $producto['cod_producto'] ?>)" >Borrar</a>
+                    href="javascript: comprobarEliminar(<?php echo $plato['cod_producto'] ?>)" >Borrar</a>
 
                 <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
-                    href="javascript: modificar(<?php echo $producto['cod_producto'] ?>)">Modificar</a>
+                    href="javascript: modificar(<?php echo $plato['cod_producto'] ?>)">Modificar</a>
 
             <?php }
         
@@ -77,4 +77,3 @@
 
 
 </html>
-

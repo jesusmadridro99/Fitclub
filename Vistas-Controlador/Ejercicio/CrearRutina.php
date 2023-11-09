@@ -1,7 +1,8 @@
 <?php
 
-include("../../Repositorio/EjercicioRepository.php");
+session_start();
 
+include("../../Repositorio/EjercicioRepository.php");
 
 $imcN = $_POST["peso"]/($_POST["altura"]*$_POST["altura"]);
 
@@ -12,11 +13,15 @@ else {
     $imc = "o";
 }
 
-updateImc($imc,$_SESSION["correo"]);
+updateImc($imc, $_SESSION['correo']);
 
+if (isset($_POST['edad'])) {
+    updateEdad($_POST['edad'], $_SESSION["correo"]);
 
-header("ListarEjercicio.php");
+}
 
-
+header("Location: ListarEjercicio.php");
 
 ?>
+
+
