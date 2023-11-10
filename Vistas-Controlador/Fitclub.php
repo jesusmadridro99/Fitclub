@@ -1,12 +1,13 @@
 <?php
 include("../Utiles/Includes/Header.php");
+include("modales.php");
+include("../Utiles/Includes/Footer.html");
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <body>
-    <?php echo $_SESSION["popo"]; ?>
     <div class="div_princ_ini">
         <div class="div_sec_ini">
             <h3>El plan de entrenamiento y dieta que mejor se adapta a ti</h3>
@@ -71,8 +72,7 @@ include("../Utiles/Includes/Header.php");
 
    
     <?php
-    include("modalPlan.php");
-    include("../Utiles/Includes/Footer.html");
+    
     ?>
 
     <script src="../Utiles/Includes/javascript.js" crossorigin="anonymous"></script>

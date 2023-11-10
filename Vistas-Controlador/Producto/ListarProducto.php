@@ -1,7 +1,5 @@
 <?php
 
-
-
 include("../../Repositorio/ProductoRepository.php");
 include("../../Repositorio/CategoriaRepository.php");
 include("../../Utiles/Includes/Header.php");
@@ -37,10 +35,11 @@ if (isset($_GET["orden"])) {
     <legend class="mt-2" style="margin-left:15%; font-size:40px">Productos</legend>
 
     <?php
-    if ($_SESSION['rol'] == 'admin') { ?>
+    if (isset($_SESSION["rol"])) {
+        if ($_SESSION['rol'] == 'admin'){ ?>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
             style="margin-left:15%">Crear</button>
-    <?php } ?>
+    <?php }} ?>
     <hr style="width:95%;">
     <br>
 
@@ -151,7 +150,7 @@ if (isset($_GET["orden"])) {
         window.onclick = function (event) {
             if (event.target === modal) {
                 modal.style.display = "none";
-
+                
             }
         }
 

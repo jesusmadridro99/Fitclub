@@ -7,25 +7,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitClub - Mis Ejercicios</title>
 
-    <link rel="stylesheet" href="../../Utiles/css/bootstrap.min.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;1,700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="../../Utiles/css/Fitclub.css">
-
-    <style>
-        body {
-            font-family: 'Roboto Condensed';
-        }
-    </style>
-</head>
 <body>
     
     <br>
@@ -33,9 +15,14 @@
     <hr style="width:95%;">
     <br>
 
-    
+    <?php if ($ejerciciosSistemas->rowCount() > 0) { ?>
+        <p style="margin-left:10%">Aqui tienes una lista de ejercicios que pueden ayudarte a lograr tu objetivo. Escoge los que mas se adecuen a tu manera de trabajar y organizate.<p>
+    <?php }
+    else { ?>
+        <p style="margin-left:10%">Todavia no has elegido un plan.<p>
+   <?php } ?>
 
-    <p style="margin-left:10%">Aqui tienes una lista de ejercicios que pueden ayudarte a lograr tu objetivo. Escoge los que mas se adecuen a tu manera de trabajar y organizate.<p>
+    
 
     <?php foreach ($ejerciciosSistemas as $ejercicio){ ?>
 

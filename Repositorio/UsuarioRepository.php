@@ -81,6 +81,8 @@ function findCorreoPassActivoUsuario($correo, $pass) {
     $sqlFindCorreoPassActivo = "SELECT * FROM usuario where correo = ? and password = ? 
         and activo = '1'";
 
+    
+
     $encuentraUser = false;
     $esAdminSistema = false;
 
@@ -88,15 +90,15 @@ function findCorreoPassActivoUsuario($correo, $pass) {
         $result = $GLOBALS["bd"]->prepare($sqlFindCorreoPassActivo);
         $result->execute(array($correo, $pass));
 
+        $esAdmin = $result->fetch(PDO::FETCH_ASSOC)["esAdmin"];
 
-        if ($result->rowCount() == 0) {
-            $encuentraUser = true;
-        
-            $esAdmin = $result->fetch(PDO::FETCH_ASSOC)["esAdmin"];
 
-            if($esAdmin == 1){
-                $esAdminSistema = true;
-            }
+        if ($result->rowCount() == 1 ) {
+            $encuentraUser = true;  
+        }
+
+        if ($esAdmin == 1){
+            $esAdminSistema = true;
         }
 
     return array ($encuentraUser, $esAdminSistema);

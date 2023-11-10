@@ -1,13 +1,13 @@
 <?php
 include __DIR__ . '../../Utiles/ConectarBD.php';
 
-function crearMensaje($asunto, $cuerpo, $remitente, $destinatario, $usuarioVerMensaje) {
-    $sqlCrear = "INSERT INTO mensaje(asunto, cuerpo, remitente, destinatario, usuarioVerMensaje)
+function crearMensaje($asunto, $cuerpo, $remitente, $destinatario, $fecha) {
+    $sqlCrear = "INSERT INTO mensaje(asunto, cuerpo, remitente, destinatario, fecha)
     VALUES (?, ?, ?, ?, ?)";
 
     try {
         $result = $GLOBALS["bd"]->prepare($sqlCrear);
-        $result->execute(array($asunto, $cuerpo, $remitente, $destinatario, $usuarioVerMensaje));
+        $result->execute(array($asunto, $cuerpo, $remitente, $destinatario, $fecha));
     } catch (PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
         header("Location: /Fitclub/Vistas-Controlador/Error.html");
@@ -16,19 +16,6 @@ function crearMensaje($asunto, $cuerpo, $remitente, $destinatario, $usuarioVerMe
     return $result;
 }
 
-function updateMensaje($codMensaje, $usuarioVerMensaje) {
-    $sqlUpdateMensaje = "UPDATE mensaje set usuarioVerMensaje = ? where codMensaje = ?";
-
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlUpdateMensaje);
-        $result->execute(array($usuarioVerMensaje, $codMensaje));
-    } catch (PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Fitclub/Vistas-Controlador/Error.html");
-    }
-
-    //$GLOBALS["bd"]->query($sqlUpdateMensaje);
-}
 
 function findIdMensaje($idMensaje) {
     $sqlFindId = "SELECT * FROM mensaje where codMensaje = ?";
@@ -52,8 +39,6 @@ function findAllMensajeByUser($idUserLogin) {
         $result = $GLOBALS["bd"]->prepare($sqlFindAllByUser);
         $result->execute(array($idUserLogin));
         $result = $result->fetchAll(PDO::FETCH_ASSOC);
-        
-        $res = array();
         
     } catch (PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
@@ -96,6 +81,7 @@ function findRecibidosMensajeByUser($idUserLogin) {
 
 // Consulta con todos los mensajes enviados o recibidos
 function findEnviadoMensajeByUser($idUserLogin) {
+    
     $sqlFindEnviadoByUser = "SELECT * FROM mensaje WHERE remitente = ?";
 
     try {
@@ -103,26 +89,12 @@ function findEnviadoMensajeByUser($idUserLogin) {
         $result->execute(array($idUserLogin));
         $result = $result->fetchAll(PDO::FETCH_ASSOC);
         
-        $res = array();
-
-        // Recorremos los mensajes para eliminar aquellos que he borrado previamente 
-        // de usuarioVerMensaje
-        foreach($result as $mensaje) {
-            $arrayUsuarios = explode(";", $mensaje["usuarioVerMensaje"]);
-            // Comprobamos que cuando buscamos el id del usuario en el listado de usuarios
-            // que pueden ver el mensaje devuelva su posicion (sino se encuentra devuelve 
-            // false)
-            if(is_int(array_search($idUserLogin, $arrayUsuarios))) {
-                $res[] = $mensaje;
-            }
-        }
-
     } catch (PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
         header("Location: /Fitclub/Vistas-Controlador/Error.html");
     }
 
-    return $res;
+    return $result;
 }
 
 function deleteMensaje($codMensaje) {

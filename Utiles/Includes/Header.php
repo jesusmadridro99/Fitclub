@@ -63,7 +63,7 @@ if (isset($_SESSION['correo'])) {
             <?php echo $usuarioActual["username"] ?>
           </button>
           <div class="dropdown-content">
-            <a href="/Fitclub/Vistas-Controlador/Micuenta.php">Mi cuenta</a>
+            <a href="/Fitclub/Vistas-Controlador/Micuenta.php?caja=recibidos">Mi cuenta</a>
             <a href="/Fitclub/Vistas-Controlador/Ejercicio/ListarEjercicio.php">Mis ejercicios</a>
             <a href="/Fitclub/Vistas-Controlador/Pedido/ListarPedido.php">Pedidos</a>
             <a href="/Fitclub/Vistas-Controlador/Deseo/Listardeseo.php">Lista de deseos</a>

@@ -12,16 +12,15 @@ if(isset($_SESSION["correo"])){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $correo = $_POST["correo"];
-        $pass = hash('sha256', $_POST["pass"]);
-        $_SESSION["popo"] = $pass;
+        $pass = $_POST["pass"];
         $resultConsultaEncontrarUser = findCorreoPassActivoUsuario($correo, $pass);
-
+        
         if ($resultConsultaEncontrarUser[0]) {
             $_SESSION['correo'] = $correo;
             
-            if ($resultConsultaEncontrarUser[1] == false) {
+            if ($resultConsultaEncontrarUser[1]) {
                 $_SESSION['rol'] = "admin";
-                header("Location:Fitclub.php");
+                header("Location:Micuenta.php");
             } 
                 
             else {
@@ -46,13 +45,6 @@ ob_end_flush();
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="../Utiles/css/bootstrap.min.css">
-    </link>
-  <link rel="stylesheet" href="../Utiles/css/Fitclub.css"></link>
-</head>
 
 <body>
     <br>
