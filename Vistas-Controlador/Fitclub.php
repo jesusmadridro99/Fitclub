@@ -1,7 +1,7 @@
 <?php
 include("../Utiles/Includes/Header.php");
 include("modales.php");
-include("../Utiles/Includes/Footer.html");
+
 ?>
 
 <!DOCTYPE html>
@@ -48,9 +48,14 @@ include("../Utiles/Includes/Footer.html");
                 - Ejercicios y dieta automaticos.<br>
                 - Sin asistencia de profesinales.<br>
                 - No se le tomara en cuenta la edad.<br><br>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#modalBasic">Elegir</button>
-
+                <?php if (!isset($_SESSION["correo"])) {
+                    ?>
+                    <div style="color:orange">Inicie sesion para elegir plan </div>
+                    <?php
+                } else { ?>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#modalBasic">Elegir</button>
+                <?php } ?>
             </div>
             </a>
         </div>
@@ -62,23 +67,51 @@ include("../Utiles/Includes/Footer.html");
                 <hr>
                 - Ejercicios y dieta asignados por un profesional.<br>
                 - Asistencia 24 horas. <br><br>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#modalPro">Elegir</button>
+                <?php if (!isset($_SESSION["correo"])) {
+                    ?>
+                    <div style="color:orange">Inicie sesion para elegir plan </div>
 
+                    <?php
+                } else { ?>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#modalPro">Elegir</button>
+                <?php } ?>
             </div>
         </div>
     </div>
     </div>
+<hr>
+    <div class="divContacto">
+        <div style="width:50%; float:left; padding:5%">
+            <h3>CONTACTA CON NOSOTROS</h3>
+        </div>
+        <div style="width:50%; padding:10%; float:right">
+            <form>
+                <label for="nombre">Nombre: </label>
+                <input id="nombre" class="form-control" required type="text" name="peso" /><br>
 
-   
+                <label for="altura">Altura: </label>
+                <input id="altura" class="form-control" required type="text" name="altura"
+                    placeholder="Metros | Ej: 1.75" /><br>
+
+                <label for="edad">Edad: </label>
+                <input id="edad" class="form-control" required type="text" name="edad" placeholder="Años" /><br>
+            </form>
+        </div>
+
+    </div>
+
+
     <?php
-    
+
     ?>
 
     <script src="../Utiles/Includes/javascript.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
 
+    </script>
 </body>
 
 </html>

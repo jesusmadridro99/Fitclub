@@ -36,7 +36,7 @@
             </div>
             <div class="modal-body">
 
-                <form action="Ejercicio/CrearRutina.php" method="POST">
+                <form action="Mensaje/CrearMensaje.php" method="POST">
 
                     <label for="peso">Peso: </label>
                     <input id="peso" class="form-control" required type="text" name="peso" placeholder="Kg" /><br>

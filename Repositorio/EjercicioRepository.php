@@ -16,6 +16,20 @@ function findEjercicioByIMC($correo)
     return $result;
 }
 
+function asignarEjercicio($correo, $ejercicio) {
+    $sqlCrear = "INSERT INTO usuario_ejercicio(correo, cod_ejercicio)VALUES (?, ?)";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlCrear);
+        $result->execute(array($correo, $ejercicio));
+    } catch (PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: /Fitclub/Vistas-Controlador/Error.html");
+    }
+
+    return $result;
+}
+
 function findPlatoByIMC($correo)
 {
     $sqlFindPlato = "SELECT * FROM plato where imc IN(SELECT imc FROM usuario WHERE correo = ?)";
