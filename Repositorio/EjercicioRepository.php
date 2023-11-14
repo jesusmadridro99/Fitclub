@@ -13,22 +13,23 @@ function findEjercicioByIMC($correo)
         header("Location: /Fitclub/Vistas-Controlador/Error.html");
     }
 
-    return $result;
 }
 
-function asignarEjercicio($correo, $ejercicio) {
-    $sqlCrear = "INSERT INTO usuario_ejercicio(correo, cod_ejercicio)VALUES (?, ?)";
+function asignarEjercicio($cod_usu, $ejercicio) {
+    $sqlCrear = "INSERT INTO usuario_ejercicio(cod_usu, cod_ejercicio)VALUES (?, ?)";
 
     try {
         $result = $GLOBALS["bd"]->prepare($sqlCrear);
-        $result->execute(array($correo, $ejercicio));
+        $result->execute(array($cod_usu, $ejercicio));
     } catch (PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
         header("Location: /Fitclub/Vistas-Controlador/Error.html");
     }
 
-    return $result;
+    
 }
+
+
 
 function findPlatoByIMC($correo)
 {

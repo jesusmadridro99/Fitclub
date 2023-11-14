@@ -83,19 +83,19 @@ include("modales.php");
 <hr>
     <div class="divContacto">
         <div style="width:50%; float:left; padding:5%">
-            <h3>CONTACTA CON NOSOTROS</h3>
+            <h2>CONTACTA CON NOSOTROS</h2>
         </div>
         <div style="width:50%; padding:10%; float:right">
-            <form>
-                <label for="nombre">Nombre: </label>
-                <input id="nombre" class="form-control" required type="text" name="peso" /><br>
 
-                <label for="altura">Altura: </label>
-                <input id="altura" class="form-control" required type="text" name="altura"
-                    placeholder="Metros | Ej: 1.75" /><br>
+            <form action="Mensaje/CrearMensaje.php" method="POST">
+                
+                <label for="correo">Email: </label>
+                <input id="correo" class="form-control" required type="text"/ name="correo"><br>
 
-                <label for="edad">Edad: </label>
-                <input id="edad" class="form-control" required type="text" name="edad" placeholder="Años" /><br>
+                <label for="cuerpo">Mensaje: </label>
+                <input id="cuerpo" class="form-control" required type="text" name="cuerpo"/><br>
+
+                <button type="submit" class="btn btn-primary">Enviar</button>
             </form>
         </div>
 
