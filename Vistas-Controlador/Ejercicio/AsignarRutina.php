@@ -9,6 +9,7 @@ $usuario = findOneByCorreoUser($usuGet)["cod_usu"];
 
 
 
+//Asignar o quitar de la rutina un ejercicio
 if (isset($_GET['accion'])) {
     $cod_ej = $_GET["cod_ejercicio"];
 
@@ -18,7 +19,7 @@ if (isset($_GET['accion'])) {
     else{
         quitarEjercicio($usuario, $cod_ej);
     }
-    header("Location:AsignarRutina.php?correo=" . $usuGet);
+
 }
 
 ?>
@@ -29,8 +30,6 @@ if (isset($_GET['accion'])) {
 <body>
 
     <br>
-
-
 
     <legend class="mt-2" style="padding-left:15%; font-size:40px">Ejercicios</legend>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEjercicio"
@@ -52,16 +51,16 @@ if (isset($_GET['accion'])) {
 
             <div class="card border-primary mb-3 div_pro_2" style="width:250px;">
                 <div class="card-header">
-                    <?php echo $ejercicio['nombre']; ?>
+                    <h5><?php echo $ejercicio['nombre']; ?></h5>
                 </div>
 
                 <div class="card-body" style="background-color:rgb(253, 237, 237)">
                     <div style="height:200px;
                     width:200px;
-                    background-image:url(<?php echo $ejercicio['imagen'] ?>);
                     background-size: cover;
                     background-repeat: no-repeat;
                     margin:5px;">
+                    <span><?php echo $ejercicio['descripcion']; ?></span>
                     </div>
 
                     <input type="hidden" value="<?php echo $ejercicio['cod_ejercicio'] ?>" name="cod_ejercicio">
@@ -92,6 +91,7 @@ if (isset($_GET['accion'])) {
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+
 
 
 </body >

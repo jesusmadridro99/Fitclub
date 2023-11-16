@@ -90,7 +90,7 @@ include("modales.php");
             <form action="Mensaje/CrearMensaje.php" method="POST">
                 
                 <label for="correo">Email: </label>
-                <input id="correo" class="form-control" required type="text"/ name="correo"><br>
+                <input id="correo" class="form-control" required type="text" name="correo"><br>
 
                 <label for="cuerpo">Mensaje: </label>
                 <input id="cuerpo" class="form-control" required type="text" name="cuerpo"/><br>
