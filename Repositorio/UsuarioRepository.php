@@ -73,15 +73,9 @@ function findByCorreoUsuario($correo) {
 
 
 
-
-
-
-
 function findCorreoPassActivoUsuario($correo, $pass) {
     $sqlFindCorreoPassActivo = "SELECT * FROM usuario where correo = ? and password = ? 
         and activo = '1'";
-
-    
 
     $encuentraUser = false;
     $esAdminSistema = false;
@@ -103,10 +97,6 @@ function findCorreoPassActivoUsuario($correo, $pass) {
 
     return array ($encuentraUser, $esAdminSistema);
 }
-
-
-
-
 
 
 

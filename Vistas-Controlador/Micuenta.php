@@ -7,41 +7,22 @@ include("modales.php");
 
 $error = false;
 
-function findByCorreoUsuario2($correo)
-{
-    $sqlFindCorreo = "SELECT * FROM usuario where correo = ?";
 
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlFindCorreo);
-        $result->execute(array($correo));
-        $result = $result->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-
-    }
-
-    return $result;
-}
-
-
-$idUserLogin = $_SESSION["correo"];
-$mensajesSistemas = findAllMensajeByUser($idUserLogin);
+//Mostramos los mensajes enviados o recibidos
+$idUserLogin = findOneByCorreoUser($_SESSION["correo"])["cod_usu"];
 $box = false;
-if (isset($_GET["caja"])) {
-    if ($_GET["caja"] == "recibidos") {
-        $mensajesSistemas = findAllMensajeByUser($idUserLogin);
-    }
-    if ($_GET["caja"] == "enviados") {
-        $mensajesSistemas = findEnviadoMensajeByUser($idUserLogin);
-        $box = true;
-    }
 
-} else {
-    $mensajesSistemas = findAllMensajeByUser($idUserLogin);
-
+if(!isset($_GET["caja"])){
+    $_GET["caja"] = "recibidos";
 }
 
-
+if ($_GET["caja"] == "recibidos") {
+    $mensajesSistemas = findRecibidoMensajeByUser($idUserLogin);
+}
+if ($_GET["caja"] == "enviados") {
+    $mensajesSistemas = findEnviadoMensajeByUser($idUserLogin);
+    $box = true;
+}
 
 
 ?>
@@ -59,13 +40,13 @@ if (isset($_GET["caja"])) {
         <div style="background-color:#f8dede; padding:40px; border-radius:10px 0px 0px 10px">
             <div>
                 Username:
-                <?php echo findByCorreoUsuario2($_SESSION["correo"])["username"]; ?><br>
+                <?php echo findByCorreoUsuario($_SESSION["correo"])["username"]; ?><br>
                 Nombre: </h6>
-                <?php echo findByCorreoUsuario2($_SESSION["correo"])["nombre"]; ?> <br>
+                <?php echo findByCorreoUsuario($_SESSION["correo"])["nombre"]; ?> <br>
                 Apellidos: </h6>
-                <?php echo findByCorreoUsuario2($_SESSION["correo"])["apellidos"]; ?> <br>
+                <?php echo findByCorreoUsuario($_SESSION["correo"])["apellidos"]; ?> <br>
                 E-mail:
-                <?php echo findByCorreoUsuario2($_SESSION["correo"])["correo"]; ?>
+                <?php echo findByCorreoUsuario($_SESSION["correo"])["correo"]; ?>
                 </h6>
             </div>
         </div>
@@ -73,6 +54,7 @@ if (isset($_GET["caja"])) {
         <div style="; float:left; background-color:#f8ebeb; padding:40px; border-radius:0px 10px 10px 0px">
             Pedidos Totales: <h1 style="text-align:center">40<h1>
         </div>
+        
     </div>
     <br>
     <br>
@@ -129,10 +111,12 @@ if (isset($_GET["caja"])) {
                                 </td>
                                 <?php if ($_SESSION["rol"] == "admin") { ?>
                                     <td>
-                                        <?php echo $mensaje["remitente"] ?>
+                                        <?php 
+                                        
+                                        echo findOneByIdUser($mensaje["remitente"])["correo"] ?>
                                     </td>
                                     <td>
-                                        <?php echo $mensaje["destinatario"] ?>
+                                        <?php echo findOneByIdUser($mensaje["destinatario"])["correo"] ?>
                                     </td>
                                 <?php } ?>
                                 <td>

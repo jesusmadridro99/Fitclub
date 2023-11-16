@@ -106,12 +106,9 @@ include("modales.php");
 
     ?>
 
-    <script src="../Utiles/Includes/javascript.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-
-    </script>
+    
+    
+    
 </body>
 
 </html>

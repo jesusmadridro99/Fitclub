@@ -6,13 +6,16 @@ include("../Utiles/Includes/Header.php");
 
 $error = false;
 
+
+
+//Determinamos si los datos del usuario que nos envian son correctos y si se trata de un usuario estandar o del administrador.
 if(isset($_SESSION["correo"])){
     header("Location:Fitclub.php");
 } else {
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $correo = $_POST["correo"];
-        $pass = $_POST["pass"];
+        $pass = hash('sha256', $_POST["pass"]);
         $resultConsultaEncontrarUser = findCorreoPassActivoUsuario($correo, $pass);
         
         if ($resultConsultaEncontrarUser[0]) {

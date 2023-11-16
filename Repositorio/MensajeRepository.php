@@ -32,7 +32,7 @@ function findIdMensaje($idMensaje) {
 }
 
 // Consulta con todos los mensajes enviados o recibidos
-function findAllMensajeByUser($idUserLogin) {
+function findRecibidoMensajeByUser($idUserLogin) {
     $sqlFindAllByUser = "SELECT * FROM mensaje WHERE destinatario = ? ";
 
     try {

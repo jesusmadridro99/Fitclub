@@ -13,6 +13,20 @@ function findEjercicioByIMC($correo)
         header("Location: /Fitclub/Vistas-Controlador/Error.html");
     }
 
+    return $result;
+}
+
+function updateRutina($rutina, $correo) {
+    $sqlUpdateRutina = "UPDATE usuario set rutina = ?  where correo = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlUpdateRutina);
+        $result->execute(array($rutina, $correo));
+    } catch (PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: /Fitclub/Vistas-Controlador/Error.html");
+    }
+
 }
 
 function asignarEjercicio($cod_usu, $ejercicio) {
@@ -44,6 +58,39 @@ function findPlatoByIMC($correo)
     }
 
     return $result;
+}
+
+function findEjercicioByUsuario($usuario, $ejercicio)
+{
+    $sqlFindEj = "SELECT * FROM usuario_ejercicio where cod_usu = ? and cod_ejercicio = ?";
+    $encuentra = false;
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlFindEj);
+        $result->execute(array($usuario, $ejercicio));
+         if($result->rowCount() == 1 ){
+            $encuentra = true;
+         }
+    } catch (PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        
+    }
+
+    return $encuentra;
+}
+
+
+
+function quitarEjercicio($usuario,$ejercicio){
+    
+    $sqlQuitar = "DELETE FROM usuario_ejercicio where cod_usu = ? and cod_ejercicio = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlQuitar);
+        $result->execute(array($usuario,$ejercicio));
+    } catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+    }
+
 }
 
 function findAllEjercicio()
