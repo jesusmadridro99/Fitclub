@@ -1,4 +1,4 @@
-
+<!-- Modal plan Basic -->
 <div class="modal fade" id="modalBasic" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
 
-                <form action="Ejercicio/CrearRutina.php" method="POST">
+                <form action="Ejercicio/AsignarPlan.php" method="POST">
 
                     <label for="peso">Peso: </label>
                     <input id="peso" class="form-control" required type="text" name="peso" placeholder="Kg" /><br>
@@ -28,6 +28,8 @@
 </div>
 
 
+
+<!-- Modal plan Pro -->
 <div class="modal fade" id="modalPro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -37,7 +39,7 @@
             </div>
             <div class="modal-body">
 
-                <form action="Ejercicio/CrearRutina.php" method="POST">
+                <form action="Ejercicio/AsignarPlan.php" method="POST">
 
                     <label for="peso">Peso: </label>
                     <input id="peso" class="form-control" required type="text" name="peso" placeholder="Kg" /><br>
@@ -59,7 +61,7 @@
 </div>
 
 
-
+<!-- Modal enviar mensaje -->
 <div class="modal fade" id="modalMensaje" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -90,6 +92,8 @@
 </div>
 
 
+
+<!-- Modal crear ejercicio -->
 <div class="modal fade" id="modalEjercicio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -99,16 +103,16 @@
             </div>
             <div class="modal-body">
 
-                <form action="Ejercicio/CrearEjercicio.php" method="POST">
+                <form action="CrearEjercicio.php" method="POST">
 
                     <label for="nombre">Nombre: </label>
-                    <input id="nombre" class="form-control" required type="text" name="nombre" /><br>
+                    <input id="nombre" class="form-control" required type="nombre" name="nombre" /><br>
 
                     <label for="descripcion">Descripción: </label>
-                    <input id="descripcion" class="form-control" required type="text" name="descripcion"/><br>
+                    <input id="descripcion" class="form-control" required type="descripcion" name="descripcion" /><br>
 
                     <label for="imc">Imc: </label>
-                    <input id="imc" class="form-control" required type="text" name="edad" placeholder="imc" /><br>
+                    <input id="imc" class="form-control" required type="text" name="imc" /><br>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

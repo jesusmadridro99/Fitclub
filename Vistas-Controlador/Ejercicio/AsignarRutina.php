@@ -9,14 +9,17 @@ $usuario = findOneByCorreoUser($usuGet)["cod_usu"];
 
 
 
+
+
+
+
 //Asignar o quitar de la rutina un ejercicio
 if (isset($_GET['accion'])) {
     $cod_ej = $_GET["cod_ejercicio"];
 
-    if($_GET['accion'] == "asignar"){
+    if ($_GET['accion'] == "asignar") {
         asignarEjercicio($usuario, $cod_ej);
-    }
-    else{
+    } else {
         quitarEjercicio($usuario, $cod_ej);
     }
 
@@ -32,8 +35,6 @@ if (isset($_GET['accion'])) {
     <br>
 
     <legend class="mt-2" style="padding-left:15%; font-size:40px">Ejercicios</legend>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEjercicio"
-        style="margin-left:15%">Crear Ejercicio</button><br><br>
     <div style="margin-left:15%;">
         - <b>Correo: </b>
         <?php echo $usuGet ?><br>
@@ -46,44 +47,32 @@ if (isset($_GET['accion'])) {
     <br>
 
     <form action="AsignarRutina.php?correo=<?php echo $_GET['correo'] ?>" method="POST">
+        <div style="margin-left:2%">
+            <h3>Imc: Obesidad</h3>
+            <hr style="width:30%">
+            <?php foreach ($ejerciciosSistemas as $ejercicio) { ?>
 
-        <?php foreach ($ejerciciosSistemas as $ejercicio) { ?>
+                <?php if ($ejercicio["imc"] == "o") { ?>
 
-            <div class="card border-primary mb-3 div_pro_2" style="width:250px;">
-                <div class="card-header">
-                    <h5><?php echo $ejercicio['nombre']; ?></h5>
-                </div>
+                    <?php include("Ejercicio.php");
 
-                <div class="card-body" style="background-color:rgb(253, 237, 237)">
-                    <div style="height:200px;
-                    width:200px;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    margin:5px;">
-                    <span><?php echo $ejercicio['descripcion']; ?></span>
-                    </div>
+                }
+            } ?>
+        </div>
+        <br><br><br>
+        <div style="margin-left:2%;margin-top:25em">
+            <h3>Imc: Bajo/Normal</h3>
+            <hr style="width:30%">
+            <?php foreach ($ejerciciosSistemas as $ejercicio) { ?>
 
-                    <input type="hidden" value="<?php echo $ejercicio['cod_ejercicio'] ?>" name="cod_ejercicio">
-                    
+                <?php if ($ejercicio["imc"] == "b") { ?>
 
-                        <hr>
+                    <?php include("Ejercicio.php");
 
-                        <?php
-                        $ejercicioUsuario = findEjercicioByUsuario($usuario, $ejercicio['cod_ejercicio']);
-
-                        if ($ejercicioUsuario) {  ?>
-                            <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
-                                href="AsignarRutina.php?accion=quitar&cod_ejercicio=<?php echo $ejercicio['cod_ejercicio'] ?>&correo=<?php echo $_GET['correo'] ?>">Quitar</a>
-                        <?php } else {  ?>
-                            
-                            <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
-                                href="AsignarRutina.php?accion=asignar&cod_ejercicio=<?php echo $ejercicio['cod_ejercicio'] ?>&correo=<?php echo $_GET['correo'] ?>">Asignar</a>
-                        <?php }
-                     ?>
-
-                </div>
-            </div>
-        <?php } ?>
+                }
+            }
+            ?>
+        </div>
     </form>
 
     </script>

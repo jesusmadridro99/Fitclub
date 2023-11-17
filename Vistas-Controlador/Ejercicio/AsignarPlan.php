@@ -16,13 +16,13 @@ else {
 updateImc($imc, $_SESSION['correo']);
 
 if (isset($_POST['edad'])) {
-    updateRutina("pro",$_SESSION["correo"]);
+    updatePlan("pro",$_SESSION["correo"]);
     updateEdad($_POST['edad'], $_SESSION["correo"]);
-    header("Location: ../Mensaje/CrearMensaje.php?rutina=1");
+    header("Location: ../Mensaje/CrearMensaje.php?plan=1");
 }
 
 else{
-    updateRutina("basic",$_SESSION["correo"]);
+    updatePlan("basic",$_SESSION["correo"]);
     header("Location: ListarEjercicio.php");
 }
 

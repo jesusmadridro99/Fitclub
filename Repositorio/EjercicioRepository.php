@@ -1,6 +1,21 @@
 <?php
 include __DIR__ . '../../Utiles/ConectarBD.php';
 
+
+function crearEjercicio($nombre, $descripcion,$imc) {
+    $sqlCrear = "INSERT INTO ejercicio(nombre, descripcion, imc) 
+        VALUES (?, ?, ?)";
+    
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlCrear);
+        $result->execute(array($nombre, $descripcion, $imc));
+    } catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: /Fitclub/Vistas-Controlador/Error.html");
+    }
+}
+
+
 function findEjercicioByIMC($correo)
 {
     $sqlFindEj = "SELECT * FROM ejercicio where imc IN(SELECT imc FROM usuario WHERE correo = ?)";
@@ -16,12 +31,27 @@ function findEjercicioByIMC($correo)
     return $result;
 }
 
-function updateRutina($rutina, $correo) {
-    $sqlUpdateRutina = "UPDATE usuario set rutina = ?  where correo = ?";
+function findEjercicioByUsuarioPlan($usuario){
+    $sqlFindEj = "SELECT * FROM ejercicio WHERE cod_ejercicio in (SELECT cod_ejercicio from usuario_ejercicio WHERE cod_usu = ?)";
+    
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlFindEj);
+        $result->execute(array($usuario));
+        
+    } catch (PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        
+    }
+
+    return $result;
+}
+
+function updatePlan($plan, $correo) {
+    $sqlUpdatePlan = "UPDATE usuario set plan = ?  where correo = ?";
 
     try {
-        $result = $GLOBALS["bd"]->prepare($sqlUpdateRutina);
-        $result->execute(array($rutina, $correo));
+        $result = $GLOBALS["bd"]->prepare($sqlUpdatePlan);
+        $result->execute(array($plan, $correo));
     } catch (PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
         header("Location: /Fitclub/Vistas-Controlador/Error.html");
@@ -37,7 +67,6 @@ function asignarEjercicio($cod_usu, $ejercicio) {
         $result->execute(array($cod_usu, $ejercicio));
     } catch (PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Fitclub/Vistas-Controlador/Error.html");
     }
 
     
@@ -167,4 +196,17 @@ function addEjercicioToUsuario($usuario, $ejercicio)
         header("Location: /Fitclub/Vistas-Controlador/Error.html");
     }
 
+}
+
+
+function deleteEjercicio($ejercicio) {
+    $sqlDeleteEjercicio = "DELETE FROM ejercicio where cod_ejercicio = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlDeleteEjercicio);
+        $result->execute(array($ejercicio));
+    } catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: /Fitclub/Vistas-Controlador/Error.html");
+    }
 }

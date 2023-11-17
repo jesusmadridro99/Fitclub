@@ -9,7 +9,7 @@ include __DIR__ . '\..\ConectarBD.php';
 if (isset($_SESSION['correo'])) {
   $correo = $_SESSION["correo"];
   $usuarioActual = findByCorreoUsuario($correo);
-} 
+}
 
 ?>
 
@@ -42,9 +42,10 @@ if (isset($_SESSION['correo'])) {
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav me-auto">
 
-              <a style="margin-left:50%;border-left:solid rgb(190,190,190) 1px;" class="nav-link active" href="/Fitclub/Vistas-Controlador/Producto/ListarProducto.php">Productos
-              </a>
-              
+            <a style="margin-left:50%;border-left:solid rgb(190,190,190) 1px;" class="nav-link active"
+              href="/Fitclub/Vistas-Controlador/Producto/ListarProducto.php">Productos
+            </a>
+
           </ul>
           <form class="d-flex">
             <input class="form-control me-sm-2" type="search" placeholder="Buscar productos ...">
@@ -64,10 +65,16 @@ if (isset($_SESSION['correo'])) {
           </button>
           <div class="dropdown-content">
             <a href="/Fitclub/Vistas-Controlador/Micuenta.php?caja=recibidos">Mi cuenta</a>
-            <a href="/Fitclub/Vistas-Controlador/Ejercicio/ListarEjercicio.php">Mis ejercicios</a>
-            <a href="/Fitclub/Vistas-Controlador/Pedido/ListarPedido.php">Pedidos</a>
-            <a href="/Fitclub/Vistas-Controlador/Deseo/Listardeseo.php">Lista de deseos</a>
-            <hr style="color:grey">
+            <?php if ($_SESSION["rol"] == "admin") { ?>
+              <a href="/Fitclub/Vistas-Controlador/Ejercicio/ListarEjercicio.php">Ejercicios</a>
+              <a href="/Fitclub/Vistas-Controlador/Plato/ListarAllPlato.php">Platos</a>
+            <?php } else { ?>
+              <a href="/Fitclub/Vistas-Controlador/Ejercicio/ListarEjercicio.php">Mis ejercicios</a>
+              <a href="/Fitclub/Vistas-Controlador/Ejercicio/ListarEjercicio.php">Mis platos</a>
+              <a href="/Fitclub/Vistas-Controlador/Pedido/ListarPedido.php">Pedidos</a>
+              <a href="/Fitclub/Vistas-Controlador/Deseo/Listardeseo.php">Lista de deseos</a>
+              <hr style="color:grey">
+            <?php } ?>
             <a href="/Fitclub/Vistas-Controlador/LogoutUsuario.php">Cerrar sesion</a>
           </div>
         </div>
