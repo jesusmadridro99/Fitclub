@@ -1,22 +1,23 @@
 <?php
 include("../../Utiles/Includes/Header.php");
 include("../modales.php");
+include("../../Repositorio/PlatoRepository.php");
 
-$ejerciciosSistemas = findAllEjercicio();
+$platosSistemas = findAllPlato();
 
 $usuGet = $_GET["correo"];
 $usuario = findOneByCorreoUser($usuGet)["cod_usu"];
 
 
 
-//Asignar o quitar de la rutina un ejercicio
+//Asignar o quitar de la dieta un plato
 if (isset($_GET['accion'])) {
-    $cod_ej = $_GET["cod_ejercicio"];
+    $cod_plato = $_GET["cod_plato"];
 
     if ($_GET['accion'] == "asignar") {
-        asignarEjercicio($usuario, $cod_ej);
+        asignarPlato($usuario, $cod_plato);
     } else {
-        quitarEjercicio($usuario, $cod_ej);
+        quitarPlato($usuario, $cod_plato);
     }
 
 }
@@ -30,7 +31,7 @@ if (isset($_GET['accion'])) {
 
     <br>
 
-    <legend class="mt-2" style="padding-left:15%; font-size:40px">Ejercicios</legend>
+    <legend class="mt-2" style="padding-left:15%; font-size:40px">Platos</legend>
     <div style="margin-left:15%;">
         - <b>Correo: </b>
         <?php echo $usuGet ?><br>
@@ -42,15 +43,15 @@ if (isset($_GET['accion'])) {
     <hr style="width:95%;">
     <br>
 
-    <form action="AsignarRutina.php?correo=<?php echo $_GET['correo'] ?>" method="POST">
+    <form action="AsignarDieta.php?correo=<?php echo $_GET['correo'] ?>" method="POST">
         <div style="margin-left:2%">
             <h3>Imc: Obesidad</h3>
             <hr style="width:30%">
-            <?php foreach ($ejerciciosSistemas as $ejercicio) { ?>
+            <?php foreach ($platosSistemas as $plato) { ?>
 
-                <?php if ($ejercicio["imc"] == "o") { ?>
+                <?php if ($plato["imc"] == "o") { ?>
 
-                    <?php include("Ejercicio.php");
+                    <?php include("Plato.php");
 
                 }
             } ?>
@@ -59,11 +60,11 @@ if (isset($_GET['accion'])) {
         <div style="margin-left:2%;margin-top:25em">
             <h3>Imc: Bajo/Normal</h3>
             <hr style="width:30%">
-            <?php foreach ($ejerciciosSistemas as $ejercicio) { ?>
+            <?php foreach ($platosSistemas as $plato) { ?>
 
-                <?php if ($ejercicio["imc"] == "b") { ?>
+                <?php if ($plato["imc"] == "b") { ?>
 
-                    <?php include("Ejercicio.php");
+                    <?php include("Plato.php");
 
                 }
             }

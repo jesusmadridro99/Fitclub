@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-11-2023 a las 12:58:34
+-- Tiempo de generación: 17-11-2023 a las 18:45:07
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -90,7 +90,10 @@ INSERT INTO `mensaje` (`cod_mensaje`, `asunto`, `cuerpo`, `fecha`, `remitente`, 
 (8, 'Crear plan', 'El usuario con correo jesus@gmail.com se ha suscrito al plan pro. Creale una rutina de entrenamiento y asignale platos para la dieta. || <a href=\'Ejercicio/AsignarRutina.php?correo=jesus@gmail.com\'>Crear</a>', '2023-11-15', 1120, 1119),
 (17, 'Contacto de usuario no registrado', 'Correo: e@gmail.com | asas as as sa s a s a s ckned dikcd ckd ckdc dkc dk', '2023-11-17', 1119, 1119),
 (19, 'hola', 'hola wenas', '2023-11-17', 1121, 1119),
-(20, 'Crear plan', 'El usuario con correo jesus2@gmail.com se ha suscrito al plan pro. Creale una rutina de entrenamiento y asignale platos para la dieta. || <a href=\'Ejercicio/AsignarRutina.php?correo=jesus2@gmail.com\'>Crear</a>', '2023-11-17', 1121, 1119);
+(20, 'Crear plan', 'El usuario con correo jesus2@gmail.com se ha suscrito al plan pro. Creale una rutina de entrenamiento y asignale platos para la dieta. || <a href=\'Ejercicio/AsignarRutina.php?correo=jesus2@gmail.com\'>Crear</a>', '2023-11-17', 1121, 1119),
+(21, 'Crear plan', 'El usuario con correo admin@admin.com se ha suscrito al plan pro. Creale una rutina de entrenamiento y asignale platos para la dieta. || <a href=\'Ejercicio/AsignarRutina.php?correo=admin@admin.com\'>Crear Rutina || <a href=\'Ejercicio/AsignarDieta.php?correo=admin@admin.com\'>Crear Dieta</a>', '2023-11-17', 1119, 1119),
+(22, 'Crear plan', 'El usuario con correo admin@admin.com se ha suscrito al plan pro. Creale una rutina de entrenamiento y asignale platos para la dieta. || <a href=\'Ejercicio/AsignarRutina.php?correo=admin@admin.com\'>Crear Rutina || <a href=\'Dieta/AsignarDieta.php?correo=admin@admin.com\'>Crear Dieta</a>', '2023-11-17', 1119, 1119),
+(23, 'Crear plan', 'El usuario con correo jesus@gmail.com se ha suscrito al plan pro. Creale una rutina de entrenamiento y asignale platos para la dieta. || <a href=\'Ejercicio/AsignarRutina.php?correo=jesus@gmail.com\'>Crear Rutina || <a href=\'Dieta/AsignarDieta.php?correo=jesus@gmail.com\'>Crear Dieta</a>', '2023-11-17', 1120, 1119);
 
 -- --------------------------------------------------------
 
@@ -105,6 +108,16 @@ CREATE TABLE `plato` (
   `imc` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `plato`
+--
+
+INSERT INTO `plato` (`cod_plato`, `nombre`, `descripcion`, `imc`) VALUES
+(1, 'pollo al curry', 'que bueno\r\n- sfsefwe\r\n-wefdwefdewfdw\r\n-wefwef e wefwefewf\r\n-wefwewefwefwefwefwefwefwefwe\r\n-wefwefwefefwe f we fwe f wef we fwe f wef we fwe f f we fwe f we few fwef ew f ewf ew fwe f ewf we f wef we fwe f ewf we f wef we fwe f wef ew f wef ew fwe f ew few', 'o'),
+(2, 'weg', 'wewervwerv', 'b'),
+(3, 'pollo al curry', 'que bueno\r\n- sfsefwe\r\n-wefdwefdewfdw\r\n-wefwef e wefwefewf\r\n-wefwewefwefwefwefwefwefwefwe\r\n-wefwefwefefwe f we fwe f wef we fwe f wef we fwe f f we fwe f we few fwef ew f ewf ew fwe f ewf we f wef we fwe f ewf we f wef we fwe f wef ew f wef ew fwe f ew few', 'o'),
+(4, 'weg', 'wewervwerv', 'b');
+
 -- --------------------------------------------------------
 
 --
@@ -117,7 +130,7 @@ CREATE TABLE `producto` (
   `descripcion` varchar(255) NOT NULL,
   `precio` int(4) NOT NULL,
   `imagen` varchar(50) NOT NULL,
-  `cod_cat` varchar(25) NOT NULL
+  `cod_cat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -125,24 +138,24 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`cod_producto`, `nombre`, `descripcion`, `precio`, `imagen`, `cod_cat`) VALUES
-(13, 'q1', 'q', 56, '/Fitclub/Img/placa.jpg', '1'),
-(16, 'q2', '1', 252, '', '2'),
-(18, 'Bbida Energetica monster', 'q', 12, '/Fitclub/Img/placa.jpg', '3'),
-(19, 'Gatorade', '1', 1, '', '2'),
-(20, 'Cripsy Table', '1', 99, '', '1'),
-(21, 'Mamadongo', '1', 111, '', '2'),
-(22, 'Paquete Oreo blanco x6', '1', 342, '', '3'),
-(23, '4', '4', 343, '4', '4'),
-(25, '7', '7', 7, '4', '4'),
-(26, 'weboi', '1', 1, '4', '4'),
-(27, 'z', 'z', 1, 'z', '1'),
-(30, 'wawa', 'sdsdsds', 1212, '2', '4'),
-(31, 'aas', 'as', 5, 'as', '4'),
-(32, 'xcxc', 'xcxc', 9, 'xcxc', '4'),
-(34, 'a', 'a', 12, 'a', '2'),
-(35, 'asas', 'z', 1, 'z', '2'),
-(36, 'sxz', 'asassass', 1, 'xx', '4'),
-(37, 'xxx', 'xxx', 12, 'xxx', '2');
+(13, 'q1', 'q', 56, '/Fitclub/Img/placa.jpg', 1),
+(16, 'q2', '1', 252, '', 2),
+(18, 'Bbida Energetica monster', 'q', 12, '/Fitclub/Img/placa.jpg', 3),
+(19, 'Gatorade', '1', 1, '', 2),
+(20, 'Cripsy Table', '1', 99, '', 1),
+(21, 'Mamadongo', '1', 111, '', 2),
+(22, 'Paquete Oreo blanco x6', '1', 342, '', 3),
+(23, '4', '4', 343, '4', 4),
+(25, '7', '7', 7, '4', 4),
+(26, 'weboi', '1', 1, '4', 4),
+(27, 'z', 'z', 1, 'z', 1),
+(30, 'wawa', 'sdsdsds', 1212, '2', 4),
+(31, 'aas', 'as', 5, 'as', 4),
+(32, 'xcxc', 'xcxc', 9, 'xcxc', 4),
+(34, 'a', 'a', 12, 'a', 2),
+(35, 'asas', 'z', 1, 'z', 2),
+(36, 'sxz', 'asassass', 1, 'xx', 4),
+(37, 'xxx', 'xxx', 12, 'xxx', 2);
 
 -- --------------------------------------------------------
 
@@ -169,8 +182,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`cod_usu`, `password`, `nombre`, `apellidos`, `correo`, `username`, `esAdmin`, `activo`, `imc`, `edad`, `plan`) VALUES
-(1119, '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'admin', 'admin admin', 'admin@admin.com', 'admin', 1, 1, 'o', 23, ''),
-(1120, '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'jesus', 'madrid rodriguez', 'jesus@gmail.com', 'jesus', 0, 1, 'o', 24, 'pro'),
+(1119, '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'admin', 'admin admin', 'admin@admin.com', 'admin', 1, 1, 'b', 12, 'pro'),
+(1120, '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'jesus', 'madrid rodriguez', 'jesus@gmail.com', 'jesus', 0, 1, 'b', 12, 'pro'),
 (1121, '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'jesus', 'madrid rodriguez', 'jesus2@gmail.com', 'admin@admin.com', 0, 1, 'o', 24, 'pro'),
 (1122, '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'jesus', 'madrid rodriguez', 'jesus3@gmail.com', 'jesus3', 0, 1, '', 0, '');
 
@@ -192,7 +205,7 @@ CREATE TABLE `usuario_ejercicio` (
 INSERT INTO `usuario_ejercicio` (`cod_usu`, `cod_ejercicio`) VALUES
 (1119, 1),
 (1119, 2),
-(1119, 4),
+(1119, 3),
 (1120, 1),
 (1120, 2),
 (1120, 4),
@@ -207,8 +220,18 @@ INSERT INTO `usuario_ejercicio` (`cod_usu`, `cod_ejercicio`) VALUES
 
 CREATE TABLE `usuario_plato` (
   `cod_usu` int(11) NOT NULL,
-  `cod_plato` int(11) NOT NULL
+  `cod_plato` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuario_plato`
+--
+
+INSERT INTO `usuario_plato` (`cod_usu`, `cod_plato`) VALUES
+(1119, 3),
+(1119, 4),
+(1120, 1),
+(1120, 3);
 
 --
 -- Índices para tablas volcadas
@@ -244,7 +267,8 @@ ALTER TABLE `plato`
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD PRIMARY KEY (`cod_producto`);
+  ADD PRIMARY KEY (`cod_producto`),
+  ADD KEY `fk_cod_cat` (`cod_cat`);
 
 --
 -- Indices de la tabla `usuario`
@@ -280,19 +304,19 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `ejercicio`
 --
 ALTER TABLE `ejercicio`
-  MODIFY `cod_ejercicio` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `cod_ejercicio` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `mensaje`
 --
 ALTER TABLE `mensaje`
-  MODIFY `cod_mensaje` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `cod_mensaje` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `plato`
 --
 ALTER TABLE `plato`
-  MODIFY `cod_plato` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_plato` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -318,6 +342,12 @@ ALTER TABLE `mensaje`
   ADD CONSTRAINT `fk_remitente` FOREIGN KEY (`remitente`) REFERENCES `usuario` (`cod_usu`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `producto`
+--
+ALTER TABLE `producto`
+  ADD CONSTRAINT `fk_cod_cat` FOREIGN KEY (`cod_cat`) REFERENCES `categoria` (`cod_cat`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `usuario_ejercicio`
 --
 ALTER TABLE `usuario_ejercicio`
@@ -328,7 +358,7 @@ ALTER TABLE `usuario_ejercicio`
 -- Filtros para la tabla `usuario_plato`
 --
 ALTER TABLE `usuario_plato`
-  ADD CONSTRAINT `fk_cod_plato` FOREIGN KEY (`cod_plato`) REFERENCES `plato` (`cod_plato`);
+  ADD CONSTRAINT `fk_cod_plato` FOREIGN KEY (`cod_plato`) REFERENCES `plato` (`cod_plato`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

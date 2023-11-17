@@ -67,10 +67,10 @@ if (isset($_SESSION['correo'])) {
             <a href="/Fitclub/Vistas-Controlador/Micuenta.php?caja=recibidos">Mi cuenta</a>
             <?php if ($_SESSION["rol"] == "admin") { ?>
               <a href="/Fitclub/Vistas-Controlador/Ejercicio/ListarEjercicio.php">Ejercicios</a>
-              <a href="/Fitclub/Vistas-Controlador/Plato/ListarAllPlato.php">Platos</a>
+              <a href="/Fitclub/Vistas-Controlador/Dieta/ListarPlato.php">Platos</a>
             <?php } else { ?>
               <a href="/Fitclub/Vistas-Controlador/Ejercicio/ListarEjercicio.php">Mis ejercicios</a>
-              <a href="/Fitclub/Vistas-Controlador/Ejercicio/ListarEjercicio.php">Mis platos</a>
+              <a href="/Fitclub/Vistas-Controlador/Dieta/ListarPlato.php">Mis platos</a>
               <a href="/Fitclub/Vistas-Controlador/Pedido/ListarPedido.php">Pedidos</a>
               <a href="/Fitclub/Vistas-Controlador/Deseo/Listardeseo.php">Lista de deseos</a>
               <hr style="color:grey">

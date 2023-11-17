@@ -2,8 +2,8 @@
 include __DIR__ . '../../Utiles/ConectarBD.php';
 
 
-function crearEjercicio($nombre, $descripcion,$imc) {
-    $sqlCrear = "INSERT INTO ejercicio(nombre, descripcion, imc) 
+function crearPlato($nombre, $descripcion,$imc) {
+    $sqlCrear = "INSERT INTO plato(nombre, descripcion, imc) 
         VALUES (?, ?, ?)";
     
     try {
@@ -16,9 +16,9 @@ function crearEjercicio($nombre, $descripcion,$imc) {
 }
 
 
-function findEjercicioByIMC($correo)
+function findPlatoByIMC($correo)
 {
-    $sqlFindEj = "SELECT * FROM ejercicio where imc IN(SELECT imc FROM usuario WHERE correo = ?)";
+    $sqlFindEj = "SELECT * FROM plato where imc IN(SELECT imc FROM usuario WHERE correo = ?)";
 
     try {
         $result = $GLOBALS["bd"]->prepare($sqlFindEj);
@@ -31,8 +31,8 @@ function findEjercicioByIMC($correo)
     return $result;
 }
 
-function findEjercicioByUsuarioPlan($usuario){
-    $sqlFindEj = "SELECT * FROM ejercicio WHERE cod_ejercicio in (SELECT cod_ejercicio from usuario_ejercicio WHERE cod_usu = ?)";
+function findPlatoByUsuarioPlan($usuario){
+    $sqlFindEj = "SELECT * FROM plato WHERE cod_plato in (SELECT cod_plato from usuario_plato WHERE cod_usu = ?)";
     
     try {
         $result = $GLOBALS["bd"]->prepare($sqlFindEj);
@@ -48,12 +48,12 @@ function findEjercicioByUsuarioPlan($usuario){
 
 
 
-function asignarEjercicio($cod_usu, $ejercicio) {
-    $sqlCrear = "INSERT INTO usuario_ejercicio(cod_usu, cod_ejercicio)VALUES (?, ?)";
+function asignarPlato($cod_usu, $plato) {
+    $sqlCrear = "INSERT INTO usuario_plato(cod_usu, cod_plato)VALUES (?, ?)";
 
     try {
         $result = $GLOBALS["bd"]->prepare($sqlCrear);
-        $result->execute(array($cod_usu, $ejercicio));
+        $result->execute(array($cod_usu, $plato));
     } catch (PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
     }
@@ -62,14 +62,13 @@ function asignarEjercicio($cod_usu, $ejercicio) {
 }
 
 
-
-function findEjercicioByUsuario($usuario, $ejercicio)
+function findPlatoByUsuario($usuario, $plato)
 {
-    $sqlFindEj = "SELECT * FROM usuario_ejercicio where cod_usu = ? and cod_ejercicio = ?";
+    $sqlFindEj = "SELECT * FROM usuario_plato where cod_usu = ? and cod_plato = ?";
     $encuentra = false;
     try {
         $result = $GLOBALS["bd"]->prepare($sqlFindEj);
-        $result->execute(array($usuario, $ejercicio));
+        $result->execute(array($usuario, $plato));
          if($result->rowCount() == 1 ){
             $encuentra = true;
          }
@@ -83,22 +82,22 @@ function findEjercicioByUsuario($usuario, $ejercicio)
 
 
 
-function quitarEjercicio($usuario,$ejercicio){
+function quitarPlato($usuario,$plato){
     
-    $sqlQuitar = "DELETE FROM usuario_ejercicio where cod_usu = ? and cod_ejercicio = ?";
+    $sqlQuitar = "DELETE FROM usuario_plato where cod_usu = ? and cod_plato = ?";
 
     try {
         $result = $GLOBALS["bd"]->prepare($sqlQuitar);
-        $result->execute(array($usuario,$ejercicio));
+        $result->execute(array($usuario,$plato));
     } catch(PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
     }
 
 }
 
-function findAllEjercicio()
+function findAllPlato()
 {
-    $sqlFindAll = "SELECT * FROM ejercicio";
+    $sqlFindAll = "SELECT * FROM plato";
 
     try {
         $result = $GLOBALS["bd"]->query($sqlFindAll);
@@ -113,13 +112,15 @@ function findAllEjercicio()
 
 
 
-function addEjercicioToUsuario($usuario, $ejercicio)
+
+
+function addPlatoToUsuario($usuario, $plato)
 {
-    $sqlAddEj = "INSERT INTO usuario_ejercicio (cod_usu, cod_ejercicio) VALUES (?,?);";
+    $sqlAddPlato = "INSERT INTO usuario_plato (cod_usu, cod_plato) VALUES (?,?);";
 
     try {
-        $result = $GLOBALS["bd"]->prepare($sqlAddEj);
-        $result->execute(array($usuario, $ejercicio));
+        $result = $GLOBALS["bd"]->prepare($sqlAddPlato);
+        $result->execute(array($usuario, $plato));
     } catch (PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
         header("Location: /Fitclub/Vistas-Controlador/Error.html");
@@ -128,12 +129,12 @@ function addEjercicioToUsuario($usuario, $ejercicio)
 }
 
 
-function deleteEjercicio($ejercicio) {
-    $sqlDeleteEjercicio = "DELETE FROM ejercicio where cod_ejercicio = ?";
+function deletePlato($plato) {
+    $sqlDeletePlato = "DELETE FROM plato where cod_plato = ?";
 
     try {
-        $result = $GLOBALS["bd"]->prepare($sqlDeleteEjercicio);
-        $result->execute(array($ejercicio));
+        $result = $GLOBALS["bd"]->prepare($sqlDeletePlato);
+        $result->execute(array($plato));
     } catch(PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
         header("Location: /Fitclub/Vistas-Controlador/Error.html");

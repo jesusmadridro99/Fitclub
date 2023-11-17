@@ -3,6 +3,8 @@
 include("../../Repositorio/ProductoRepository.php");
 include("../../Repositorio/CategoriaRepository.php");
 include("../../Utiles/Includes/Header.php");
+include("../modales.php");
+
 
 
 $categoriaSistemas = findAllCategoria();
@@ -37,7 +39,7 @@ if (isset($_GET["orden"])) {
     <?php
     if (isset($_SESSION["rol"])) {
         if ($_SESSION['rol'] == 'admin'){ ?>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCrearProducto"
             style="margin-left:15%">Crear</button>
     <?php }} ?>
     <hr style="width:95%;">
@@ -83,7 +85,7 @@ if (isset($_GET["orden"])) {
 
 <?php
 
-    include("modalProducto.php");
+
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         $_POST['check'] = [];
@@ -121,9 +123,11 @@ if (isset($_GET["orden"])) {
         }
 
     </script>
+
     <script src="../../Utiles/Includes/javascript.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <script>
 
         function comprobarEliminar($cod_producto) {

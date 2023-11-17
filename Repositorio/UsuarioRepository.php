@@ -227,4 +227,73 @@ function updateUsuario($username, $correo, $contrasena, $cp, $direccion, $pais) 
         header("Location: /Spytufo/Vistas-Controlador/Error.html");
     }
 }
+
+
+
+function updateEdad($edad, $correo)
+{
+    $sqlUpdateEdad = "UPDATE usuario set edad = ?  where correo = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlUpdateEdad);
+        $result->execute(array($edad, $correo));
+        $result = $result->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: /Fitclub/Vistas-Controlador/Fitclub.php");
+    }
+}
+
+
+
+function updateImc($imc, $correo)
+{
+    $sqlUpdateImc = "UPDATE usuario set imc = ?  where correo = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlUpdateImc);
+        $result->execute(array($imc, $correo));
+        $result = $result->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: /Fitclub/Vistas-Controlador/Fitclub.php");
+    }
+}
+
+
+
+function findImcByUser($correo)
+{
+    $sqlFindImc = "SELECT imc FROM usuario WHERE correo = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlFindImc);
+        $result->execute(array($correo));
+        return $result;
+
+    } catch (PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: /Fitclub/Vistas-Controlador/Error.html");
+    }
+
+}
+
+
+
+function updatePlan($plan, $correo) {
+    $sqlUpdatePlan = "UPDATE usuario set plan = ?  where correo = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlUpdatePlan);
+        $result->execute(array($plan, $correo));
+    } catch (PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: /Fitclub/Vistas-Controlador/Error.html");
+    }
+
+}
+
+
 ?>
+
+

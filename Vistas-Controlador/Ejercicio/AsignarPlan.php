@@ -2,7 +2,7 @@
 
 session_start();
 
-include("../../Repositorio/EjercicioRepository.php");
+include("../../Repositorio/UsuarioRepository.php");
 
 $imcN = $_POST["peso"]/($_POST["altura"]*$_POST["altura"]);
 

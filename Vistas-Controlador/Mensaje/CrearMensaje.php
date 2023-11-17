@@ -42,7 +42,7 @@ else{
 //Mandar mensaje al administrador para crear rutina
 if(isset($_GET["plan"])){
     $asunto = "Crear plan";
-    $cuerpo= "El usuario con correo ".$_SESSION["correo"]." se ha suscrito al plan pro. Creale una rutina de entrenamiento y asignale platos para la dieta. || <a href='Ejercicio/AsignarRutina.php?correo=".$correo."'>Crear</a>";
+    $cuerpo= "El usuario con correo ".$_SESSION["correo"]." se ha suscrito al plan pro. Creale una rutina de entrenamiento y asignale platos para la dieta. || <a href='Ejercicio/AsignarRutina.php?correo=".$correo."'>Crear Rutina || <a href='Dieta/AsignarDieta.php?correo=".$correo."'>Crear Dieta</a>";
     crearMensaje($asunto, $cuerpo, $remitente, $destinatario, $fecha);
     header("Location:../Micuenta.php?caja=recibidos");
 }
