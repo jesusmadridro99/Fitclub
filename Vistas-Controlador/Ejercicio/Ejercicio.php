@@ -1,3 +1,5 @@
+
+<!-- Div con el contenido de cada ejercicio -->
 <div class="card border-primary mb-3 div_pro_2" style="width:250px;">
                 <div class="card-header">
                     <h5><?php echo $ejercicio['nombre']; ?></h5>

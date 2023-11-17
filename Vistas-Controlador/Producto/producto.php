@@ -1,4 +1,5 @@
 
+<!-- Div con el contenido de cada producto -->
 <div class="card border-primary mb-3 div_pro_2" style="width:250px;">
     <div class="card-header">
         <?php echo $producto['nombre']; ?>

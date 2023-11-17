@@ -2,6 +2,10 @@
 include("../../Utiles/Includes/Header.php");
 include("../modales.php");
 
+
+
+// Si el usuario no es admin seleccionamos solo los ejercicios que
+//el usuario normal tiene asignados. Si es admin seleccionamos todos los ejercicios.
 if ($_SESSION["rol"] != "admin") {
 
     $plan = findOneByCorreoUser($_SESSION["correo"])["plan"];
@@ -26,6 +30,8 @@ if ($_SESSION["rol"] != "admin") {
 
 
     <?php 
+
+    //Para el admin
     if ($_SESSION["rol"] == "admin") {
         $borrar = true;
         ?>
@@ -67,12 +73,13 @@ if ($_SESSION["rol"] != "admin") {
         </form>
 
 
-    <?php } else {
+    <?php 
+
+//Para el usuario normal
+
+} else {
 
         ?>
-
-
-
 
         <br>
         <legend class="mt-2" style="padding-left:15%; font-size:40px">Tus ejercicios</legend>
@@ -86,19 +93,12 @@ if ($_SESSION["rol"] != "admin") {
             <?php } else { ?>
             <p style="margin-left:10%">Todavia no has elegido un plan.
             <p>
-            <?php } ?>
+            <?php
 
-
-
-            <?php foreach ($ejerciciosSistemas as $ejercicio) {
-
+             foreach ($ejerciciosSistemas as $ejercicio) {
                 include("Ejercicio.php");
-                ?>
-
-
-
-            <?php }
-    } ?>
+            }
+    } }?>
 
 
 <script src="../../Utiles/Includes/javascript.js" crossorigin="anonymous"></script>

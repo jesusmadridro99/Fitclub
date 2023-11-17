@@ -10,6 +10,7 @@ include("../modales.php");
 $categoriaSistemas = findAllCategoria();
 
 
+//Asignamos el oden de los productos mostrados
 if (isset($_GET["orden"])) {
     if ($_GET['orden'] == "alfaAZ") {
         $orden = "nombre ASC";
@@ -38,10 +39,11 @@ if (isset($_GET["orden"])) {
 
     <?php
     if (isset($_SESSION["rol"])) {
-        if ($_SESSION['rol'] == 'admin'){ ?>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCrearProducto"
-            style="margin-left:15%">Crear</button>
-    <?php }} ?>
+        if ($_SESSION['rol'] == 'admin') { ?>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCrearProducto"
+                style="margin-left:15%">Crear</button>
+        <?php }
+    } ?>
     <hr style="width:95%;">
     <br>
 
@@ -83,10 +85,11 @@ if (isset($_GET["orden"])) {
     <br>
 
 
-<?php
+    <?php
 
 
-
+    //Si no elegimos categoria en el checkbox vaciamos el array del check y metemos en 
+//ese mismo array todos los codigos de categoria
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         $_POST['check'] = [];
         foreach ($categoriaSistemas as $cat) {
@@ -94,12 +97,18 @@ if (isset($_GET["orden"])) {
         }
     }
 
+
+    //Ordenamos los productos mostrados que estan almacenados en $_SESSION["productos"]
     if (isset($_GET["orden"])) {
         $productoSistemas = findProductoByIDOrdered($_SESSION['productos'], $orden);
         foreach ($productoSistemas as $producto) {
             include("producto.php");
         }
 
+
+        //Mostramos los productos de las categorias seleccionadas en el checkbox
+//y los almacenamos en $_SESSION["productos"] para que si queremos ordenarlos
+//se nos muestren los productos de las categorias seleccionadas
     } else {
         $i = 0;
         foreach ($_POST['check'] as $seleccion) {
@@ -127,7 +136,7 @@ if (isset($_GET["orden"])) {
     <script src="../../Utiles/Includes/javascript.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <script>
 
         function comprobarEliminar($cod_producto) {
@@ -154,7 +163,7 @@ if (isset($_GET["orden"])) {
         window.onclick = function (event) {
             if (event.target === modal) {
                 modal.style.display = "none";
-                
+
             }
         }
 
