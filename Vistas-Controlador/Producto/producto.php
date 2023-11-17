@@ -5,6 +5,7 @@
     </div>
     <div class="card-body" style="background-color:rgb(253, 237, 237)">
         <div style="height:200px;
+                    border-radius:10px;
                     width:200px;
                     background-image:url(<?php echo $producto['imagen'] ?>);
                     background-size: cover;
