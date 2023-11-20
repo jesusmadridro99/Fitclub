@@ -17,13 +17,13 @@
         <h6 class="card-title">
             <?php echo $producto["precio"] ?> €
         </h6>
-
+        <hr>
         <?php if (isset($_SESSION['rol'])) {
 
             ?>
 
-            <button class="btn btn-lg btn-primary" style="font-size:15px; width:90px" type="button"
-                onclick="carrito()">Comprar</button>
+            <a class="btn btn-lg btn-primary" style="font-size:15px; width:90px" type="button"
+                href="ListarProducto.php?carrito=<?php echo $producto['cod_producto'] ?>">Comprar</a>
             <br>
             <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Añadir a la
                 lista</button>

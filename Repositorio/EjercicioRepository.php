@@ -113,6 +113,7 @@ function findAllEjercicio()
 
 
 
+
 function addEjercicioToUsuario($usuario, $ejercicio)
 {
     $sqlAddEj = "INSERT INTO usuario_ejercicio (cod_usu, cod_ejercicio) VALUES (?,?);";

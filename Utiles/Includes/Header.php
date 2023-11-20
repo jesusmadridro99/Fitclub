@@ -3,7 +3,9 @@
 session_start();
 
 include __DIR__ . '\..\..\Repositorio\UsuarioRepository.php';
-include __DIR__ . '\..\..\Repositorio\EjercicioRepository.php';
+
+include __DIR__ . '\..\..\Repositorio\ProductoRepository.php';
+include __DIR__ . '\..\..\Vistas-Controlador\Pedido\OffcanvasCarrito.php';
 include __DIR__ . '\..\ConectarBD.php';
 
 if (isset($_SESSION['correo'])) {
@@ -55,9 +57,16 @@ if (isset($_SESSION['correo'])) {
 
       <img style="width:50px; height:50px; margin-right:12px; float:right" src="/Fitclub/Img/usuario.png" />
 
-      <?php
-      if (isset($_SESSION['rol'])) { ?>
 
+
+
+
+
+      <?php
+      if (isset($_SESSION['rol'])) {
+        $carritoNum = count($_SESSION["carrito"]);
+
+        ?>
 
         <div class="dropdown">
           <button class="btn btn-dark" style="margin-right: 100px">
@@ -71,6 +80,9 @@ if (isset($_SESSION['correo'])) {
             <?php } else { ?>
               <a href="/Fitclub/Vistas-Controlador/Ejercicio/ListarEjercicio.php">Mis ejercicios</a>
               <a href="/Fitclub/Vistas-Controlador/Dieta/ListarPlato.php">Mis platos</a>
+              <a data-bs-toggle="offcanvas" href="#offcanvasExample" >Carrito(
+                <?php echo $carritoNum ?>)
+              </a>
               <a href="/Fitclub/Vistas-Controlador/Pedido/ListarPedido.php">Pedidos</a>
               <a href="/Fitclub/Vistas-Controlador/Deseo/Listardeseo.php">Lista de deseos</a>
               <hr style="color:grey">
@@ -78,6 +90,8 @@ if (isset($_SESSION['correo'])) {
             <a href="/Fitclub/Vistas-Controlador/LogoutUsuario.php">Cerrar sesion</a>
           </div>
         </div>
+
+
 
         <?php
       } else {
@@ -91,6 +105,19 @@ if (isset($_SESSION['correo'])) {
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
+
+
 </body>
 
 </html>
+
+<?php 
+
+$cantidadProducto = 1;
+
+?>
+
+
+
+

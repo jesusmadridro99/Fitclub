@@ -28,7 +28,7 @@ if(isset($_SESSION["correo"])){
                 
             else {
                 $_SESSION['rol'] = "usuario";
-                /*$_SESSION['carrito'] = array();*/
+                $_SESSION['carrito'] = array();
                 header("Location:Micuenta.php");
             }
 

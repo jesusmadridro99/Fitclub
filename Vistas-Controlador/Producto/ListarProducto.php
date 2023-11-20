@@ -1,13 +1,21 @@
 <?php
 
-include("../../Repositorio/ProductoRepository.php");
 include("../../Repositorio/CategoriaRepository.php");
 include("../../Utiles/Includes/Header.php");
-include("../modales.php");
+//include("../modales.php");
 
 
 
 $categoriaSistemas = findAllCategoria();
+
+
+if(isset($_GET["carrito"])){
+    $idProducto = $_GET["carrito"];
+    $cantidad = 1;
+    $_SESSION["carrito"][$idProducto] = $cantidad;
+
+}
+
 
 
 //Asignamos el oden de los productos mostrados
@@ -38,6 +46,7 @@ if (isset($_GET["orden"])) {
     <legend class="mt-2" style="margin-left:15%; font-size:40px">Productos</legend>
 
     <?php
+    
     if (isset($_SESSION["rol"])) {
         if ($_SESSION['rol'] == 'admin') { ?>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCrearProducto"
@@ -109,7 +118,7 @@ if (isset($_GET["orden"])) {
         //Mostramos los productos de las categorias seleccionadas en el checkbox
 //y los almacenamos en $_SESSION["productos"] para que si queremos ordenarlos
 //se nos muestren los productos de las categorias seleccionadas
-    } else {
+    } else if(!isset($_POST["cantidad"])) {
         $i = 0;
         foreach ($_POST['check'] as $seleccion) {
             $productoSistemas = findProductoByCategoria($seleccion);
@@ -124,6 +133,8 @@ if (isset($_GET["orden"])) {
 
 
     ?>
+
+
 
     <script>
         function carrito() {

@@ -112,8 +112,6 @@ function findAllPlato()
 
 
 
-
-
 function addPlatoToUsuario($usuario, $plato)
 {
     $sqlAddPlato = "INSERT INTO usuario_plato (cod_usu, cod_plato) VALUES (?,?);";
