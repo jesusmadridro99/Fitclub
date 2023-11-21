@@ -3,7 +3,6 @@
 session_start();
 
 include __DIR__ . '\..\..\Repositorio\UsuarioRepository.php';
-
 include __DIR__ . '\..\..\Repositorio\ProductoRepository.php';
 include __DIR__ . '\..\..\Vistas-Controlador\Pedido\OffcanvasCarrito.php';
 include __DIR__ . '\..\ConectarBD.php';
@@ -64,7 +63,7 @@ if (isset($_SESSION['correo'])) {
 
       <?php
       if (isset($_SESSION['rol'])) {
-        $carritoNum = count($_SESSION["carrito"]);
+       
 
         ?>
 
@@ -77,7 +76,9 @@ if (isset($_SESSION['correo'])) {
             <?php if ($_SESSION["rol"] == "admin") { ?>
               <a href="/Fitclub/Vistas-Controlador/Ejercicio/ListarEjercicio.php">Ejercicios</a>
               <a href="/Fitclub/Vistas-Controlador/Dieta/ListarPlato.php">Platos</a>
-            <?php } else { ?>
+            <?php } else { 
+               $carritoNum = count($_SESSION["carrito"]);
+              ?>
               <a href="/Fitclub/Vistas-Controlador/Ejercicio/ListarEjercicio.php">Mis ejercicios</a>
               <a href="/Fitclub/Vistas-Controlador/Dieta/ListarPlato.php">Mis platos</a>
               <a data-bs-toggle="offcanvas" href="#offcanvasExample" >Carrito(

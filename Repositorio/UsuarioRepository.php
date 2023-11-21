@@ -15,6 +15,19 @@ function crearUsuario($correo,$contrasena,$username,$nombre,$apellidos) {
 }
 
 
+function updatePedidos($pedidos, $usuario) {
+    $sqlUpdatePedidos = "UPDATE usuario SET n_pedidos = ? WHERE cod_usu = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlUpdatePedidos);
+        $result->execute(array($pedidos, $usuario));
+    } catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: /Spytufo/Vistas-Controlador/Error.html");
+    }
+}
+
+
 function findUsuarioUsername($username) {
     $sqlFindUsername= "SELECT * FROM usuario where username = ?";
     $res = true;
@@ -69,6 +82,7 @@ function findByCorreoUsuario($correo) {
 
     return $result;
 }
+
 
 
 

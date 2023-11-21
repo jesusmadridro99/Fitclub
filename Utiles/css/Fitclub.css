@@ -93,7 +93,6 @@ body {
   float: left;
   padding-left: 10%;
   padding-right: 3%;
-  height: 100%;
 }
 
 
@@ -181,4 +180,21 @@ body {
   background-color: #f8ebeb;
   padding: 40px;
   border-radius: 20px;
+}
+
+
+
+
+
+
+/*------ Micuenta.php ----------*/
+
+.divDatosUser{
+  background-color:#f8dede;
+  padding:40px; 
+  border-radius:10px 0px 0px 10px;
+}
+
+.b_datos{
+  font-size: medium;
 }

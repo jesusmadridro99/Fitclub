@@ -17,6 +17,9 @@ function crearMensaje($asunto, $cuerpo, $remitente, $destinatario, $fecha) {
 }
 
 
+
+
+
 function findIdMensaje($idMensaje) {
     $sqlFindId = "SELECT * FROM mensaje where codMensaje = ?";
     

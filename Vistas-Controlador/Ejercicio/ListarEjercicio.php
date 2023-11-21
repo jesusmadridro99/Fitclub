@@ -1,5 +1,6 @@
 <?php
 include("../../Utiles/Includes/Header.php");
+include("../../Repositorio/EjercicioRepository.php");
 include("../modales.php");
 
 
@@ -29,7 +30,7 @@ if ($_SESSION["rol"] != "admin") {
 <body>
 
 
-    <?php 
+    <?php
 
     //Para el admin
     if ($_SESSION["rol"] == "admin") {
@@ -73,14 +74,12 @@ if ($_SESSION["rol"] != "admin") {
         </form>
 
 
-    <?php 
+    <?php
 
-//Para el usuario normal
-
-} else {
-
+        //Para el usuario normal
+    
+    } else {
         ?>
-
         <br>
         <legend class="mt-2" style="padding-left:15%; font-size:40px">Tus ejercicios</legend>
         <hr style="width:95%;">
@@ -90,20 +89,28 @@ if ($_SESSION["rol"] != "admin") {
             <p style="margin-left:10%">Aqui tienes una lista de ejercicios que pueden ayudarte a lograr tu objetivo. Escoge los
                 que mas se adecuen a tu manera de trabajar y organizate.
             <p>
-            <?php } else { ?>
+                <?php
+
+                foreach ($ejerciciosSistemas as $ejercicio) {
+                    include("Ejercicio.php");
+                }
+        }
+
+        else if (!isset($plan)) { ?>
             <p style="margin-left:10%">Todavia no has elegido un plan.
-            <p>
-            <?php
+            </p>
 
-             foreach ($ejerciciosSistemas as $ejercicio) {
-                include("Ejercicio.php");
-            }
-    } }?>
+        <?php } else { ?>
+            <p style="margin-left:10%">Todavia no te han asignado ejercicios.
+            </p>
+
+        <?php }
+    } ?>
 
 
-<script src="../../Utiles/Includes/javascript.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../../Utiles/Includes/javascript.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 </body>

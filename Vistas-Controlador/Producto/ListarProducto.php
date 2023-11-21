@@ -1,19 +1,19 @@
 <?php
 
 include("../../Repositorio/CategoriaRepository.php");
-include("../../Utiles/Includes/Header.php");
-//include("../modales.php");
-
-
-
 $categoriaSistemas = findAllCategoria();
+include("../../Utiles/Includes/Header.php");
+include("../modales.php");
+
+
+
+
 
 
 if(isset($_GET["carrito"])){
     $idProducto = $_GET["carrito"];
     $cantidad = 1;
     $_SESSION["carrito"][$idProducto] = $cantidad;
-
 }
 
 
@@ -42,7 +42,7 @@ if (isset($_GET["orden"])) {
 <html lang="en">
 
 <body>
-
+    <br>
     <legend class="mt-2" style="margin-left:15%; font-size:40px">Productos</legend>
 
     <?php

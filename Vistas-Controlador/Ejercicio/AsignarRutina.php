@@ -1,5 +1,6 @@
 <?php
 include("../../Utiles/Includes/Header.php");
+include("../../Repositorio/EjercicioRepository.php");
 include("../modales.php");
 
 $ejerciciosSistemas = findAllEjercicio();

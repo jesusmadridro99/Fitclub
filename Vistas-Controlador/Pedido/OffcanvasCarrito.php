@@ -15,6 +15,7 @@
 
             ?>
             <br>
+            <form action="" method="POST">
             <div style="margin:5px 5px">
 
                 <div style="display:inline-block;
@@ -46,9 +47,9 @@
                     <?php } ?>
                 </select>
                 <br>
-                <a href="/Fitclub/Vistas-Controlador/Pedido/QuitarCarrito.php?idProducto=<?php echo $producto['cod_producto']?>">Quitar</a>
+                <a
+                    href="/Fitclub/Vistas-Controlador/Pedido/QuitarCarrito.php?idProducto=<?php echo $producto['cod_producto'] ?>">Quitar</a>
             </div>
-
 
             <hr style="margin: 0 auto; width:80%;">
 
@@ -59,15 +60,18 @@
         }
         ?>
         <br>
-        <div class="offcanvas-header" style="background-color:rgb(253, 237, 237)">
-            <h4 style="display:inline-block;margin-left:10px">Total:
-                <?php echo $total ?> € 
-            </h4>
-            <a style="float:right;margin-right:10px" class="btn btn-primary" href="">Pagar</a>
-        </div>
-        <br>
-        <br>
+        <?php if ($total > 0) { ?>
+            <div class="offcanvas-header" style="background-color:rgb(253, 237, 237)">
+                <a style="float:right;margin-right:10px" class="btn btn-primary" href="/Fitclub/Vistas-Controlador/Pedido/ComprarPedido.php">Pagar</a>
+            </div>
+        <?php } else {
+            ?>
+            <p>No tienes ningun producto en el carrito</span>
+            <?php } ?>
 
+            <br>
+            <br>
 
+        </form>
     </div>
 </div>

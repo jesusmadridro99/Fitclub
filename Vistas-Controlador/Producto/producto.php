@@ -18,9 +18,7 @@
             <?php echo $producto["precio"] ?> €
         </h6>
         <hr>
-        <?php if (isset($_SESSION['rol'])) {
-
-            ?>
+        <?php if (isset($_SESSION['rol']) && $_SESSION["rol"] == "usuario") { ?>
 
             <a class="btn btn-lg btn-primary" style="font-size:15px; width:90px" type="button"
                 href="ListarProducto.php?carrito=<?php echo $producto['cod_producto'] ?>">Comprar</a>
@@ -28,9 +26,7 @@
             <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Añadir a la
                 lista</button>
 
-            <?php if ($_SESSION['rol'] == 'admin') { ?>
-
-                <hr>
+            <?php } if ($_SESSION['rol'] == 'admin') { ?>
 
                 <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
                     href="javascript: comprobarEliminar(<?php echo $producto['cod_producto'] ?>)">Borrar</a>
@@ -39,7 +35,7 @@
                     href="javascript: modificar(<?php echo $producto['cod_producto'] ?>)">Modificar</a>
 
             <?php }
-        }
+        
         ?>
 
     </div>

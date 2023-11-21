@@ -26,7 +26,7 @@ if ($_SESSION["rol"] != "admin") {
 <body>
 
 
-    <?php 
+    <?php
     if ($_SESSION["rol"] == "admin") {
         $borrar = true;
         ?>
@@ -81,30 +81,31 @@ if ($_SESSION["rol"] != "admin") {
         <br>
 
         <?php if ($platosSistemas->rowCount() > 0) { ?>
-            <p style="margin-left:10%">Aqui tienes una lista de los platos que pueden ayudarte a lograr tu objetivo. Escoge los
+            <p style="margin-left:10%">Aqui tienes una lista de platos que pueden ayudarte a lograr tu objetivo. Escoge los
                 que mas se adecuen a tu manera de trabajar y organizate.
             <p>
-            <?php } else { ?>
+                <?php
+
+                foreach ($platosSistemas as $plato) {
+                    include("Plato.php");
+                }
+        }
+
+        else if (!isset($plan)) { ?>
             <p style="margin-left:10%">Todavia no has elegido un plan.
-            <p>
-            <?php } ?>
+            </p>
 
+        <?php } else { ?>
+            <p style="margin-left:10%">Todavia no te han asignado platos.
+            </p>
 
-
-            <?php foreach ($platosSistemas as $plato) {
-
-                include("Plato.php");
-                ?>
-
-
-
-            <?php }
+        <?php }
     } ?>
 
 
-<script src="../../Utiles/Includes/javascript.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../../Utiles/Includes/javascript.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 </body>
