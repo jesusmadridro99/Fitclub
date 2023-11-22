@@ -7,10 +7,8 @@ include("../modales.php");
 
 
 
-
-
-
-if(isset($_GET["carrito"])){
+//Metemos el producto en el carrito
+if (isset($_GET["carrito"])) {
     $idProducto = $_GET["carrito"];
     $cantidad = 1;
     $_SESSION["carrito"][$idProducto] = $cantidad;
@@ -42,11 +40,14 @@ if (isset($_GET["orden"])) {
 <html lang="en">
 
 <body>
+    <head>
+    
+</head>
     <br>
     <legend class="mt-2" style="margin-left:15%; font-size:40px">Productos</legend>
 
     <?php
-    
+
     if (isset($_SESSION["rol"])) {
         if ($_SESSION['rol'] == 'admin') { ?>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCrearProducto"
@@ -93,48 +94,50 @@ if (isset($_GET["orden"])) {
     <br>
     <br>
 
+    <div style="max-width:80%;
+  float:right;">
+        <?php
 
-    <?php
 
-
-    //Si no elegimos categoria en el checkbox vaciamos el array del check y metemos en 
+        //Si no elegimos categoria en el checkbox vaciamos el array del check y metemos en 
 //ese mismo array todos los codigos de categoria
-    if ($_SERVER["REQUEST_METHOD"] != "POST") {
-        $_POST['check'] = [];
-        foreach ($categoriaSistemas as $cat) {
-            array_push($_POST['check'], $cat['cod_cat']);
-        }
-    }
-
-
-    //Ordenamos los productos mostrados que estan almacenados en $_SESSION["productos"]
-    if (isset($_GET["orden"])) {
-        $productoSistemas = findProductoByIDOrdered($_SESSION['productos'], $orden);
-        foreach ($productoSistemas as $producto) {
-            include("producto.php");
-        }
-
-
-        //Mostramos los productos de las categorias seleccionadas en el checkbox
-//y los almacenamos en $_SESSION["productos"] para que si queremos ordenarlos
-//se nos muestren los productos de las categorias seleccionadas
-    } else if(!isset($_POST["cantidad"])) {
-        $i = 0;
-        foreach ($_POST['check'] as $seleccion) {
-            $productoSistemas = findProductoByCategoria($seleccion);
-            foreach ($productoSistemas as $producto) {
-                $_SESSION['productos'][$i] = $producto["cod_producto"];
-                $i += 1;
-                include("producto.php");
+        
+        if ($_SERVER["REQUEST_METHOD"] != "POST") {
+            $_POST['check'] = [];
+            foreach ($categoriaSistemas as $cat) {
+                array_push($_POST['check'], $cat['cod_cat']);
             }
         }
-    }
+
+
+        //Ordenamos los productos mostrados que estan almacenados en $_SESSION["productos"]
+        if (isset($_GET["orden"])) {
+            $productoSistemas = findProductoByIDOrdered($_SESSION['productos'], $orden);
+            foreach ($productoSistemas as $producto) {
+                include("producto.php");
+            }
+
+
+            //Mostramos los productos de las categorias seleccionadas en el checkbox
+//y los almacenamos en $_SESSION["productos"] para que si queremos ordenarlos
+//se nos muestren los productos de las categorias seleccionadas
+        } else if (!isset($_POST["cantidad"])) {
+            $i = 0;
+            foreach ($_POST['check'] as $seleccion) {
+                $productoSistemas = findProductoByCategoria($seleccion);
+                foreach ($productoSistemas as $producto) {
+                    $_SESSION['productos'][$i] = $producto["cod_producto"];
+                    $i += 1;
+                    include("producto.php");
+                }
+            }
+        }
 
 
 
-    ?>
+        ?>
 
-
+    </div>
 
     <script>
         function carrito() {
