@@ -21,12 +21,10 @@
             <hr>
             <?php if ($_SESSION["rol"] == "usuario") { ?>
 
-                <a class="btn btn-lg btn-primary" style="font-size:15px; width:90px" type="button"
-                    href="ListarProducto.php?carrito=<?php echo $producto['cod_producto'] ?>">Comprar</a>
+                <a class="btn btn-lg btn-primary" style="font-size:15px;" type="button"
+                    href="ListarProducto.php?carrito=<?php echo $producto['cod_producto'] ?>">Añadir al carrito</a>
                 <br>
-                <button class="btn btn-lg btn-primary" style="font-size:15px; margin-top:7px" type="button">Añadir a la
-                    lista</button>
-
+                
             <?php }
             if ($_SESSION['rol'] == 'admin') { ?>
 

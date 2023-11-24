@@ -90,7 +90,7 @@ body {
 
 .div_pro_1 {
   max-width:20%;
-  display: flex;
+  height:100%;
   float: left;
   padding-left: 8%;
   padding-right: 3%;
@@ -100,14 +100,10 @@ body {
 .div_pro_2 {
   max-width: 20rem;
   float: left;
-  margin: 1%
+  margin: 1%;
 }
 
-.div_pro_3{
-  max-width:80%;
-  float:right;
 
-}
 
 
 
@@ -205,3 +201,5 @@ body {
 .b_datos{
   font-size: medium;
 }
+
+

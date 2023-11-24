@@ -274,6 +274,20 @@ function updateImc($imc, $correo)
     }
 }
 
+function updatePass($pass,$correo)
+{
+    $sqlUpdatePass = "UPDATE usuario set password = ?  where correo = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlUpdatePass);
+        $result->execute(array($pass, $correo));
+        $result = $result->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: /Fitclub/Vistas-Controlador/Fitclub.php");
+    }
+}
+
 
 
 function findImcByUser($correo)

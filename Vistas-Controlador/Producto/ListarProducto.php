@@ -94,8 +94,7 @@ if (isset($_GET["orden"])) {
     <br>
     <br>
 
-    <div style="max-width:80%;
-  float:right;">
+    <div style="">
         <?php
 
 

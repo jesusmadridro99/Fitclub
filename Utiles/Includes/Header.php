@@ -85,7 +85,6 @@ if (isset($_SESSION['correo'])) {
                 <?php echo $carritoNum ?>)
               </a>
               <a href="/Fitclub/Vistas-Controlador/Pedido/ListarPedido.php">Pedidos</a>
-              <a href="/Fitclub/Vistas-Controlador/Deseo/Listardeseo.php">Lista de deseos</a>
               <hr style="color:grey">
             <?php } ?>
             <a href="/Fitclub/Vistas-Controlador/LogoutUsuario.php">Cerrar sesion</a>

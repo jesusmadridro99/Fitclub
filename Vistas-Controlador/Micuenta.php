@@ -12,6 +12,9 @@ $error = false;
 $codUsu = findOneByCorreoUser($_SESSION["correo"])["cod_usu"];
 $pedidos = findAllPedidoByUser($codUsu);
 
+$usuario = findByCorreoUsuario($_SESSION["correo"]);
+$pass_usu = $usuario["password"];
+$correo = $_SESSION["correo"];
 
 //Mostramos los mensajes enviados o recibidos
 $idUserLogin = findOneByCorreoUser($_SESSION["correo"])["cod_usu"];
@@ -36,12 +39,12 @@ if ($_GET["caja"] == "enviados") {
 <html lang="en">
 
 <body>
-<?php if(isset($_GET["pedido"])){ ?>
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Pedido realizado con éxito!.</strong>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-<?php } ?>
+    <?php if (isset($_GET["pedido"])) { ?>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Pedido realizado con éxito!.</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php } ?>
     <br>
     <br>
     <div style="width:30%; display:inline-block;margin-left:3%">
@@ -53,26 +56,27 @@ if ($_GET["caja"] == "enviados") {
                 <div style="background-color:#f8dede; padding:40px; border-radius:10px 0px 0px 10px">
                     <div>
                         <b style="font-size:17px">Username: </b>
-                        <?php echo findByCorreoUsuario($_SESSION["correo"])["username"]; ?><br>
+                        <?php echo $usuario["username"]; ?><br>
                         <b style="font-size:17px">Nombre: </b>
-                        <?php echo findByCorreoUsuario($_SESSION["correo"])["nombre"]; ?> <br>
+                        <?php echo $usuario["nombre"]; ?> <br>
                         <b style="font-size:17px"> Apellidos: </b>
-                        <?php echo findByCorreoUsuario($_SESSION["correo"])["apellidos"]; ?> <br>
+                        <?php echo $usuario["apellidos"]; ?> <br>
                         <b style="font-size:17px">E-mail: </b>
-                        <?php echo findByCorreoUsuario($_SESSION["correo"])["correo"]; ?>
+                        <?php echo $usuario["correo"]; ?>
 
                     </div>
                 </div>
 
                 <div style="; float:left; background-color:#f8ebeb; padding:40px; border-radius:0px 10px 10px 0px">
-                    Pedidos Totales: <br><br><h1 style="text-align:center">
+                    Pedidos Totales: <br><br>
+                    <h1 style="text-align:center">
                         <?php echo count($pedidos) ?>
                         <h1>
                 </div>
 
             </div>
         </div>
-        <div style="text-align:center; margin-top:60px">
+        <div style="text-align:center; margin-top:30px">
             <h3>Cambiar Contraseña</h3>
             <br>
             <div style="justify-content: center; background-color:#f8dede; padding:20px; border-radius:10px;">
@@ -80,10 +84,14 @@ if ($_GET["caja"] == "enviados") {
                 <input class="form-control" type="password" id="antigua" autocomplete="off">
 
                 <label for="antigua" class="form-label mt-4">Contraseña nueva</label>
-                <input class="form-control" type="password" id="antigua" autocomplete="off">
+                <input class="form-control" type="password" id="nueva" autocomplete="off">
 
                 <label for="antigua" class="form-label mt-4">Confirmar contraseña</label>
-                <input class="form-control" type="password" id="antigua" autocomplete="off">
+                <input class="form-control" type="password" id="confirmar" autocomplete="off"><br>
+
+                <button id="pass" type="button" class="btn btn-primary" onclick="cambiarContraseña('<?php echo $correo ?>')"
+                    pass="<?php echo $pass_usu; ?>">Cambiar</button>
+
 
             </div>
         </div>
@@ -119,9 +127,9 @@ if ($_GET["caja"] == "enviados") {
                             <thead>
                                 <tr>
                                     <th scope="col">Asunto</th>
-                                    <th style="max-width:500px" scope="col">Cuerpo</th>
+                                    <th scope="col">Cuerpo</th>
                                     <?php if ($_SESSION["rol"] == "admin") { ?>
-                                        <th scope="col">Remitente</th>
+                                        <th style="max-width:50px" scope="col">Remitente</th>
                                         <th scope="col">Destinatario</th>
                                     <?php } ?>
                                     <th scope="col">Fecha</th>
@@ -162,15 +170,10 @@ if ($_GET["caja"] == "enviados") {
         </div>
     </div>
 
-
-
-
-
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
 
     <script src="../Utiles/Includes/javascript.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
@@ -179,7 +182,44 @@ if ($_GET["caja"] == "enviados") {
                 window.location.href = "BorrarMensaje.php?id=" + $idMensaje;
             }
         }
+
+
+        function cambiarContraseña(correo) {
+            let pass_usu = document.getElementById("pass").getAttribute("pass");
+            let antigua = sha256(document.getElementById("antigua").value);
+            let nueva = sha256(document.getElementById("nueva").value);
+            let confirmar = sha256(document.getElementById("confirmar").value);
+
+
+            if (pass_usu != antigua) {
+                alert("La contraseña actual no es igual a la que nos has enviado");
+            }
+            else if (nueva != confirmar) {
+                alert("La contraseña nueva no coincide con la confirmarción");
+            }
+
+            else {
+                alert("Contraseña cambiada con éxito");
+
+                $.ajax({
+                    type: "POST",
+                    url: "Usuario/cambiarContraseña.php",
+                    data: { nuevaContraseña: nueva, correo: correo }
+                });
+                window.location.reload();
+            }
+        }
+
+        function sha256(message) {
+            const hash = CryptoJS.SHA256(message);
+            return hash.toString(CryptoJS.enc.Hex);
+        }
+
     </script>
+
+
+
+
 
 </body>
 
