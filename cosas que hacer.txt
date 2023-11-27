@@ -1,0 +1,7 @@
+- Footer
+- Modificar producto
+- Quitar producto de carrito
+- Buscar producto
+- Pagina de platos
+- Documentar
+
