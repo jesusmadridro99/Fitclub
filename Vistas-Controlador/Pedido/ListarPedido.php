@@ -51,7 +51,7 @@ $pedidoSistemas = findAllPedidoByUser($user);
             $total = 0;
             $pedido_productoSistemas = findIdPedidoProducto($pedido["cod_pedido"]);
             foreach ($pedido_productoSistemas as $pedido_producto) { ?>
-                <div style="">
+                <div >
                     <?php $productos = findIdProducto($pedido_producto["cod_producto"]);
                     
                     foreach($productos as $producto){
@@ -75,7 +75,7 @@ $pedidoSistemas = findAllPedidoByUser($user);
                         </span><br>
                         <b>
                             <?php echo $producto['precio'] ?> €
-                        </b><br>
+                        </b><br><br>
                         <span>Cantidad: </span>
                         <?php echo $pedido_producto['cantidad_producto']; 
                         $total += $producto["precio"] * $pedido_producto['cantidad_producto'];;

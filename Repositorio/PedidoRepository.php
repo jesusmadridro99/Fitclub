@@ -84,7 +84,7 @@ function findAllPedido() {
 }
 
 function findAllPedidoByUser($cod_usu) {
-    $sqlFindAllByUser = "SELECT * FROM pedido where cod_usu = ?";
+    $sqlFindAllByUser = "SELECT * FROM pedido where cod_usu = ? ORDER BY fecha DESC";
 
     try {
         $result = $GLOBALS["bd"]->prepare($sqlFindAllByUser);

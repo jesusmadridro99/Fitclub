@@ -48,8 +48,8 @@ if (isset($_SESSION['correo'])) {
             </a>
 
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-sm-2" type="search" placeholder="Buscar productos ...">
+          <form action="/Fitclub/Vistas-Controlador/Producto/ListarProducto.php" method="POST" class="d-flex">
+            <input name="buscar" class="form-control me-sm-2" type="search" placeholder="Buscar productos ...">
           </form>
         </div>
       </div>

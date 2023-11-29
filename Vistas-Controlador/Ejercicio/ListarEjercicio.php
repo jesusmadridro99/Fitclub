@@ -14,8 +14,11 @@ if ($_SESSION["rol"] != "admin") {
 
     if ($plan == "basic") {
         $ejerciciosSistemas = findEjercicioByIMC($_SESSION["correo"]);
-    } else {
+    }
+    if ($plan == "pro") {
         $ejerciciosSistemas = findEjercicioByUsuarioPlan($usuario);
+    } else {
+        $plan = "0";
     }
 } else {
     $ejerciciosSistemas = findAllEjercicio();
@@ -74,7 +77,7 @@ if ($_SESSION["rol"] != "admin") {
         </form>
 
 
-    <?php
+        <?php
 
         //Para el usuario normal
     
@@ -85,24 +88,22 @@ if ($_SESSION["rol"] != "admin") {
         <hr style="width:95%;">
         <br>
 
-        <?php if ($ejerciciosSistemas->rowCount() > 0) { ?>
-            <p style="margin-left:10%">Aqui tienes una lista de ejercicios que pueden ayudarte a lograr tu objetivo. Escoge los
-                que mas se adecuen a tu manera de trabajar y organizate.
-            <p>
-                <?php
-
-                foreach ($ejerciciosSistemas as $ejercicio) {
-                    include("Ejercicio.php");
-                }
-        }
-
-        else if (!isset($plan)) { ?>
+        <?php if ($plan == 0) { ?>
             <p style="margin-left:10%">Todavia no has elegido un plan.
             </p>
 
-        <?php } else { ?>
-            <p style="margin-left:10%">Todavia no te han asignado ejercicios.
-            </p>
+        <?php } else if ($ejerciciosSistemas->rowCount() > 0) { ?>
+                <p style="margin-left:10%">Aqui tienes una lista de ejercicios que pueden ayudarte a lograr tu objetivo. Escoge los
+                    que mas se adecuen a tu manera de trabajar y organizate.
+                <p>
+                    <?php
+
+                    foreach ($ejerciciosSistemas as $ejercicio) {
+                        include("Ejercicio.php");
+                    }
+            } else { ?>
+                <p style="margin-left:10%">Todavia no te han asignado ejercicios.
+                </p>
 
         <?php }
     } ?>

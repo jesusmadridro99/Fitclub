@@ -36,15 +36,7 @@
                         </b><br>
                         <span>Cantidad: </span>
 
-                        <select id="cantidad_<?php echo $keyProducto; ?>" data-precio="<?php echo $producto['precio']; ?>">
-                            <?php
-                            $i = 1;
-                            for ($i = 1; $i <= 10; $i++) { ?>
-                                <option value="<?php echo $i ?>" <?php echo ($i == $cantidadProducto) ? 'selected' : ''; ?>>
-                                    <?php echo $i ?>
-                                </option>
-                            <?php } ?>
-                        </select>
+                        <?php echo $cantidadProducto; ?>
                         <br>
                         <a href="/Fitclub/Vistas-Controlador/Pedido/QuitarCarrito.php?idProducto=<?php echo $producto['cod_producto'] ?>">Quitar</a>
                     </div>
@@ -73,28 +65,3 @@
 
     </div>
 </div>
-
-<script>
-    var selectElements = document.querySelectorAll('select');
-
-    selectElements.forEach(function(select) {
-        select.addEventListener('change', function() {
-            actualizarTotal();
-        });
-    });
-
-    function actualizarTotal() {
-        var total = 0;
-
-        selectElements.forEach(function(select) {
-            var cantidadSeleccionada = select.value;
-            var precioProducto = select.getAttribute('data-precio');
-            total += cantidadSeleccionada * precioProducto;
-        });
-
-        // Actualizar el total en el DOM
-        document.getElementById('total').innerHTML = total;
-
-        console.log('Nuevo total: ' + total); // Puedes mostrar el total en la consola según tus necesidades
-    }
-</script>

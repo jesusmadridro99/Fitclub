@@ -10,8 +10,10 @@ if ($_SESSION["rol"] != "admin") {
 
     if ($plan == "basic") {
         $platosSistemas = findPlatoByIMC($_SESSION["correo"]);
-    } else {
+    } else if ($plan == "pro") {
         $platosSistemas = findPlatoByUsuarioPlan($usuario);
+    } else {
+        $plan = 0;
     }
 } else {
     $platosSistemas = findAllPlato();
@@ -80,24 +82,24 @@ if ($_SESSION["rol"] != "admin") {
         <hr style="width:95%;">
         <br>
 
-        <?php if ($platosSistemas->rowCount() > 0) { ?>
-            <p style="margin-left:10%">Aqui tienes una lista de platos que pueden ayudarte a lograr tu objetivo. Escoge los
-                que mas se adecuen a tu manera de trabajar y organizate.
-            <p>
-                <?php
-
-                foreach ($platosSistemas as $plato) {
-                    include("Plato.php");
-                }
-        }
-
-        else if (!isset($plan)) { ?>
+        <?php
+        if ($plan == 0) { ?>
             <p style="margin-left:10%">Todavia no has elegido un plan.
             </p>
 
-        <?php } else { ?>
-            <p style="margin-left:10%">Todavia no te han asignado platos.
-            </p>
+
+        <?php } else if ($platosSistemas->rowCount() > 0) { ?>
+                <p style="margin-left:10%">Aqui tienes una lista de platos que pueden ayudarte a lograr tu objetivo. Escoge los
+                    que mas se adecuen a tu manera de trabajar y organizate.
+                <p>
+                    <?php
+
+                    foreach ($platosSistemas as $plato) {
+                        include("Plato.php");
+                    }
+        } else { ?>
+                <p style="margin-left:10%">Todavia no te han asignado platos.
+                </p>
 
         <?php }
     } ?>
