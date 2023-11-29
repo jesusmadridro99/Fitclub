@@ -2,13 +2,13 @@
 include __DIR__ . '../../Utiles/ConectarBD.php';
 
 
-function crearPlato($nombre, $descripcion,$imc) {
-    $sqlCrear = "INSERT INTO plato(nombre, descripcion, imc) 
-        VALUES (?, ?, ?)";
+function crearPlato($nombre, $descripcion,$imc, $imagen) {
+    $sqlCrear = "INSERT INTO plato(nombre, descripcion, imc, imagen) 
+        VALUES (?, ?, ?, ?)";
     
     try {
         $result = $GLOBALS["bd"]->prepare($sqlCrear);
-        $result->execute(array($nombre, $descripcion, $imc));
+        $result->execute(array($nombre, $descripcion, $imc, $imagen));
     } catch(PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
         header("Location: /Fitclub/Vistas-Controlador/Error.html");
@@ -101,6 +101,24 @@ function findAllPlato()
 
     try {
         $result = $GLOBALS["bd"]->query($sqlFindAll);
+        $res = $result->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: /Fitclub/Vistas-Controlador/Error.html");
+    }
+
+    return $res;
+}
+
+
+
+function findPlatoByCod($plato)
+{
+    $sqlFindPlato = "SELECT * FROM plato WHERE cod_plato = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($sqlFindPlato);
+        $result->execute(array($plato));
         $res = $result->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();

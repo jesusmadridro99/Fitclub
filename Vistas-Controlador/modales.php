@@ -150,10 +150,13 @@
                 <form action="CrearPlato.php" method="POST">
 
                     <label for="nombre">Nombre: </label>
-                    <input id="nombre" class="form-control" required type="nombre" name="nombre" /><br>
+                    <input id="nombre" class="form-control" required type="text" name="nombre" /><br>
 
                     <label for="descripcion">Descripción: </label>
-                    <input id="descripcion" class="form-control" required type="descripcion" name="descripcion" /><br>
+                    <textarea style="height:400px" id="descripcion" class="form-control" required name="descripcion"></textarea><br>
+
+                    <label for="imagen">Imagen URL: </label>
+                    <input id="imagen" class="form-control" required type="text" name="imagen" /><br>
 
                     <label for="imc">Imc: </label>
                     <input id="imc" class="form-control" required type="text" name="imc" /><br>

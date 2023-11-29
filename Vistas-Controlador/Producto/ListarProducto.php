@@ -131,7 +131,7 @@ if (isset($_GET["orden"])) {
 
 
     <!-- Div del producto -->
-    <div style="">
+    <div>
         <?php
 
         //Si no elegimos categoria en el checkbox vaciamos el array del check y metemos en 

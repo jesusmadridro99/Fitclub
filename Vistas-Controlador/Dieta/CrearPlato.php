@@ -8,9 +8,10 @@ include("../../Repositorio/PlatoRepository.php");
 $nombre = $_POST["nombre"];
 $descripcion = $_POST["descripcion"];
 $imc = $_POST["imc"];
+$imagen = $_POST["imagen"];
 
-crearPlato($nombre, $descripcion, $imc);
-header("Location: ListarPlato.php");
+crearPlato($nombre, $descripcion, $imc, $imagen); 
+header("Location:ListarPlato.php");
 
 
 ob_end_flush();
