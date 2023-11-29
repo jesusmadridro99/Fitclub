@@ -16,7 +16,7 @@ if(isset($_SESSION["correo"])){
 
         $correo = $_POST["correo"];
         $pass = hash('sha256', $_POST["pass"]);
-        $resultConsultaEncontrarUser = findCorreoPassActivoUsuario($correo, $pass);
+        $resultConsultaEncontrarUser = findCorreoPassUsuario($correo, $pass);
         
         if ($resultConsultaEncontrarUser[0]) {
             $_SESSION['correo'] = $correo;

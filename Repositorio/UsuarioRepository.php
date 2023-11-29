@@ -2,8 +2,8 @@
 include __DIR__ . '../../Utiles/ConectarBD.php';
 
 function crearUsuario($correo,$contrasena,$username,$nombre,$apellidos) {
-    $sqlCrear = "INSERT INTO usuario(correo, password, username, nombre, apellidos, activo, esAdmin)
-    VALUES (?, ?, ?, ?, ?, '1',  '0')";
+    $sqlCrear = "INSERT INTO usuario(correo, password, username, nombre, apellidos,  esAdmin)
+    VALUES (?, ?, ?, ?, ?, '0')";
 
     try {
         $result = $GLOBALS["bd"]->prepare($sqlCrear);
@@ -48,6 +48,7 @@ function findUsuarioUsername($username) {
 }
 
 
+
 function findCorreoUsuario($correo) {
     $sqlFindCorreo = "SELECT * FROM usuario where correo = ?";
     $res = true;
@@ -85,17 +86,14 @@ function findByCorreoUsuario($correo) {
 
 
 
-
-
-function findCorreoPassActivoUsuario($correo, $pass) {
-    $sqlFindCorreoPassActivo = "SELECT * FROM usuario where correo = ? and password = ? 
-        and activo = '1'";
+function findCorreoPassUsuario($correo, $pass) {
+    $sqlFindCorreoPass = "SELECT * FROM usuario where correo = ? and password = ? ";
 
     $encuentraUser = false;
     $esAdminSistema = false;
 
     
-        $result = $GLOBALS["bd"]->prepare($sqlFindCorreoPassActivo);
+        $result = $GLOBALS["bd"]->prepare($sqlFindCorreoPass);
         $result->execute(array($correo, $pass));
 
         $esAdmin = $result->fetch(PDO::FETCH_ASSOC)["esAdmin"];
@@ -144,6 +142,8 @@ function findIMCbyCorreo($correo) {
     return $result;
 
 }
+
+
 function findAllUserSinUserLogin($codUsu) {
     $sqlFindAll = "SELECT * FROM usuario where codUsu != ?";
     
@@ -174,29 +174,8 @@ function findOneByIdUser($codUser) {
     return $result;
 }
 
-function banearDesbanear($codUser) {
-    $estaActivo = findOneByIdUser($codUser)["activo"];
 
-    if ($estaActivo == "1") {
-        try {
-            $sqlBanearUser = "UPDATE usuario set activo = 0 where codUsu = ?";
-            $result = $GLOBALS["bd"]->prepare($sqlBanearUser);
-            $result->execute(array($codUser));
-        } catch(PDOException $e) {
-            echo "Error en la conexión " . $e->getMessage();
-            header("Location: /Spytufo/Vistas-Controlador/Error.html");
-        }
-    } else {
-        try {
-            $sqlDesbanearUser = "UPDATE usuario set activo = 1 where codUsu = ?";
-            $result = $GLOBALS["bd"]->prepare($sqlDesbanearUser);
-            $result->execute(array($codUser));
-        } catch(PDOException $e) {
-            echo "Error en la conexión " . $e->getMessage();
-            header("Location: /Spytufo/Vistas-Controlador/Error.html");
-        }
-    }
-}
+
 
 function findOneByCorreoUser($correo) {
     $sqlFindOne = "SELECT * FROM usuario WHERE correo = ?";
@@ -213,34 +192,6 @@ function findOneByCorreoUser($correo) {
     return $result;
 }
 
-function updateVacioUsuario($correo) {
-    $idUser =  findOneByCorreoUser($correo)["codUsu"];
-
-    $sqlUpdateVacio = "UPDATE usuario set correo = '$idUser@usereli.com',
-                        direccion = 'GDPR', cp='00000', pais='GDPR', activo = '0' 
-                        where codUsu = ?";
-
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlUpdateVacio);
-        $result->execute(array($idUser));
-    } catch(PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Spytufo/Vistas-Controlador/Error.html");
-    }
-}
-
-function updateUsuario($username, $correo, $contrasena, $cp, $direccion, $pais) {
-    $sqlUpdate = "UPDATE usuario SET username = ?, password = ?, cp = ?, direccion = ?,
-        pais = ? where correo = ?";
-     
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlUpdate);
-        $result->execute(array($username, $contrasena, $cp, $direccion, $pais, $correo));
-    } catch(PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Spytufo/Vistas-Controlador/Error.html");
-    }
-}
 
 
 

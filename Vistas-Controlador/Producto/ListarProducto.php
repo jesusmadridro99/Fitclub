@@ -24,13 +24,11 @@ if (isset($_GET["orden"])) {
         $orden = "nombre DESC";
     } else if ($_GET['orden'] == "precio<>") {
         $orden = "precio ASC";
-    } else if ($_GET['orden'] == "precio><") {
-        $orden = "precio DESC";
     } else {
-        $orden = "nombre ASC";
+        $orden = "precio DESC";
     }
 
-//Vaciamos la variable de sesion para que no se nos muestren los que ya estan mostrandose.
+    //Vaciamos la variable de sesion para que no se nos muestren los que ya estan mostrandose.
 //Mirar lineas 127 a 155
 } else {
     $_SESSION['productos'] = [];
@@ -40,36 +38,35 @@ if (isset($_GET["orden"])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <style>
-
-.val{
-    float:right;
-}
-
+        .val {
+            float: right;
+        }
 
         span.clasificacion {
-  position: relative;
-  overflow: hidden;
-  display: inline-block;
-}
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
 
-span.clasificacion input {
-  position: absolute;
-  top: -100px;
-}
+        span.clasificacion input {
+            position: absolute;
+            top: -100px;
+        }
 
-span.clasificacion label {
-  float: right;
-  color: #333;
-}
+        span.clasificacion label {
+            float: right;
+            color: #333;
+        }
 
-span.clasificacion label:hover,
-span.clasificacion label:hover ~ label,
-span.clasificacion input:checked ~ label {
-  color: #dd4;
-}
-        </style>
+        span.clasificacion label:hover,
+        span.clasificacion label:hover~label,
+        span.clasificacion input:checked~label {
+            color: #dd4;
+        }
+    </style>
 </head>
 
 <body>
@@ -125,7 +122,6 @@ span.clasificacion input:checked ~ label {
                 <a href="ListarProducto.php?orden=alfaZA">Nombre, Z a A</a>
                 <a href="ListarProducto.php?orden=precio<>">Precio: de más bajo a más alto</a>
                 <a href="ListarProducto.php?orden=precio><">Precio: de más alto a más bajo</a>
-                <a href="ListarProducto.php?orden=relevancia">Relevancia</a>
             </div>
         </div>
     </div>
@@ -197,6 +193,10 @@ span.clasificacion input:checked ~ label {
     </div>
 
 
+
+
+
+
     <script src="../../Utiles/Includes/javascript.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -208,29 +208,6 @@ span.clasificacion input:checked ~ label {
                 window.location.href = "BorrarProducto.php?id=" + $cod_producto;
             }
         }
-
-        var modal = document.getElementById("modalModificar");
-        var modalModificar = document.getElementById('modalModificar');
-
-        function modificar(cod_producto) {
-
-            $.ajax({
-                type: "POST",
-                url: "guardarProducto.php",
-                data: { codProducto: cod_producto }
-            });
-
-            var modalModificar = new bootstrap.Modal(document.getElementById('modalModificar'), { keyboard: false });
-            modalModificar.show();
-        }
-
-        window.onclick = function (event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
-
-            }
-        }
-
 
     </script>
 

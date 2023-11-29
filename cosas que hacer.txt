@@ -1,8 +1,3 @@
 - Footer
-- Modificar producto
-- Pagina de platos
 - Documentar
-- Elegir a quien mandar correo desde una lista.
-- Quitar descripcion de productos.
-- Quitar activo de usuarios.
-- Cuando creo ejercicio, poder elegir entre los dos imc y no ponerlo manualmente.
+- Pagina de platos

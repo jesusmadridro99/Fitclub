@@ -114,19 +114,3 @@ function countPedidoByUser($cod_usu){
     return $result;
 }
 
-/*function findAllByGenerarFactura($codPedido) {
-    $findAllByGenerarFactura = "SELECT album.imagen, album.nombre, album.precio
-        FROM album INNER JOIN pedidoalbum ON album.codAlbum = pedidoalbum.codAlbum
-        where pedidoalbum.codPedido = ?";
-
-    try {
-        $result = $GLOBALS["bd"]->prepare($findAllByGenerarFactura);
-        $result->execute(array($codPedido));
-        $result = $result->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Fitclub/Vistas-Controlador/Error.html");
-    }
-
-    return $result;
-}*/

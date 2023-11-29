@@ -51,7 +51,7 @@ function findRecibidoMensajeByUser($idUserLogin) {
     return $result;
 }
 
-// Consulta con todos los mensajes enviados o recibidos
+
 
 
 // Consulta con todos los mensajes enviados o recibidos

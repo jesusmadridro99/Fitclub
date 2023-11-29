@@ -75,27 +75,5 @@ function findAllCategoria() {
 }
 
 
-function updateCategoria($codCat, $nombreCategoria, $descripcionCat) {
-    $sqlUpdateCategoria = "UPDATE categoria set nombre = ?, descripcion = ? 
-        where codCat= ?";
 
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlUpdateCategoria);
-        $result->execute(array($nombreCategoria, $descripcionCat, $codCat));
-    } catch (PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Spytufo/Vistas-Controlador/Error.html");
-    }
-}
 
-function deleteCategoria($codCat) {
-    $sqlDeleteCategoria = "DELETE FROM categoria where codCat = ?";
-
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlDeleteCategoria);
-        $result->execute(array($codCat));
-    } catch (PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Spytufo/Vistas-Controlador/Error.html");
-    }
-}

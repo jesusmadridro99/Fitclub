@@ -1,27 +1,27 @@
 <?php
 include __DIR__ . '../../Utiles/ConectarBD.php';
 
-function crearProducto($nombre, $descripcion, $precio, $imagen, $cod_cat)
+function crearProducto($nombre, $precio, $imagen, $cod_cat)
 {
-    $sqlCrear = "INSERT INTO producto(nombre, descripcion, precio, imagen, cod_cat) 
-        VALUES (?, ?, ?, ?, ?)";
+    $sqlCrear = "INSERT INTO producto(nombre, precio, imagen, cod_cat) 
+        VALUES (?, ?, ?, ?)";
 
     try {
         $result = $GLOBALS["bd"]->prepare($sqlCrear);
-        $result->execute(array($nombre, $descripcion, $precio, $imagen, $cod_cat));
+        $result->execute(array($nombre, $precio, $imagen, $cod_cat));
     } catch (PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
         header("Location: /Fitclub/Vistas-Controlador/Error.html");
     }
 }
 
-function updateProducto($codProducto, $descripcion, $precio, $nombre, $imagen, $codCat)
+function updateProducto($precio, $nombre, $imagen, $codCat, $cod_producto)
 {
-    $sqlUpdateProducto = "UPDATE producto set nombre = ?, descripcion = ?, precio = ?, imagen = ?, cod_cat = ? where cod_producto = ?";
+    $sqlUpdateProducto = "UPDATE producto set precio = ?, nombre = ?, imagen = ?, cod_cat = ? where cod_producto = ?";
 
     try {
         $result = $GLOBALS["bd"]->prepare($sqlUpdateProducto);
-        $result->execute(array($nombre, $descripcion, $precio, $imagen, $codCat, $codProducto));
+        $result->execute(array($precio, $nombre, $imagen, $codCat, $cod_producto));
         $result = $result->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
@@ -170,6 +170,7 @@ function findNombreProducto($nombre)
 
     return $result;
 }
+
 
 
 function findEachCategoria()

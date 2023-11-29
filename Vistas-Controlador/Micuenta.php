@@ -4,9 +4,14 @@ ob_start();
 include("../Repositorio/MensajeRepository.php");
 include("../Repositorio/PedidoRepository.php");
 include("../Utiles/Includes/Header.php");
+
+$usuariosSistemas = findAllUser();
+
 include("modales.php");
 
 $error = false;
+
+
 
 //Recogemos los pedidos del usuario
 $codUsu = findOneByCorreoUser($_SESSION["correo"])["cod_usu"];
@@ -39,7 +44,9 @@ if ($_GET["caja"] == "enviados") {
 <html lang="en">
 
 <body>
-    <?php if (isset($_GET["pedido"])) { ?>
+
+    <?php 
+    if (isset($_GET["pedido"])) { ?>
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <strong>Pedido realizado con éxito!.</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
