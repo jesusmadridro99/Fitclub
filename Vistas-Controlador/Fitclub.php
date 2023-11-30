@@ -103,12 +103,9 @@ include("modales.php");
 
 
     <?php
-
+    include("../Utiles/Includes/Footer.html");
     ?>
 
-    
-    
-    
 </body>
 
 </html>

@@ -158,8 +158,15 @@
                     <label for="imagen">Imagen URL: </label>
                     <input id="imagen" class="form-control" required type="text" name="imagen" /><br>
 
-                    <label for="imc">Imc: </label>
-                    <input id="imc" class="form-control" required type="text" name="imc" /><br>
+                    <label for="imc">Imc</label>
+                    <select class="form-select" name="imc">
+                        <option value="b">
+                            Bajo
+                        </option>
+                        <option value="o">
+                            Obeso
+                        </option>
+                </select><br>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

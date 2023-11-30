@@ -61,7 +61,7 @@ if ($_GET["caja"] == "enviados") {
         <!-- Mis Datos -->
         <div style="">
             <h3 style="text-align:center;">Mis Datos</h3>
-            <br>
+            <hr>
             <div style="display: flex; justify-content: center;" >
 
                 <div class="divDatosUser">
@@ -88,11 +88,11 @@ if ($_GET["caja"] == "enviados") {
             </div>
         </div>
 
-
+        
         <!-- Cambiar contraseña -->
         <div style="text-align:center; margin-top:30px">
             <h3>Cambiar Contraseña</h3>
-            <br>
+            <hr>
             <div class="divContra">
                 <label for="antigua" class="form-label mt-4">Contraseña antigua</label>
                 <input class="form-control" type="password" id="antigua" autocomplete="off">
@@ -115,10 +115,9 @@ if ($_GET["caja"] == "enviados") {
 
     <!-- Mensajes -->
     <div class="divMensaje">
+    
         <h3 style="text-align:center">Mensajes</h3>
-        <br>
-
-
+        <hr>
         <div style="display: flex; justify-content: center;">
 
             <div class="divMensaje1" >
@@ -184,6 +183,8 @@ if ($_GET["caja"] == "enviados") {
             </div>
         </div>
     </div>
+
+    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
 
