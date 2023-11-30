@@ -31,7 +31,7 @@ if (isset($_GET['accion'])) {
 
     <br>
 
-    <legend class="mt-2" style="padding-left:15%; font-size:40px">Ejercicios</legend>
+    <legend class="mt-2 titulo">Ejercicios</legend>
     <div style="margin-left:15%;">
         - <b>Correo: </b>
         <?php echo $usuGet ?><br>

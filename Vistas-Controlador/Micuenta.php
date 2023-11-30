@@ -54,13 +54,17 @@ if ($_GET["caja"] == "enviados") {
     <?php } ?>
     <br>
     <br>
-    <div style="width:30%; display:inline-block;margin-left:3%">
-        <div>
-            <h3 style="text-align:center; ">Mis Datos</h3>
-            <br>
-            <div style="display: flex; justify-content: center;">
 
-                <div style="background-color:#f8dede; padding:40px; border-radius:10px 0px 0px 10px">
+    
+    <div class="divDatosContra">
+
+        <!-- Mis Datos -->
+        <div style="">
+            <h3 style="text-align:center;">Mis Datos</h3>
+            <br>
+            <div style="display: flex; justify-content: center;" >
+
+                <div class="divDatosUser">
                     <div>
                         <b style="font-size:17px">Username: </b>
                         <?php echo $usuario["username"]; ?><br>
@@ -74,7 +78,7 @@ if ($_GET["caja"] == "enviados") {
                     </div>
                 </div>
 
-                <div style="; float:left; background-color:#f8ebeb; padding:40px; border-radius:0px 10px 10px 0px">
+                <div  class="divDatosPedidos">
                     Pedidos Totales: <br><br>
                     <h1 style="text-align:center">
                         <?php echo count($pedidos) ?>
@@ -83,10 +87,13 @@ if ($_GET["caja"] == "enviados") {
 
             </div>
         </div>
+
+
+        <!-- Cambiar contraseña -->
         <div style="text-align:center; margin-top:30px">
             <h3>Cambiar Contraseña</h3>
             <br>
-            <div style="justify-content: center; background-color:#f8dede; padding:20px; border-radius:10px;">
+            <div class="divContra">
                 <label for="antigua" class="form-label mt-4">Contraseña antigua</label>
                 <input class="form-control" type="password" id="antigua" autocomplete="off">
 
@@ -104,16 +111,17 @@ if ($_GET["caja"] == "enviados") {
         </div>
     </div>
 
-    <div style="width:60%; float:right; margin-right:3%">
+
+
+    <!-- Mensajes -->
+    <div class="divMensaje">
         <h3 style="text-align:center">Mensajes</h3>
         <br>
 
 
         <div style="display: flex; justify-content: center;">
 
-            <div style="background-color:#f8dede; 
-  padding:40px; 
-  border-radius:20px;">
+            <div class="divMensaje1" >
                 <div>
                     <?php if ($box) { ?>
                         <h4 style="text-decoration:underline">Mensajes enviados</h4>

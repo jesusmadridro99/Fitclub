@@ -4,14 +4,10 @@
     <div class="card-header">
         <?php echo $producto['nombre']; ?>
     </div>
+
+    <!-- Imagen -->
     <div class="card-body" style="background-color:rgb(253, 237, 237)">
-        <div style="height:200px;
-                    border-radius:10px;
-                    width:200px;
-                    background-image:url(<?php echo $producto['imagen'] ?>);
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    margin:5px;">
+        <div style="background-image:url(<?php echo $producto['imagen'] ?>);" class="img_producto" >
         </div>
         <hr>
 
@@ -22,6 +18,7 @@
         <!-- Valoraciones -->
         <?php if (isset($_SESSION["rol"])) { ?>
             <div class="val">
+            <span style="font-size:13px;float:right; margin-left:5px"><?php echo '('.$producto["valoraciones_totales"].')' ?></span>
                 <?php
                 if ($producto["valoraciones_totales"] == 0) { ?>
                     <span style="float:right; padding-left:5px"> N/A </span>
@@ -31,7 +28,7 @@
                         <?php echo round($val, 1); ?>
                     </span>
                 <?php } ?>
-
+                
                 <span class="clasificacion">
                     <input id="cinco_<?php echo $producto['cod_producto']; ?>" type="radio" name="estrellas"
                         onclick="valorar(<?php echo $producto['cod_producto']; ?>, 5)">
@@ -49,9 +46,9 @@
                         onclick="valorar(<?php echo $producto['cod_producto']; ?>, 1)">
                     <label for="uno_<?php echo $producto['cod_producto']; ?>">★</label>
                 </span>
-
+                
             </div>
-
+            
         <?php }
 
 
@@ -80,10 +77,10 @@
             <?php }
             if ($_SESSION['rol'] == 'admin') { ?>
 
-                <a class="btn btn-primary" style="font-size:15px; margin-top:7px"
+                <a class="btn btn-primary botonDiv"
                     href="javascript: comprobarEliminar(<?php echo $producto['cod_producto'] ?>)">Borrar</a>
 
-                <a name="modificar" class="btn btn-primary" style="font-size:15px; margin-top:7px" data-bs-toggle="modal"
+                <a name="modificar" class="btn btn-primary botonDiv" data-bs-toggle="modal"
                     data-bs-target="#modalModificarProducto" cod="<?php echo $producto['cod_producto']; ?>">Modificar</a>
 
             <?php }

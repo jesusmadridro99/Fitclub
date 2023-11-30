@@ -40,33 +40,6 @@ if (isset($_GET["orden"])) {
 <html lang="en">
 
 <head>
-    <style>
-        .val {
-            float: right;
-        }
-
-        span.clasificacion {
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
-        }
-
-        span.clasificacion input {
-            position: absolute;
-            top: -100px;
-        }
-
-        span.clasificacion label {
-            float: right;
-            color: #333;
-        }
-
-        span.clasificacion label:hover,
-        span.clasificacion label:hover~label,
-        span.clasificacion input:checked~label {
-            color: #dd4;
-        }
-    </style>
 </head>
 
 <body>
@@ -75,7 +48,7 @@ if (isset($_GET["orden"])) {
 
     </head>
     <br>
-    <legend class="mt-2" style="margin-left:15%; font-size:40px">Productos</legend>
+    <legend class="mt-2 titulo" >Productos</legend>
 
     <?php
 

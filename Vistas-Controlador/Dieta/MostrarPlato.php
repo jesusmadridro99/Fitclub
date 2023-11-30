@@ -34,8 +34,8 @@ $plato = findPlatoByCod($_GET["plato"]);
 
 
         <div style="">
-            <div style="display:inline-block; vertical-align: top; margin-right:30px"><img style="max-width:600px;" src="<?php echo $plato[0]['imagen'] ?>"></div>
-            <div style="padding-right:5px;max-height:70%;overflow-y: auto; display:inline-block; vertical-align: top;width:30%;text-align:left">
+            <div class="divImagenPlato"><img style="max-width:600px;" src="<?php echo $plato[0]['imagen'] ?>"></div>
+            <div class="divRecetaPlato">
                 <p>
                     <?php echo nl2br($plato[0]['descripcion']) ?>
                 </p>

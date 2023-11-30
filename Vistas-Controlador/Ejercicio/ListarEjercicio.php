@@ -14,8 +14,7 @@ if ($_SESSION["rol"] != "admin") {
 
     if ($plan == "basic") {
         $ejerciciosSistemas = findEjercicioByIMC($_SESSION["correo"]);
-    }
-    if ($plan == "pro") {
+    } else if ($plan == "pro") {
         $ejerciciosSistemas = findEjercicioByUsuarioPlan($usuario);
     } else {
         $plan = "0";
@@ -31,7 +30,6 @@ if ($_SESSION["rol"] != "admin") {
 <html lang="en">
 
 <body>
-
 
     <?php
 

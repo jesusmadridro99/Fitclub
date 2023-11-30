@@ -82,10 +82,10 @@ include("modales.php");
     </div>
 <hr>
     <div class="divContacto">
-        <div style="width:50%; float:left; padding:5%">
+        <div class="divContacto1">
             <h2>CONTACTA CON NOSOTROS</h2>
         </div>
-        <div style="width:50%; padding:10%; float:right">
+        <div class="divContacto2">
 
             <form action="Mensaje/CrearMensaje.php" method="POST">
                 

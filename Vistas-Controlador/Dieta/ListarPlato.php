@@ -24,15 +24,7 @@ if ($_SESSION["rol"] != "admin") {
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<style>
-        .plato :hover{
-            border: 5px solid #333333;
-            overflow: hidden;  
-        }
-        </style>
 
-</head>
 <body>
 
 
@@ -103,11 +95,11 @@ if ($_SESSION["rol"] != "admin") {
                     <?php
 
                     foreach ($platosSistemas as $plato) { ?>
-                        
-                        <?php include("Plato.php"); ?>
                     
-                        
-                    <?php }
+                    <?php include("Plato.php"); ?>
+                    
+
+            <?php }
         } else { ?>
                 <p style="margin-left:10%">Todavia no te han asignado platos.
                 </p>

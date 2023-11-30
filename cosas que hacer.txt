@@ -1,3 +1,4 @@
 - Footer
 - Documentar
 - Poner hover a platos
+- poder elegir imc de platoas al crear

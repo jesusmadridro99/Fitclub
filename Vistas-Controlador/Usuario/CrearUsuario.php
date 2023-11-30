@@ -1,10 +1,10 @@
 <?php
 ob_start();
 
-//Se carga Header
+
 include("../../Utiles/Includes/Header.php");
 
-// Errores 
+
 $errorContrasena = false;
 $correoYaExiste = false;
 
@@ -47,13 +47,7 @@ ob_end_flush();
     <br>
     <div style="text-align:center;">
 
-        <div style="border:solid 1px rgba(0,0,0,0.3);
-        border-radius: 4px;
-        display:inline-block;
-        margin-left:auto;
-        margin-right:auto;
-        text-align:center;
-        padding:30px">
+        <div class="divRegistroCrear">
         
             <form action="CrearUsuario.php" method="POST">
                 <input type="email" placeholder="E-mail" name="correo" /> <br><br>
