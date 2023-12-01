@@ -25,7 +25,6 @@ foreach ($carrito as $keyProducto => $cantidadProducto) {
 
 updatePedidos($usu_pedidos, $cod_usu);
 
-
 function crearCodigoPedido()
 {
     $codigoPedido = rand(1, 9999);
@@ -35,6 +34,5 @@ function crearCodigoPedido()
 
     return $codigoPedido;
 }
-
 
 ?>

@@ -8,11 +8,7 @@ include("../../Utiles/Includes/Header.php");
 $user = findOneByCorreoUser($_SESSION["correo"])["cod_usu"];
 $pedidoSistemas = findAllPedidoByUser($user);
 
-
-
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -27,7 +23,7 @@ $pedidoSistemas = findAllPedidoByUser($user);
 <body>
 
     <br>
-    <legend class="mt-2 titulo" >Tus Pedidos</legend>
+    <legend class="mt-2 titulo">Tus Pedidos</legend>
     <hr style="width:95%;">
     <br>
 
@@ -58,20 +54,19 @@ $pedidoSistemas = findAllPedidoByUser($user);
 
                             <div style="padding-bottom:5%;">
 
-                                <div class="divImg" style="
-                    background-image:url(<?php echo $producto['imagen'] ?>); ">
+                                <div class="divImg" style="background-image:url(<?php echo $producto['imagen'] ?>); ">
                                 </div>
                                 <br>
                                 <span>
                                     <?php echo $producto['nombre'] ?>
-                                </span><br>
+                                </span>
+                                <br>
                                 <b>
                                     <?php echo $producto['precio'] ?> €
                                 </b><br><br>
                                 <span>Cantidad: </span>
                                 <?php echo $pedido_producto['cantidad_producto'];
                                 $total += $producto["precio"] * $pedido_producto['cantidad_producto'];
-                                ;
                                 ?>
 
                                 <br>
@@ -87,10 +82,6 @@ $pedidoSistemas = findAllPedidoByUser($user);
             </div>
         <?php }
     } ?>
-
-
-
-
 
 
 </body>

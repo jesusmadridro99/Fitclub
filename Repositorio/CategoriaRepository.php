@@ -1,6 +1,7 @@
 <?php
 include __DIR__ . '../../Utiles/ConectarBD.php';
 
+//Crear categoria
 function crearCategoria($nombreCategoria, $descripcionCategoria) {
     $sqlCrear = "INSERT INTO categoria(nombre, descripcion)
     VALUES (?, ?)";
@@ -17,7 +18,7 @@ function crearCategoria($nombreCategoria, $descripcionCategoria) {
 }
 
 
-
+//Buscar categoria por nombre
 function findNombreCategoria($nombreCategoria) {
     $sqlFindNombre = "SELECT * FROM categoria where nombre = ?";
     
@@ -32,6 +33,8 @@ function findNombreCategoria($nombreCategoria) {
     return $result;
 }
 
+
+//Buscar categoria 
 function findNombreIDCategoria($nombreCategoria, $idCategoria) {
     $sqlFindIDNombre = "SELECT * FROM categoria where nombre = ? and codCat != ?";
    

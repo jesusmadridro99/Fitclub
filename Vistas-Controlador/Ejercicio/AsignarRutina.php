@@ -9,8 +9,8 @@ $usuGet = $_GET["correo"];
 $usuario = findOneByCorreoUser($usuGet)["cod_usu"];
 
 
-
-//Asignar o quitar de la rutina un ejercicio
+//Asignar o quitar de la rutina un ejercicio.
+//$_GET["accion"] viene de los botones asignar o quitar (Ejercicio.php).
 if (isset($_GET['accion'])) {
     $cod_ej = $_GET["cod_ejercicio"];
 
@@ -19,7 +19,6 @@ if (isset($_GET['accion'])) {
     } else {
         quitarEjercicio($usuario, $cod_ej);
     }
-
 }
 
 ?>
@@ -31,6 +30,7 @@ if (isset($_GET['accion'])) {
 
     <br>
 
+    <!-- Mostramos los datos del usuario -->
     <legend class="mt-2 titulo">Ejercicios</legend>
     <div style="margin-left:15%;">
         - <b>Correo: </b>
@@ -43,6 +43,8 @@ if (isset($_GET['accion'])) {
     <hr style="width:95%;">
     <br>
 
+
+    <!-- Listamos los ejericios segun su imc -->
     <form action="AsignarRutina.php?correo=<?php echo $_GET['correo'] ?>" method="POST">
         <div style="margin-left:2%">
             <h3>Imc: Obesidad</h3>

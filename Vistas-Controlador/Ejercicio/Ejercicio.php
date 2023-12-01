@@ -16,12 +16,17 @@
 
                         <?php
                         if($_SESSION["rol"] == "admin"){
+                            //Si $borrar existe significa que venimos desde la página ListarEjercicio.php
+                            // y solo se nos muestra este botón en vez de los botones asignar y quitar.
                             if(isset($borrar)){ ?>
                                 <a class="btn btn-primary botonDiv"
                                 href="BorrarEjercicio.php?id=<?php echo $ejercicio['cod_ejercicio'] ?>">Borrar</a>
                            <?php }
                         else{
+                        
+                        //Buscamos si el ejercicio si el ejercicio esta asignado al usuario.
                         $ejercicioUsuario = findEjercicioByUsuario($usuario, $ejercicio['cod_ejercicio']);
+
                         //Si el ejercicio esta asignado muestra el boton quitar y si no, muestra el boton asignar
                         if ($ejercicioUsuario) {  ?>
                             <a class="btn btn-danger botonDiv"

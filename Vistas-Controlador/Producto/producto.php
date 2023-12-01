@@ -23,6 +23,7 @@
                 if ($producto["valoraciones_totales"] == 0) { ?>
                     <span style="float:right; padding-left:5px"> N/A </span>
                 <?php } else {
+                    //Media de las valoraciones del producto
                     $val = $producto["val_num"] / $producto["valoraciones_totales"]; ?>
                     <span style="float:right; padding-left:5px">
                         <?php echo round($val, 1); ?>

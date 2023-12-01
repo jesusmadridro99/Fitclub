@@ -80,9 +80,8 @@ ob_end_flush();
     
     <p style="text-align:center;"><a style="text-align:center;" href="../Vistas-Controlador/Usuario/CrearUsuario.php">Registrate</a></p>
     
-    <?php
-        include("../Utiles/Includes/Footer.html");
-    ?>
+    
 </body>
 
 </html>
+

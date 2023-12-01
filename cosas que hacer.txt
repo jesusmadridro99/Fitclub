@@ -1,3 +1,4 @@
 - Footer
 - Documentar
 - Cundo modifico producto, enviar todos los datos al modal.
+- ComprobarBorrar a ejercicio y plato.
