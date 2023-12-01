@@ -17,7 +17,7 @@ $error = false;
 $codUsu = findOneByCorreoUser($_SESSION["correo"])["cod_usu"];
 $pedidos = findAllPedidoByUser($codUsu);
 
-$usuario = findByCorreoUsuario($_SESSION["correo"]);
+$usuario = findOneByCorreoUser($_SESSION["correo"]);
 $pass_usu = $usuario["password"];
 $correo = $_SESSION["correo"];
 

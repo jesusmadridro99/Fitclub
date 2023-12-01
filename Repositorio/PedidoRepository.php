@@ -1,6 +1,8 @@
 <?php
 include __DIR__ . '../../Utiles/ConectarBD.php';
 
+
+//Crear pedido
 function crearPedido($cod_pedido, $fecha, $cod_usu) {
     $sqlCrear = "INSERT INTO pedido(cod_pedido, fecha, cod_usu)
     VALUES (?, ?, ?)";
@@ -14,12 +16,15 @@ function crearPedido($cod_pedido, $fecha, $cod_usu) {
     }
 }
 
+
+
+//Crear pedido_producto
 function crearPedidoProducto($cod_pedido, $cod_producto, $cantidad) {
-    $sqlCrearPedidoAlbum = "INSERT INTO pedido_producto(cod_pedido, cod_producto, cantidad_producto)
+    $sqlCrearPedidoProducto = "INSERT INTO pedido_producto(cod_pedido, cod_producto, cantidad_producto)
     VALUES (?, ?, ?)";
 
     try {
-        $result = $GLOBALS["bd"]->prepare($sqlCrearPedidoAlbum);
+        $result = $GLOBALS["bd"]->prepare($sqlCrearPedidoProducto);
         $result->execute(array($cod_pedido, $cod_producto, $cantidad));
     } catch (PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
@@ -27,20 +32,10 @@ function crearPedidoProducto($cod_pedido, $cod_producto, $cantidad) {
     }
 }
 
-function valorarPedido($valoracion, $codPedido) {
-    $sqlValorarpedido = "UPDATE pedido set valoracion = ? where codPedido = ?";
-
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlValorarpedido);
-        $result->execute(array($valoracion, $codPedido));
-    } catch (PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Fitclub/Vistas-Controlador/Error.html");
-    }
-}
 
 
 
+//Buscar pedido por id
 function findIdPedido($cod_pedido) {
     $sqlFindId = "SELECT * FROM pedido where cod_pedido = ?";
 
@@ -55,6 +50,10 @@ function findIdPedido($cod_pedido) {
     return $result;
 }
 
+
+
+
+//Buscar pedido_producto por id
 function findIdPedidoProducto($cod_pedido) {
     $sqlFindId = "SELECT * FROM pedido_producto where cod_pedido = ?";
 
@@ -69,20 +68,9 @@ function findIdPedidoProducto($cod_pedido) {
     return $result;
 }
 
-function findAllPedido() {
-    $sqlFindAll = "SELECT * FROM pedido";
- 
-    try {
-        $result = $GLOBALS["bd"]->query($sqlFindAll);
-        $result = $result->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Fitclub/Vistas-Controlador/Error.html");
-    }
 
-    return $result;
-}
 
+//Buscamos pedido por el di de usuario y los ordenamos
 function findAllPedidoByUser($cod_usu) {
     $sqlFindAllByUser = "SELECT * FROM pedido where cod_usu = ? ORDER BY fecha DESC";
 
@@ -98,19 +86,4 @@ function findAllPedidoByUser($cod_usu) {
     return $result;
 }
 
-
-function countPedidoByUser($cod_usu){
-    $sqlCount = "SELECT COUNT(cod_pedido) as total FROM pedido WHERE cod_usu = ?";
-
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlCount);
-        $result->execute(array($cod_usu));
-        $result = $result->fetchAll(PDO::FETCH_ASSOC);
-    } catch(PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Fitclub/Vistas-Controlador/Error.html");
-    }
-    
-    return $result;
-}
 

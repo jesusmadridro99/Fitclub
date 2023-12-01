@@ -1,6 +1,7 @@
 <?php
 include __DIR__ . '../../Utiles/ConectarBD.php';
 
+//Crear producto
 function crearProducto($nombre, $precio, $imagen, $cod_cat)
 {
     $sqlCrear = "INSERT INTO producto(nombre, precio, imagen, cod_cat) 
@@ -15,6 +16,9 @@ function crearProducto($nombre, $precio, $imagen, $cod_cat)
     }
 }
 
+
+
+//Modificar producto
 function updateProducto($precio, $nombre, $imagen, $codCat, $cod_producto)
 {
     $sqlUpdateProducto = "UPDATE producto set precio = ?, nombre = ?, imagen = ?, cod_cat = ? where cod_producto = ?";
@@ -29,22 +33,9 @@ function updateProducto($precio, $nombre, $imagen, $codCat, $cod_producto)
     }
 }
 
-function findNombreIDProducto($cod_producto, $nombre)
-{
-    $sqlFindIDNombre = "SELECT * FROM producto where nombre = ? and cod_producto != ?";
-
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlFindIDNombre);
-        $result->execute(array($nombre, $cod_producto));
-    } catch (PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Fitclub/Vistas-Controlador/Error.html");
-    }
-
-    return $result;
-}
 
 
+//Buscar producto por categoria
 function findProductoByCategoria($categoria)
 {
 
@@ -62,24 +53,10 @@ function findProductoByCategoria($categoria)
 
 }
 
-function findProductoByCategoriaOrdenado($categoria, $orden)
-{
-
-    $sqlFindProducto = "SELECT * from producto where cod_cat = ? ORDER BY nombre";
-
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlFindProducto);
-        $result->execute(array($categoria));
-        return $result;
-
-    } catch (PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Fitclub/Vistas-Controlador/Error.html");
-    }
-
-}
 
 
+
+//Buscamos los productos segun el id y los ordenamos
 function findProductoByIDOrdered($cod, $orden)
 {
     $codigos = '"' . rtrim(implode('","', $cod), ',') . '"';
@@ -97,6 +74,9 @@ function findProductoByIDOrdered($cod, $orden)
     return $result;
 }
 
+
+
+//Buscar todos los productos
 function findIdProducto($id)
 {
 
@@ -116,6 +96,7 @@ function findIdProducto($id)
 
 
 
+//Buscamos todos los productos
 function findIdProducto2($id)
 {
 
@@ -136,6 +117,8 @@ function findIdProducto2($id)
 
 
 
+
+//Buscamos productos por nombre
 function findProductoByNombre($nombre)
 {
 
@@ -156,54 +139,7 @@ function findProductoByNombre($nombre)
 
 
 
-function findNombreProducto($nombre)
-{
-    $sqlFindNombre = "SELECT * FROM producto where nombre = ?";
-
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlFindNombre);
-        $result->execute(array($nombre));
-    } catch (PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Fitclub/Vistas-Controlador/Error.html");
-    }
-
-    return $result;
-}
-
-
-
-function findEachCategoria()
-{
-    $sqlFindEach = "SELECT DISTINCT categoria FROM producto";
-
-    try {
-        $result = $GLOBALS["bd"]->query($sqlFindEach);
-        $res = $result->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Fitclub/Vistas-Controlador/Error.html");
-    }
-    return $res;
-}
-
-
-function findAllProducto()
-{
-    $sqlFindAll = "SELECT * FROM producto";
-
-    try {
-        $result = $GLOBALS["bd"]->query($sqlFindAll);
-        $res = $result->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Fitclub/Vistas-Controlador/Error.html");
-    }
-
-    return $res;
-}
-
-
+//Borrar producto
 function deleteProducto($codProducto)
 {
     $sqlDeleteProducto = "DELETE FROM producto where cod_producto = ?";
@@ -218,7 +154,7 @@ function deleteProducto($codProducto)
 }
 
 
-
+//Modificar las valoraciones del producto
 function updateValProducto($val_total,$num_val,$cod_producto){
     
     $sqlUpdateProducto = "UPDATE producto set valoraciones_totales = ?, val_num = ? where cod_producto = ?";
@@ -231,9 +167,7 @@ function updateValProducto($val_total,$num_val,$cod_producto){
         header("Location: /Fitclub/Vistas-Controlador/Error.html");
     }
 
-
 }
-
 
 
 ?>

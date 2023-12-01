@@ -2,6 +2,7 @@
 include __DIR__ . '../../Utiles/ConectarBD.php';
 
 
+//Crear ejercicio
 function crearEjercicio($nombre, $descripcion,$imc) {
     $sqlCrear = "INSERT INTO ejercicio(nombre, descripcion, imc) 
         VALUES (?, ?, ?)";
@@ -16,6 +17,7 @@ function crearEjercicio($nombre, $descripcion,$imc) {
 }
 
 
+//Buscar ejercicio por IMC
 function findEjercicioByIMC($correo)
 {
     $sqlFindEj = "SELECT * FROM ejercicio where imc IN(SELECT imc FROM usuario WHERE correo = ?)";
@@ -31,6 +33,8 @@ function findEjercicioByIMC($correo)
     return $result;
 }
 
+
+//Seleccionamos los datos de los ejercicios que tiene asignado un usuario
 function findEjercicioByUsuarioPlan($usuario){
     $sqlFindEj = "SELECT * FROM ejercicio WHERE cod_ejercicio in (SELECT cod_ejercicio from usuario_ejercicio WHERE cod_usu = ?)";
     
@@ -48,6 +52,7 @@ function findEjercicioByUsuarioPlan($usuario){
 
 
 
+//Asignar ejercicio a un usuario
 function asignarEjercicio($cod_usu, $ejercicio) {
     $sqlCrear = "INSERT INTO usuario_ejercicio(cod_usu, cod_ejercicio)VALUES (?, ?)";
 
@@ -62,7 +67,7 @@ function asignarEjercicio($cod_usu, $ejercicio) {
 }
 
 
-
+// Buscamos un ejercicio determinado de un usuario determinado y devolvemos si lo encontramos.
 function findEjercicioByUsuario($usuario, $ejercicio)
 {
     $sqlFindEj = "SELECT * FROM usuario_ejercicio where cod_usu = ? and cod_ejercicio = ?";
@@ -83,6 +88,7 @@ function findEjercicioByUsuario($usuario, $ejercicio)
 
 
 
+//Quitar ejercicio de la rutina de un usuario
 function quitarEjercicio($usuario,$ejercicio){
     
     $sqlQuitar = "DELETE FROM usuario_ejercicio where cod_usu = ? and cod_ejercicio = ?";
@@ -96,6 +102,9 @@ function quitarEjercicio($usuario,$ejercicio){
 
 }
 
+
+
+//Buscar todos los ejercicios
 function findAllEjercicio()
 {
     $sqlFindAll = "SELECT * FROM ejercicio";
@@ -113,22 +122,7 @@ function findAllEjercicio()
 
 
 
-
-function addEjercicioToUsuario($usuario, $ejercicio)
-{
-    $sqlAddEj = "INSERT INTO usuario_ejercicio (cod_usu, cod_ejercicio) VALUES (?,?);";
-
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlAddEj);
-        $result->execute(array($usuario, $ejercicio));
-    } catch (PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Fitclub/Vistas-Controlador/Error.html");
-    }
-
-}
-
-
+//Borrar ejercicio
 function deleteEjercicio($ejercicio) {
     $sqlDeleteEjercicio = "DELETE FROM ejercicio where cod_ejercicio = ?";
 

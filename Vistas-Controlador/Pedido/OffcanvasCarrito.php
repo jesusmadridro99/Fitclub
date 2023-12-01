@@ -9,6 +9,7 @@
             <?php
             $total = 0;
 
+            //Listamos los productos
             foreach ($_SESSION["carrito"] as $keyProducto => $cantidadProducto) {
                 $producto = findIdProducto($keyProducto);
                 $producto = $producto->fetch(PDO::FETCH_ASSOC);
@@ -42,6 +43,8 @@
             }
             ?>
             <br>
+
+            <!-- Mostramos el total del precio de los productos -->
             <?php if ($total > 0) { ?>
                 <div class="offcanvas-header" style="background-color:rgb(253, 237, 237)">
                     <h4>Total: <span id="total">

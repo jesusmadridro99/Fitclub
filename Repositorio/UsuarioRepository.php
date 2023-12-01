@@ -1,6 +1,8 @@
 <?php
 include __DIR__ . '../../Utiles/ConectarBD.php';
 
+
+//Crear usuario
 function crearUsuario($correo,$contrasena,$username,$nombre,$apellidos) {
     $sqlCrear = "INSERT INTO usuario(correo, password, username, nombre, apellidos,  esAdmin)
     VALUES (?, ?, ?, ?, ?, '0')";
@@ -15,6 +17,7 @@ function crearUsuario($correo,$contrasena,$username,$nombre,$apellidos) {
 }
 
 
+//Modificar nº de pedidos
 function updatePedidos($pedidos, $usuario) {
     $sqlUpdatePedidos = "UPDATE usuario SET n_pedidos = ? WHERE cod_usu = ?";
 
@@ -28,76 +31,18 @@ function updatePedidos($pedidos, $usuario) {
 }
 
 
-function findUsuarioUsername($username) {
-    $sqlFindUsername= "SELECT * FROM usuario where username = ?";
-    $res = true;
 
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlFindUsername);
-        $result->execute(array($username));
-        
-        if ($result->rowCount() == 0) {
-            $res = false;
-        }
-    } catch(PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Spytufo/Vistas-Controlador/Error.html");
-    }
-
-    return $res;
-}
-
-
-
-function findCorreoUsuario($correo) {
-    $sqlFindCorreo = "SELECT * FROM usuario where correo = ?";
-    $res = true;
-
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlFindCorreo);
-        $result->execute(array($correo));
-        
-        if ($result->rowCount() == 0) {
-            $res = false;
-        }
-    } catch(PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Spytufo/Vistas-Controlador/Error.html");
-    }
-
-    return $res;
-}
-
-
-function findByCorreoUsuario($correo) {
-    $sqlFindCorreo = "SELECT * FROM usuario where correo = ?";
-
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlFindCorreo);
-        $result->execute(array($correo));
-        $result = $result->fetch(PDO::FETCH_ASSOC);
-    } catch(PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Spytufo/Vistas-Controlador/Error.html");
-    }
-
-    return $result;
-}
-
-
-
+//Buscamos usuario por correo y contraseña
 function findCorreoPassUsuario($correo, $pass) {
     $sqlFindCorreoPass = "SELECT * FROM usuario where correo = ? and password = ? ";
 
     $encuentraUser = false;
     $esAdminSistema = false;
 
-    
         $result = $GLOBALS["bd"]->prepare($sqlFindCorreoPass);
         $result->execute(array($correo, $pass));
 
         $esAdmin = $result->fetch(PDO::FETCH_ASSOC)["esAdmin"];
-
 
         if ($result->rowCount() == 1 ) {
             $encuentraUser = true;  
@@ -112,6 +57,7 @@ function findCorreoPassUsuario($correo, $pass) {
 
 
 
+//Buscar todos los usuarios
 function findAllUser() {
     $sqlFindAll = "SELECT * FROM usuario";
 
@@ -126,39 +72,9 @@ function findAllUser() {
     return $res;
 }
 
-function findIMCbyCorreo($correo) {
-
-    $sqlFindIMC = "SELECT imc FROM usuario WHERE correo = ?";
-
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlFindIMC);
-        $result->execute(array($correo));
-        $result = $result->fetch(PDO::FETCH_ASSOC);
-    } catch(PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Fitclub/Vistas-Controlador/Error.html");
-    }
-
-    return $result;
-
-}
 
 
-function findAllUserSinUserLogin($codUsu) {
-    $sqlFindAll = "SELECT * FROM usuario where codUsu != ?";
-    
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlFindAll);
-        $result->execute(array($codUsu));
-        $result = $result->fetchAll(PDO::FETCH_ASSOC);
-    } catch(PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Spytufo/Vistas-Controlador/Error.html");
-    }
-
-    return $result;
-}
-
+//Buscar usuarios por id
 function findOneByIdUser($codUser) {
     $sqlFindOne = "SELECT * FROM usuario WHERE cod_usu = ?";
 
@@ -176,7 +92,7 @@ function findOneByIdUser($codUser) {
 
 
 
-
+//Buscar usuario por correo
 function findOneByCorreoUser($correo) {
     $sqlFindOne = "SELECT * FROM usuario WHERE correo = ?";
 
@@ -194,7 +110,7 @@ function findOneByCorreoUser($correo) {
 
 
 
-
+//Modificar edad
 function updateEdad($edad, $correo)
 {
     $sqlUpdateEdad = "UPDATE usuario set edad = ?  where correo = ?";
@@ -211,6 +127,7 @@ function updateEdad($edad, $correo)
 
 
 
+//Modificar imc
 function updateImc($imc, $correo)
 {
     $sqlUpdateImc = "UPDATE usuario set imc = ?  where correo = ?";
@@ -225,6 +142,9 @@ function updateImc($imc, $correo)
     }
 }
 
+
+
+//Modificar contraseña
 function updatePass($pass,$correo)
 {
     $sqlUpdatePass = "UPDATE usuario set password = ?  where correo = ?";
@@ -241,24 +161,7 @@ function updatePass($pass,$correo)
 
 
 
-function findImcByUser($correo)
-{
-    $sqlFindImc = "SELECT imc FROM usuario WHERE correo = ?";
-
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlFindImc);
-        $result->execute(array($correo));
-        return $result;
-
-    } catch (PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Fitclub/Vistas-Controlador/Error.html");
-    }
-
-}
-
-
-
+//Modificar plan
 function updatePlan($plan, $correo) {
     $sqlUpdatePlan = "UPDATE usuario set plan = ?  where correo = ?";
 

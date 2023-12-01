@@ -6,8 +6,8 @@ include("../../Repositorio/UsuarioRepository.php");
 session_start();
 
 $carrito = $_SESSION["carrito"];
-$cod_usu = findByCorreoUsuario($_SESSION["correo"])["cod_usu"];
-$usu_pedidos = findByCorreoUsuario($_SESSION["correo"])["n_pedidos"] + 1;
+$cod_usu = findOneByCorreoUser($_SESSION["correo"])["cod_usu"];
+$usu_pedidos = findOneByCorreoUser($_SESSION["correo"])["n_pedidos"] + 1;
 $cod_pedido = crearCodigoPedido();
 $fecha = date("Y-m-d");
 

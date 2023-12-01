@@ -35,6 +35,8 @@ $pedidoSistemas = findAllPedidoByUser($user);
 
 
     <?php } else {
+
+        //Listamos los pedidos
         foreach ($pedidoSistemas as $pedido) { ?>
             <h4 style="margin-left:20%">Pedido número
                 <?php echo $pedido["cod_pedido"]; ?> |
@@ -45,6 +47,8 @@ $pedidoSistemas = findAllPedidoByUser($user);
                 <?php
                 $total = 0;
                 $pedido_productoSistemas = findIdPedidoProducto($pedido["cod_pedido"]);
+
+                //Listamos los productos de cadd pedido
                 foreach ($pedido_productoSistemas as $pedido_producto) { ?>
                     <div>
                         <?php $productos = findIdProducto($pedido_producto["cod_producto"]);
@@ -66,7 +70,6 @@ $pedidoSistemas = findAllPedidoByUser($user);
                                 </b><br><br>
                                 <span>Cantidad: </span>
                                 <?php echo $pedido_producto['cantidad_producto'];
-                                $total += $producto["precio"] * $pedido_producto['cantidad_producto'];
                                 ?>
 
                                 <br>

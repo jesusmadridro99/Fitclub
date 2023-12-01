@@ -9,7 +9,7 @@ include __DIR__ . '\..\ConectarBD.php';
 
 if (isset($_SESSION['correo'])) {
   $correo = $_SESSION["correo"];
-  $usuarioActual = findByCorreoUsuario($correo);
+  $usuarioActual = findOneByCorreoUser($correo);
 }
 
 ?>

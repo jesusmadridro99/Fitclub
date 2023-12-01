@@ -2,6 +2,7 @@
 include __DIR__ . '../../Utiles/ConectarBD.php';
 
 
+//Crear plato
 function crearPlato($nombre, $descripcion,$imc, $imagen) {
     $sqlCrear = "INSERT INTO plato(nombre, descripcion, imc, imagen) 
         VALUES (?, ?, ?, ?)";
@@ -16,6 +17,8 @@ function crearPlato($nombre, $descripcion,$imc, $imagen) {
 }
 
 
+
+//Buscar plato por IMC
 function findPlatoByIMC($correo)
 {
     $sqlFindEj = "SELECT * FROM plato where imc IN(SELECT imc FROM usuario WHERE correo = ?)";
@@ -31,6 +34,9 @@ function findPlatoByIMC($correo)
     return $result;
 }
 
+
+
+//Seleccionamos los datos de los platos que tiene asignado un usuario
 function findPlatoByUsuarioPlan($usuario){
     $sqlFindEj = "SELECT * FROM plato WHERE cod_plato in (SELECT cod_plato from usuario_plato WHERE cod_usu = ?)";
     
@@ -48,6 +54,7 @@ function findPlatoByUsuarioPlan($usuario){
 
 
 
+//Asignar plato a un usuario
 function asignarPlato($cod_usu, $plato) {
     $sqlCrear = "INSERT INTO usuario_plato(cod_usu, cod_plato)VALUES (?, ?)";
 
@@ -62,6 +69,8 @@ function asignarPlato($cod_usu, $plato) {
 }
 
 
+
+//Buscamos si un plato esta asignado a un usuario y devolvemos si lo encuetra
 function findPlatoByUsuario($usuario, $plato)
 {
     $sqlFindEj = "SELECT * FROM usuario_plato where cod_usu = ? and cod_plato = ?";
@@ -82,6 +91,7 @@ function findPlatoByUsuario($usuario, $plato)
 
 
 
+//Quitar plato de la dieta de un usuario
 function quitarPlato($usuario,$plato){
     
     $sqlQuitar = "DELETE FROM usuario_plato where cod_usu = ? and cod_plato = ?";
@@ -95,6 +105,9 @@ function quitarPlato($usuario,$plato){
 
 }
 
+
+
+//Buscar todos los platos
 function findAllPlato()
 {
     $sqlFindAll = "SELECT * FROM plato";
@@ -112,6 +125,7 @@ function findAllPlato()
 
 
 
+//Buscar plato por id
 function findPlatoByCod($plato)
 {
     $sqlFindPlato = "SELECT * FROM plato WHERE cod_plato = ?";
@@ -130,21 +144,7 @@ function findPlatoByCod($plato)
 
 
 
-function addPlatoToUsuario($usuario, $plato)
-{
-    $sqlAddPlato = "INSERT INTO usuario_plato (cod_usu, cod_plato) VALUES (?,?);";
-
-    try {
-        $result = $GLOBALS["bd"]->prepare($sqlAddPlato);
-        $result->execute(array($usuario, $plato));
-    } catch (PDOException $e) {
-        echo "Error en la conexión " . $e->getMessage();
-        header("Location: /Fitclub/Vistas-Controlador/Error.html");
-    }
-
-}
-
-
+//Borrar plato
 function deletePlato($plato) {
     $sqlDeletePlato = "DELETE FROM plato where cod_plato = ?";
 
