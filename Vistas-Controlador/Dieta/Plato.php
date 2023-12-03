@@ -20,7 +20,7 @@
                 if ($_SESSION["rol"] == "admin") {
                     if (isset($borrar)) { ?>
                         <a class="btn btn-primary botonDiv"
-                            href="BorrarPlato.php?id=<?php echo $plato['cod_plato'] ?>">Borrar</a>
+                        href="javascript: comprobarEliminar(<?php echo $plato['cod_plato'] ?>)">Borrar</a>
                     <?php } else {
                         $platoUsuario = findPlatoByUsuario($usuario, $plato['cod_plato']);
                         //Si el plato esta asignado muestra el boton quitar y si no, muestra el boton asignar

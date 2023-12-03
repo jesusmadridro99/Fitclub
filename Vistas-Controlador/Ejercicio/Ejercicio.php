@@ -20,7 +20,7 @@
                             // y solo se nos muestra este botón en vez de los botones asignar y quitar.
                             if(isset($borrar)){ ?>
                                 <a class="btn btn-primary botonDiv"
-                                href="BorrarEjercicio.php?id=<?php echo $ejercicio['cod_ejercicio'] ?>">Borrar</a>
+                                href="javascript: comprobarEliminar(<?php echo $ejercicio['cod_ejercicio'] ?>)">Borrar</a>
                            <?php }
                         else{
                         

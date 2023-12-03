@@ -53,7 +53,10 @@ if (isset($_GET["orden"])) {
     if (isset($_SESSION["rol"])) {
         if ($_SESSION['rol'] == 'admin') { ?>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCrearProducto"
-                style="margin-left:15%">Crear</button>
+                style="margin-left:15%">Crear Producto</button>
+            
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCategoria"
+                >Crear Categoria</button>
         <?php }
     } ?>
     <hr style="width:95%;">

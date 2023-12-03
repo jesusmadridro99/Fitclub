@@ -1,7 +1,7 @@
 <?php
     $servername = "127.0.0.1";
     $database = "fitclub";
-    $username = "jesus";
+    $username = "admin";
     $password = "root";
 
     try {

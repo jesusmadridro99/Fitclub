@@ -22,9 +22,7 @@ $plato = findPlatoByCod($_GET["plato"]);
         <br>
         <h2>
             <?php
-            
                 echo $plato[0]["nombre"];
-            
             ?>
         </h2>
 
